@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2024/12/24 17:01:08 by mmalie           ###   ########.fr        #
+#    Updated: 2024/12/27 09:03:19 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,8 @@ LIBFT = ./libft/libft.a
 ####################
 
 SRC = so_long.c \
+	mlx_draw_toolkit.c \
+	event_handler.c \
 
 ### Object files
 OBJ = $(SRC:.c=.o)
