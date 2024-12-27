@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2024/12/27 09:03:19 by mmalie           ###   ########.fr        #
+#    Updated: 2024/12/27 17:15:23 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +27,11 @@ CFLAGS=-g -Wall -Wextra -Werror
 ### Dependencies ###
 ####################
 
-DEPS = so_long.h
-DEPS_LIBFT = ./libft/libft.h
+DEPS = so_long.h \
+	mlx_draw_toolkit.h \
+	mlx_color_toolkit.h \
+	./libft/libft.h \
+#DEPS_LIBFT = ./libft/libft.h
 LIBFT = ./libft/libft.a
 
 ####################
@@ -37,6 +40,7 @@ LIBFT = ./libft/libft.a
 
 SRC = so_long.c \
 	mlx_draw_toolkit.c \
+	mlx_color_toolkit.c \
 	event_handler.c \
 
 ### Object files
@@ -58,7 +62,7 @@ $(NAME): $(OBJ) $(LIBFT)
 ### Compile .c files into .o files ###
 ######################################
 
-$(OBJ): %.o: %.c $(DEPS)
+$(OBJ): %.o: %.c $(DEPS) $(DEPS_LIBFT)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 #########################

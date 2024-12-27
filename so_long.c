@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2024/12/27 15:10:47 by mmalie           ###   ########.fr       */
+/*   Updated: 2024/12/27 19:05:43 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,47 @@ int	main(void)
 	if (!vars.mlx)
 		return (-1);
 	// Init window
-
 	vars.win = mlx_new_window(vars.mlx, WIN_X, WIN_Y, "So Long");
 
+	// Set hooks
+	set_hooks(&vars);
+
 	// Load assets
-	//mlx_xpm_file_to_image(mlx, tile, 16, 16);
+	char	*tile = "./assets/block.xpm";
+	int width = 16;
+	int height = 16;
 	
 	// Init image
-	img.img = mlx_new_image(vars.mlx, WIN_X, WIN_Y);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	
+	// img.img = mlx_new_image(vars.mlx, WIN_X, WIN_Y);
+	// img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	
+	img.img = mlx_xpm_file_to_image(vars.mlx, tile, &width, &height);
+	if (!img.img)
+		return (-1);
+	//img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
 	
+	// Init main loop
+	mlx_loop(vars.mlx);
+
+	// Exit
+	return (0);
+}
+
+void	set_hooks(t_vars *vars)
+{
+	//mlx_key_hook(vars.win, key_hook, &vars);
+	mlx_hook(vars->win, KeyRelease, KeyReleaseMask, &on_keypress, vars);
+	mlx_hook(vars->win, DestroyNotify, StructureNotifyMask, &on_destroy, vars);
+}
+
+/*
 	// Draw a pixel
 	//mlx_pixel_put(vars.mlx, vars.win, WIN_X/2, WIN_Y/2, 0xFFFFFF);
 	//mlx_fast_pixel_put(&img, 5, 5, 0x00FF0000);
 	//t_mlx_line line = {0, 0, WIN_X, WIN_Y};
 	
-	/*
 	t_mlx_line line;
 	line.start_x = 0;
 	line.start_y = 0;
@@ -51,7 +75,6 @@ int	main(void)
 	circle.center_y = WIN_Y/2;
 	circle.radius = 50;
 	draw_mlx_circle(&vars, &circle);
-*/
 	
 	// TESTS
 	int	i;
@@ -70,13 +93,4 @@ int	main(void)
 	// Display a string
 	//mlx_string_put(vars.mlx, vars.win, 100, 100, 0xFFFFFF, "COUNTER");	
 
-	//mlx_key_hook(vars.win, key_hook, &vars);
-	mlx_hook(vars.win, KeyRelease, KeyReleaseMask, &on_keypress, &vars);
-	mlx_hook(vars.win, DestroyNotify, StructureNotifyMask, &on_destroy, &vars);
-	
-	// Init main loop
-	mlx_loop(vars.mlx);
-
-	// Exit
-	return (0);
-}
+*/

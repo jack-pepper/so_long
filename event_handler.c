@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2024/12/27 08:55:15 by mmalie           ###   ########.fr       */
+/*   Updated: 2024/12/27 17:37:48 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,16 @@ int	key_hook(int key, t_vars *vars)
 	return (0);
 }
 */
+
+int on_destroy(t_vars *vars)
+{
+	mlx_destroy_window(vars->mlx, vars->win);
+	mlx_destroy_display(vars->mlx);
+	free(vars->mlx);
+	exit(0);
+	return (0);
+}
+
 
 int on_keypress(int keysym, t_vars *vars)
 {
@@ -42,14 +52,6 @@ int on_keypress(int keysym, t_vars *vars)
 	return (0);
 }
 
-int on_destroy(t_vars *vars)
-{
-	mlx_destroy_window(vars->mlx, vars->win);
-	mlx_destroy_display(vars->mlx);
-	free(vars->mlx);
-	exit(0);
-	return (0);
-}
 
 /*
 int	win_close(int keycode, t_vars *vars)
