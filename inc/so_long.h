@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:30 by mmalie            #+#    #+#             */
-/*   Updated: 2024/12/28 23:51:50 by mmalie           ###   ########.fr       */
+/*   Updated: 2024/12/29 00:54:41 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,22 @@ typedef struct	s_state
 	int	score;
 }		t_state;
 
+typedef struct	s_tile
+{
+	void	*sprite;
+	int	width;
+	int	height;
+}		t_tile;
+
 typedef struct	s_map
 {
 	char	**tiles;
 	int	width;
 	int	height;
-	void	*background;
-	void	*tile_wall;
-	void	*tile_coll;
-	void	*tile_exit;
+	t_img	*background;
+	t_tile	*wall;
+	t_tile	*coll;
+	t_tile	*exit;
 }		t_map;
 
 typedef struct	s_hero
@@ -98,6 +105,10 @@ typedef struct	s_game
 # include "../lib/libft/libft.h"
 # include "../lib/libxkit/mlx_draw_toolkit.h"
 # include "../lib/libxkit/mlx_color_toolkit.h"
+
+
+#include "./rendering.h"
+
 
 int     win_close(int keysym, t_env *env);
 
