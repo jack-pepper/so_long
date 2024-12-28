@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2024/12/27 17:15:23 by mmalie           ###   ########.fr        #
+#    Updated: 2024/12/28 21:49:42 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,21 +27,22 @@ CFLAGS=-g -Wall -Wextra -Werror
 ### Dependencies ###
 ####################
 
-DEPS = so_long.h \
-	mlx_draw_toolkit.h \
-	mlx_color_toolkit.h \
-	./libft/libft.h \
+DEPS = ./inc/so_long.h \
+	./inc/assets.h \
+	./lib/libxkit/mlx_draw_toolkit.h \
+	./lib/libxkit/mlx_color_toolkit.h \
+	./lib/libft/libft.h \
 #DEPS_LIBFT = ./libft/libft.h
-LIBFT = ./libft/libft.a
+LIBFT = ./lib/libft/libft.a
 
 ####################
 ### Source files ###
 ####################
 
-SRC = so_long.c \
-	mlx_draw_toolkit.c \
-	mlx_color_toolkit.c \
-	event_handler.c \
+SRC = ./src/so_long.c \
+	./src/event_handler.c \
+	./lib/libxkit/mlx_draw_toolkit.c \
+	./lib/libxkit/mlx_color_toolkit.c \
 
 ### Object files
 OBJ = $(SRC:.c=.o)
@@ -53,10 +54,10 @@ OBJ = $(SRC:.c=.o)
 all: $(LIBFT) $(NAME)
 
 $(LIBFT):
-	cd libft && make
+	cd lib/libft && make
 
 $(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(OBJ) -Llibft -lft -lm -Lminilibx -lmlx -lXext -lX11 -o $(NAME)
+	$(CC) $(OBJ) -Llib/libft -lft -lm -Lminilibx -lmlx -lXext -lX11 -o $(NAME)
 
 ######################################
 ### Compile .c files into .o files ###
@@ -70,11 +71,11 @@ $(OBJ): %.o: %.c $(DEPS) $(DEPS_LIBFT)
 #########################
 
 clean:
-	cd libft && make clean
+	cd lib/libft && make clean
 	rm -f $(OBJ)
 
 fclean: clean
-	cd libft && make fclean
+	cd lib/libft && make fclean
 	rm -f $(NAME)
 
 re: fclean all

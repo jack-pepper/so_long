@@ -48,4 +48,4 @@ ClientMessage: Triggered when a client sends a custom message to a window, often
 PropertyNotify: Triggered when a property (such as a window's name or icon) changes.
 SelectionClear: Triggered when the selection (e.g., text highlighted for copying) is cleared.
 SelectionNotify: Triggered when a selection operation is completed, such as copying text.
-SelectionRequest: Triggered when a window or program requests data from a selection (e.g., pasting text).
+SelectionRequest: Triggered when a window or program requests img from a selection (e.g., pasting text).
