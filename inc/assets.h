@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 00:10:38 by mmalie            #+#    #+#             */
-/*   Updated: 2024/12/29 00:32:25 by mmalie           ###   ########.fr       */
+/*   Updated: 2024/12/30 23:18:18 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define exit_height WIN_Y/32
 
 // Hero
-# define hero_path "./assets/hero.xpm"
+# define hero_path "./ass/hero.xpm"
 # define hero_width WIN_X/32
 # define hero_height WIN_Y/32
 

@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:30 by mmalie            #+#    #+#             */
-/*   Updated: 2024/12/29 00:54:41 by mmalie           ###   ########.fr       */
+/*   Updated: 2024/12/30 23:15:46 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <X11/keysym.h>
 
 
-// # include "assets.h"
+# include "assets.h"
 
 /* Main structs */
 
@@ -118,7 +118,8 @@ int on_destroy(t_env *env);
 
 void	set_hooks(t_env *env);
 void	set_canvas(t_env *env);
-void    upload_assets(t_env *env);
+void	set_map(t_game *game);
+void    upload_assets(t_game *game);
 
 
 // Assets (name and path:)
