@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/01 00:56:00 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/01 12:52:18 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,11 @@ int	main(int argc, char **argv)
 	if (!game->env->mlx)
 		return (-1);
 	game->env->win = mlx_new_window(game->env->mlx, WIN_X, WIN_Y, "So Long");
-	set_hooks(game->env);
+	set_hooks(game);
 	set_canvas(game->env);
 	set_map(game);
 	upload_assets(game);
+
 	mlx_loop_hook(game->env->mlx, &render, game);
 
 	mlx_loop(game->env->mlx);
@@ -76,10 +77,10 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-void    set_hooks(t_env *env)
+void    set_hooks(t_game *game)
 {
-        mlx_hook(env->win, KeyRelease, KeyReleaseMask, &on_keypress, env);
-        mlx_hook(env->win, DestroyNotify, StructureNotifyMask, &on_destroy, env);
+        mlx_hook(game->env->win, KeyPress, KeyPressMask, &on_keypress, game);
+        mlx_hook(game->env->win, DestroyNotify, StructureNotifyMask, &on_destroy, game->env);
 
 //      mlx_hook(env->win, 4, 0, mouse_handler, &env); // on mouse down event
 //      mlx_hook(env->win, 2, 1L << 0, key_handler, &env); // on key press
@@ -121,8 +122,7 @@ void	set_map(t_game *game)
 	if (!exit)
 		return ;
 	game->map->exit = exit;
-	
-	
+		
 	game->map->width = WIN_X;
 	game->map->height = WIN_Y;
 	game->map->wall->width = wall_width;
@@ -144,6 +144,21 @@ void    upload_assets(t_game *game)
 	if (!hero)
 		return ;
 	game->hero = hero;	
+
+	// Init hero pos
+	t_pos *hero_pos;
+	hero_pos = malloc(sizeof(t_pos));
+	if (!hero_pos)
+		return ;
+	game->hero->pos = hero_pos;
+	game->hero->pos->x = 600;
+	game->hero->pos->y = 600;
+	ft_printf("After init! hero_pos: %d - %d\n", game->hero->pos->x, game->hero->pos->y);
+	
+	// End init
+
+
+
 	// Load background
         game->env->canvas->img = mlx_xpm_file_to_image(game->env->mlx, bkgd_path, &width, &height);
 	if (!game->env->canvas->img)

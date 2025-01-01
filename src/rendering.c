@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 00:03:23 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/01 01:18:09 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/01 12:17:15 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,9 @@ void	render_map(t_game *game)
 	mlx_put_image_to_window(game->env->mlx, game->env->win, game->map->wall->sprite, 100, 100);
 	mlx_put_image_to_window(game->env->mlx, game->env->win, game->map->coll->sprite, 200, 200);
 	mlx_put_image_to_window(game->env->mlx, game->env->win, game->map->exit->sprite, 300, 300);
-	mlx_put_image_to_window(game->env->mlx, game->env->win, game->hero->sprite, 400, 400);
 }
 
 void	render_hero(t_game *game)
 {	
-	mlx_put_image_to_window(game->env->mlx, game->env->win, game->hero->sprite, 600, 600);
+	mlx_put_image_to_window(game->env->mlx, game->env->win, game->hero->sprite, game->hero->pos->x, game->hero->pos->y);
 }

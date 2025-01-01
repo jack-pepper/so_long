@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:30 by mmalie            #+#    #+#             */
-/*   Updated: 2024/12/31 00:38:27 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/01 12:51:28 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ typedef struct	s_map
 typedef struct	s_hero
 {
 	void	*sprite;
-	t_pos	pos;
+	t_pos	*pos;
 }		t_hero;
 
 typedef struct	s_game
@@ -113,10 +113,10 @@ typedef struct	s_game
 int     win_close(int keysym, t_env *env);
 
 // event_handler.c
-int on_keypress(int keysym, t_env *env);
+int on_keypress(int keysym, t_game *game);
 int on_destroy(t_env *env);
 
-void	set_hooks(t_env *env);
+void	set_hooks(t_game *game);
 void	set_canvas(t_env *env);
 void	set_map(t_game *game);
 void    upload_assets(t_game *game);
