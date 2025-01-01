@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:30 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/01 12:51:28 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/01 22:21:53 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,10 @@ typedef struct	s_tile
 
 typedef struct	s_map
 {
-	char	**tiles;
+	char	*filepath;
+	char	**tilemap;
+	int	tm_rows;
+	int	tm_cols;
 	int	width;
 	int	height;
 	t_img	*background;
@@ -107,8 +110,8 @@ typedef struct	s_game
 # include "../lib/libxkit/mlx_color_toolkit.h"
 
 
-#include "./rendering.h"
-
+#include "./renderer.h"
+#include "./map_parser.h"
 
 int     win_close(int keysym, t_env *env);
 

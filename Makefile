@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2024/12/29 00:09:32 by mmalie           ###   ########.fr        #
+#    Updated: 2025/01/01 14:32:29 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,9 @@ CFLAGS=-g -Wall -Wextra -Werror
 ####################
 
 DEPS = ./inc/so_long.h \
-	./inc/rendering.h \
+	./inc/map_parser.h \
 	./inc/assets.h \
+	./inc/renderer.h \
 	./lib/libxkit/mlx_draw_toolkit.h \
 	./lib/libxkit/mlx_color_toolkit.h \
 	./lib/libft/libft.h \
@@ -41,7 +42,8 @@ LIBFT = ./lib/libft/libft.a
 ####################
 
 SRC = ./src/so_long.c \
-	./src/rendering.c \
+	./src/map_parser.c \
+	./src/renderer.c \
 	./src/event_handler.c \
 	./lib/libxkit/mlx_draw_toolkit.c \
 	./lib/libxkit/mlx_color_toolkit.c \

@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/01 12:52:18 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/01 19:22:30 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,6 @@
 
 #include "../inc/so_long.h"
 
-int	check_extension(char *filepath, char *extension)
-{
-	int	i;
-	int	j;
-
-	i = ft_strlen(extension) - 1;
-	j = ft_strlen(filepath) - 1;
-	printf("ext index: %d - filepath index: %d\n", i, j);
-	while (i >= 0)
-	{
-		if (filepath[j] != extension[i])
-			return (1);
-		printf("filepath[j]: %c - extension[i]: %c\n", filepath[j], extension[i]);
-		i--;
-		j--;
-	}
-	ft_printf("Matching extensions!\n");
-	return (0);
-}
 
 int	main(int argc, char **argv)
 {
@@ -45,21 +26,7 @@ int	main(int argc, char **argv)
 		return (1);	
 	env.canvas = &canvas;
 	game->env = &env;
-	if (argc != 2)
-	{
-		ft_printf("Invalid args (needed .ber map)!\n");
-		return (1);
-	}
-	else
-		ft_printf("Argv[1] = %s\n", argv[1]);
-	if (check_extension(argv[1], ".ber") != 0)
-	{
-		ft_printf("Not a .ber file!\n");
-		return (1);
-	}
-	else
-		ft_printf("Correct filetype .ber!\n");
-
+	map_parser(game, argc, argv);
 	game->env->mlx = mlx_init();
 	if (!game->env->mlx)
 		return (-1);
@@ -98,15 +65,15 @@ void    set_canvas(t_env *env)
 
 void	set_map(t_game *game)
 {
-	t_map *map;
+//	t_map *map;
 	t_tile *wall;
 	t_tile *coll;
 	t_tile *exit;
 
-	map = malloc(sizeof(t_map));
-	if (!map)
-		return ;
-	game->map = map;
+//	map = malloc(sizeof(t_map));
+//	if (!map)
+//		return ;
+//	game->map = map;
 	
 	wall = malloc (sizeof(t_tile));
 	if (!wall)
@@ -153,7 +120,7 @@ void    upload_assets(t_game *game)
 	game->hero->pos = hero_pos;
 	game->hero->pos->x = 600;
 	game->hero->pos->y = 600;
-	ft_printf("After init! hero_pos: %d - %d\n", game->hero->pos->x, game->hero->pos->y);
+//	ft_printf("After init! hero_pos: %d - %d\n", game->hero->pos->x, game->hero->pos->y);
 	
 	// End init
 

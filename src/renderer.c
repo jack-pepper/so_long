@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rendering.c                                        :+:      :+:    :+:   */
+/*   renderer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 00:03:23 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/01 12:17:15 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/01 21:01:40 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,28 @@ void    render_background(t_env *env)
 
 void	render_map(t_game *game)
 {
-	mlx_put_image_to_window(game->env->mlx, game->env->win, game->map->wall->sprite, 100, 100);
-	mlx_put_image_to_window(game->env->mlx, game->env->win, game->map->coll->sprite, 200, 200);
-	mlx_put_image_to_window(game->env->mlx, game->env->win, game->map->exit->sprite, 300, 300);
+	char	**tilemap;	
+	int	row;
+	int	col;
+
+	tilemap = game->map->tilemap;
+	row = 0;
+	while (row)
+	{
+		col = 0;
+		while (col)
+		{
+			if (tilemap[row][col] == '1')
+				mlx_put_image_to_window(game->env->mlx, game->env->win, game->map->wall->sprite, 100, 100);
+			if (tilemap[row][col] == 'C')
+				mlx_put_image_to_window(game->env->mlx, game->env->win, game->map->coll->sprite, row * 100, col * 100);
+			if (tilemap[row][col] == 'E')
+				mlx_put_image_to_window(game->env->mlx, game->env->win, game->map->exit->sprite, row * 100, col * 100);
+			col++;
+		}
+		row++;	
+	}
+	// DOES NOT WORK.
 }
 
 void	render_hero(t_game *game)
