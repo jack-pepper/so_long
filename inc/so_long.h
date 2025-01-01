@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:30 by mmalie            #+#    #+#             */
-/*   Updated: 2024/12/30 23:15:46 by mmalie           ###   ########.fr       */
+/*   Updated: 2024/12/31 00:38:27 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ void	set_hooks(t_env *env);
 void	set_canvas(t_env *env);
 void	set_map(t_game *game);
 void    upload_assets(t_game *game);
+
+int		check_extension(char *filepath, char *extension);
 
 
 // Assets (name and path:)

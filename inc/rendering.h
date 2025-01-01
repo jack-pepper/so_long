@@ -6,9 +6,11 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 00:07:58 by mmalie            #+#    #+#             */
-/*   Updated: 2024/12/29 00:11:06 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/01 00:59:55 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	render(t_env *env);
+int	render(t_game *game);
 void	render_background(t_env *env);
+void	render_map(t_game *game);
+void	render_hero(t_game *game);
