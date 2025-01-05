@@ -6,14 +6,11 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/01 19:22:30 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/05 12:51:04 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*TO DO: parse the map for validity */
-
 #include "../inc/so_long.h"
-
 
 int	main(int argc, char **argv)
 {
@@ -23,24 +20,21 @@ int	main(int argc, char **argv)
 
 	game = malloc(sizeof(t_game));
 	if (!game)
-		return (1);	
+		return (1);
 	env.canvas = &canvas;
 	game->env = &env;
-	map_parser(game, argc, argv);
+	if (map_parser(game, argc, argv) != 0)
+		return (1);
 	game->env->mlx = mlx_init();
 	if (!game->env->mlx)
-		return (-1);
+		return (1);
 	game->env->win = mlx_new_window(game->env->mlx, WIN_X, WIN_Y, "So Long");
 	set_hooks(game);
 	set_canvas(game->env);
 	set_map(game);
 	upload_assets(game);
-
 	mlx_loop_hook(game->env->mlx, &render, game);
-
 	mlx_loop(game->env->mlx);
-
-	// Exit:
 	return (0);
 }
 
@@ -65,15 +59,9 @@ void    set_canvas(t_env *env)
 
 void	set_map(t_game *game)
 {
-//	t_map *map;
 	t_tile *wall;
 	t_tile *coll;
 	t_tile *exit;
-
-//	map = malloc(sizeof(t_map));
-//	if (!map)
-//		return ;
-//	game->map = map;
 	
 	wall = malloc (sizeof(t_tile));
 	if (!wall)
@@ -121,10 +109,6 @@ void    upload_assets(t_game *game)
 	game->hero->pos->x = 600;
 	game->hero->pos->y = 600;
 //	ft_printf("After init! hero_pos: %d - %d\n", game->hero->pos->x, game->hero->pos->y);
-	
-	// End init
-
-
 
 	// Load background
         game->env->canvas->img = mlx_xpm_file_to_image(game->env->mlx, bkgd_path, &width, &height);
@@ -150,5 +134,5 @@ void    upload_assets(t_game *game)
         /*
         //block->addr = mlx_get_data_addr(block->img, &block->bits_per_pixel, &block->line_length, &block->endian);
         //token->addr = mlx_get_data_addr(token->img, &token->bits_per_pixel, &token->line_length, &token->endian);
-        //exit->addr = mlx_get_data_addr(exit->img, &exit->bits_per_pixel, &exit->line_length, &exit->endian);
-*/}
+        //exit->addr = mlx_get_data_addr(exit->img, &exit->bits_per_pixel, &exit->line_length, &exit->endian); */
+}

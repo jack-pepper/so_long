@@ -6,23 +6,165 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 14:26:31 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/02 00:46:08 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/05 15:18:40 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-// NB: need to implement 	*ft_strpbrk(const char *s1, const char *s2)
-// and size_t	ft_strcspn(const char *s, const char *reject);
-/*int	check_chars(t_game *game, char *set)
-{
-	size_t	row;
-	size_t	col;
+// Parsing settings: 
+//	argc = 2
+//	extension = .ber
+//	shape = rect
+//	components = 3 (wall, coll, empty)
+//	char = 0 (empty); 1 (wall); C (coll); E (exit); P (hero's start pos)
+//	map closed by wall
+//	valid path!!!
+int	map_parser(t_game *game, int argc, char **argv)
+{	
+	char	filepath[256]; // CHANGE TO MALLOC
+	size_t	line_len;
+	size_t	nb_lines;
 
-	row = 0;
-	col = 0;
-	while ()
-}*/
+	if (argc != 2)
+        {
+                perror("Error\nInvalid number of arguments (req: 1)\n");
+                return (1);
+        }
+	ft_strlcpy(filepath, argv[1], ft_strlen(argv[1]) + 1);
+	ft_printf("FILEPATH: %s\n", filepath);
+        if (check_extension(filepath, ".ber") != 0)
+                return (1);
+        ft_printf("Correct extension (req: .ber)\n"); // DEBUG
+	line_len = 0;
+	nb_lines = 0;
+	if (check_shape(filepath, &line_len, &nb_lines) != 0)
+		return (1);
+	ft_printf("Correct map shape (req: rect)!\n"); // DEBUG
+	if (check_closed(filepath, line_len, nb_lines) != 0)
+		return (1);
+	if (check_chars(filepath, line_len, nb_lines, "01CEP\n") != 0) // Should the nl char be accepted?
+		return (1);
+	ft_printf("Correct chars (req: 0, 1, C>1, Ex1, Px1)\n"); // DEBUG
+	init_map(game, filepath, line_len, nb_lines);
+	return (0);
+}
+
+int	check_extension(char *filepath, char *ext)
+{
+	int     i;
+        int     j;
+
+        i = ft_strlen(ext) - 1;
+        j = ft_strlen(filepath) - 1;
+        while (i >= 0)
+        {
+                if (filepath[j] != ext[i])
+		{
+			ft_printf("Error\nInvalid extension (req: %s)\n", ext); // Should be displayed to stderror!
+                        return (1);
+		}
+                i--;
+                j--;
+        }
+        return (0);
+}
+
+int	check_shape(char *filepath, size_t *line_len, size_t *nb_lines)
+{
+	int	file;
+	char	*line;
+
+	file = open(filepath, O_RDONLY);
+	if (file == -1)
+	{
+		perror("Error\nError opening file\n");
+		return (1);
+	}
+	while (1)
+	{
+		line = ft_gnl(file);
+		if (line == NULL)
+			break ;
+		if (*nb_lines == 0)
+			*line_len = ft_strlen(line);
+		if (ft_strlen(line) != *line_len)
+		{
+			perror("Error\nInvalid map shape (req: rect)\n");
+			close(file);
+			return (1);
+		}
+		(*nb_lines)++;
+	}
+	close(file);
+	return (0);
+}
+
+int	check_closed(char *filepath, size_t line_len, size_t nb_lines)
+{
+	int	file;
+	char	*line;
+	size_t	line_nb;
+
+	file = open(filepath, O_RDONLY);
+	line_nb = 0;
+	line_len = line_len - 2;
+	while (line_nb < nb_lines)
+	{
+		line = ft_gnl(file);
+		if (line == NULL)
+		{
+			close(file);
+			break ;
+		}
+		line_nb++;
+		if ((line_nb == 1 && ft_strnopbrk(line, "1\n") != NULL)
+			|| (line_nb == nb_lines && ft_strnopbrk(line, "1\n") != NULL)
+			|| ((line_nb > 1 && line_nb < nb_lines)
+				&& (line[0] != '1' || line[line_len] != '1')))
+		{
+			ft_printf("Error at line %d\n", line_nb);
+			ft_printf("line[0] = %c - line[line_len] = %c\n", line[0], line[line_len]);
+			perror("Error\nInvalid: map not closed\n");
+			close(file);
+			return (1);
+		}
+	}
+	close(file);
+	ft_printf("Map closed!\n");
+	return (0);
+}
+
+int	check_chars(char *filepath, size_t line_len, size_t nb_lines, char *set)
+{
+	int	file;
+	char	*line;
+	size_t	line_nb;
+
+	file = open(filepath, O_RDONLY);
+	line_nb = 0;
+	line_len = line_len - 2;
+	while (line_nb < nb_lines)
+	{
+		line = ft_gnl(file);
+		if (line == NULL)
+		{
+			close(file);
+			break ;
+		}
+		line_nb++;
+		if (ft_strnopbrk(line, set) != NULL)
+		{
+			ft_printf("Error at line %d\n", line_nb);
+			perror("Error\nInvalid char (req: set)\n");
+			close(file);
+			return (1);
+		}
+	}
+	close(file);
+	ft_printf("All chars valid\n");
+	return (0);
+}
 
 void	init_map(t_game *game, char *filepath, size_t line_len, size_t nb_lines)
 {
@@ -59,105 +201,52 @@ void	init_map(t_game *game, char *filepath, size_t line_len, size_t nb_lines)
 	}
 }
 
-// Parsing settings: 
-//	argc = 2
-//	extension = .ber
-//	shape = rect
-//	components = 3 (wall, coll, empty)
-//	char = 0 (empty); 1 (wall); C (coll); E (exit); P (hero's start pos)
-//	map closed by wall
-//	valid path!!!
-int	map_parser(t_game *game, int argc, char **argv)
-{	
-	char	filepath[256]; // CHANGE TO MALLOC
-	size_t	line_len;
-	size_t	nb_lines;
-
-	if (argc != 2)
-        {
-                ft_printf("Invalid args (needed .ber map)!\n");
-                return (1);
-        }
-	ft_strlcpy(filepath, argv[1], ft_strlen(argv[1]) + 1);
-	ft_printf("FILEPATH: %s\n", filepath);
-        if (check_extension(filepath, ".ber") != 0)
-        {
-                ft_printf("Not a .ber file!\n");
-                return (1);
-        }
-        ft_printf("Correct filetype .ber!\n");
-	line_len = 0;
-	nb_lines = 0;
-	if (check_shape(filepath, &line_len, &nb_lines) != 0)
-	{
-//		ft_printf("Map IS NOT rectangular!\n");
-		return (1);
-	}
-	ft_printf("Map IS rectangular!\n");
-	init_map(game, filepath, line_len, nb_lines);
-	check_chars(game, "01CEP");
-	check_closed(game, line_len, nb_lines);
-	return (0);
-}
-
-int     check_extension(char *filepath, char *extension)
+/* Previous version
+int	check_chars(t_game *game, char *set)
 {
-        int     i;
-        int     j;
+	size_t	row;
+	size_t	col;
+	int	nb_coll;
+	int	nb_exit;
+	int	nb_start;
 
-        i = ft_strlen(extension) - 1;
-        j = ft_strlen(filepath) - 1;
-        printf("ext index: %d - filepath index: %d\n", i, j);
-        while (i >= 0)
-        {
-                if (filepath[j] != extension[i])
-                        return (1);
-                printf("filepath[j]: %c - extension[i]: %c\n", filepath[j], extension[i]);
-                i--;
-                j--;
-        }
-        ft_printf("Matching extensions!\n");
-        return (0);
-}
-
-int	check_shape(char *filepath, size_t *line_len, size_t *nb_lines)
-{
-	int	file;
-	char	*line;
-	
-	file = open(filepath, O_RDONLY);
-	line = ft_gnl(file);
-	(*nb_lines)++;
-	if (line == NULL)
+	nb_coll = 0;
+	nb_exit = 0;
+	nb_start = 0;
+	row = 0;
+	while (row < game->map->tm_rows)
 	{
-		close(file);
-		return (1);
-	}
-	ft_printf("%s", line);
-	*line_len = ft_strlen(line);
-	ft_printf("[ft check_shape] line_len: %d\n", ft_strlen(line));
-	while (1)
-	{
-		line = ft_gnl(file);
-		if (line == NULL)
+		ft_printf("row: %d - tm_rows: %d\n", row, game->map->tm_rows);
+		ft_printf("%s\n", game->map->tilemap[row]);
+		if (ft_strnopbrk(game->map->tilemap[row], set) != NULL)
 		{
-			close(file);
-			break ;
-		}
-		ft_printf("%s", line);
-		if (ft_strlen(line) != *line_len)
-		{
-			ft_printf("Non-rectangular map!\n");
-			close(file);
+			perror("Error\nInvalid chars (req: 01CEP)\n");
+			ft_printf("The map contains non-accepted characters!\n");
 			return (1);
 		}
-		(*nb_lines)++;
+		col = 0;
+		while (col < game->map->tm_cols)
+		{
+			if (game->map->tilemap[row][col] == 'P')
+				nb_start++;
+			else if (game->map->tilemap[row][col] == 'E')
+				nb_exit++;
+			else if (game->map->tilemap[row][col] == 'C')
+				nb_coll++;
+			col++;
+		}
+		row++;
 	}
-//	ft_printf("The map is rectangular!\n");
-	close(file);
+	if (nb_start != 1 || nb_exit != 1 || nb_coll < 1)
+	{
+		perror("Error\nInvalid chars (req: C>1, Ex1, Px1)\n");
+		return (1);
+	}
+	ft_printf("The map contains only approved characters.\n");
 	return (0);
 }
-
+*/
+/* Previous version
 int	check_closed(t_game *game, size_t line_len, size_t nb_lines)
 {	
 	char	**tilemap;
@@ -197,4 +286,4 @@ int	check_closed(t_game *game, size_t line_len, size_t nb_lines)
 	}
 	ft_printf("Map is closed, good!\n");
 	return (0);
-}
+}*/

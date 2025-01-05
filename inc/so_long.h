@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:30 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/01 22:21:53 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/05 11:56:18 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,14 @@
 # define WIN_Y 780
 
 /* External libraries */
+# include <errno.h>
 # include <math.h>
 # include "../minilibx/mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 
+
+# include "../lib/libft/libft.h"
 
 # include "assets.h"
 
@@ -80,8 +83,8 @@ typedef struct	s_map
 {
 	char	*filepath;
 	char	**tilemap;
-	int	tm_rows;
-	int	tm_cols;
+	size_t	tm_rows;
+	size_t	tm_cols;
 	int	width;
 	int	height;
 	t_img	*background;
@@ -105,7 +108,6 @@ typedef struct	s_game
 }		t_game;
 
 /* Custom libraries */
-# include "../lib/libft/libft.h"
 # include "../lib/libxkit/mlx_draw_toolkit.h"
 # include "../lib/libxkit/mlx_color_toolkit.h"
 
