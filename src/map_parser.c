@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 14:26:31 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/06 12:11:31 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/06 21:54:26 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ void	count_tiles(char *line, char *set, int *counter)
 	}
 }
 
-// In case of error with open(), display error_msg.
-// Else, return fd.
+/*
 int	ft_open_file(char *fpath, char *access_mode, char *error_msg)
 {
 	int	file;
@@ -68,10 +67,10 @@ int	ft_open_file(char *fpath, char *access_mode, char *error_msg)
 	}
 	return (file);
 }
-
+*/
 // In case of error with read(), close fd,
 // If the error_msg is different than "no", display error_msg.
-int	ft_read_line(int fd, char **line, char *error_msg)
+/*int	ft_read_line(int fd, char **line, char *error_msg)
 {
 	*line = ft_gnl(fd);
 	if (*line == NULL)
@@ -86,7 +85,7 @@ int	ft_read_line(int fd, char **line, char *error_msg)
 		return (1);
 	}
 	return (0);
-}
+}*/
 
 int	check_extension(char *fpath, char *ext)
 {
