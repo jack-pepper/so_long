@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 14:26:31 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/05 15:18:40 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/06 12:11:31 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,46 +20,84 @@
 //	char = 0 (empty); 1 (wall); C (coll); E (exit); P (hero's start pos)
 //	map closed by wall
 //	valid path!!!
-int	map_parser(t_game *game, int argc, char **argv)
-{	
-	char	filepath[256]; // CHANGE TO MALLOC
-	size_t	line_len;
-	size_t	nb_lines;
 
-	if (argc != 2)
-        {
-                perror("Error\nInvalid number of arguments (req: 1)\n");
-                return (1);
-        }
-	ft_strlcpy(filepath, argv[1], ft_strlen(argv[1]) + 1);
-	ft_printf("FILEPATH: %s\n", filepath);
-        if (check_extension(filepath, ".ber") != 0)
-                return (1);
-        ft_printf("Correct extension (req: .ber)\n"); // DEBUG
-	line_len = 0;
-	nb_lines = 0;
-	if (check_shape(filepath, &line_len, &nb_lines) != 0)
+
+// TO BE DONE: Check check_count. Need to pass the array as pointer to modify it
+
+void	count_tiles(char *line, char *set, int *counter)
+{
+	size_t	i;
+	size_t	j;
+	size_t	set_len;
+	size_t	line_len;
+
+	set_len = ft_strlen(set);
+	line_len = ft_strlen(line) - 1;
+	//ft_printf("line_len: %d - set_len: %d\n", line_len, set_len);
+	i = 0;
+	while (i < line_len)
+	{
+		j = 0;
+		while (j < set_len)
+		{	
+			//ft_printf("line[%d] = %c - set[%d] = %c\n", i, line[i], j, set[j]);
+			if (line[i] == set[j])
+			{
+				counter[j] = counter [j] + 1;
+				//ft_printf("counter[%d] incremented: now %d\n", j, counter[j]);
+				break ;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+// In case of error with open(), display error_msg.
+// Else, return fd.
+int	ft_open_file(char *fpath, char *access_mode, char *error_msg)
+{
+	int	file;
+
+	if (ft_strncmp(access_mode, "O_RDONLY", ft_strlen("O_RDONLY")) == 0)
+		file = open(fpath, O_RDONLY);
+	if (file == -1)
+	{
+		perror(error_msg);
+		return (-1);
+	}
+	return (file);
+}
+
+// In case of error with read(), close fd,
+// If the error_msg is different than "no", display error_msg.
+int	ft_read_line(int fd, char **line, char *error_msg)
+{
+	*line = ft_gnl(fd);
+	if (*line == NULL)
+	{
+		if (ft_strncmp(error_msg, "no", ft_strlen("no")) != 0)
+		{
+			close(fd);
+			perror(error_msg);
+			return (-1);
+		}
+		close(fd);
 		return (1);
-	ft_printf("Correct map shape (req: rect)!\n"); // DEBUG
-	if (check_closed(filepath, line_len, nb_lines) != 0)
-		return (1);
-	if (check_chars(filepath, line_len, nb_lines, "01CEP\n") != 0) // Should the nl char be accepted?
-		return (1);
-	ft_printf("Correct chars (req: 0, 1, C>1, Ex1, Px1)\n"); // DEBUG
-	init_map(game, filepath, line_len, nb_lines);
+	}
 	return (0);
 }
 
-int	check_extension(char *filepath, char *ext)
+int	check_extension(char *fpath, char *ext)
 {
 	int     i;
         int     j;
 
         i = ft_strlen(ext) - 1;
-        j = ft_strlen(filepath) - 1;
+        j = ft_strlen(fpath) - 1;
         while (i >= 0)
         {
-                if (filepath[j] != ext[i])
+                if (fpath[j] != ext[i])
 		{
 			ft_printf("Error\nInvalid extension (req: %s)\n", ext); // Should be displayed to stderror!
                         return (1);
@@ -70,22 +108,17 @@ int	check_extension(char *filepath, char *ext)
         return (0);
 }
 
-int	check_shape(char *filepath, size_t *line_len, size_t *nb_lines)
+int	check_shape(char *fpath, size_t *line_len, size_t *nb_lines)
 {
 	int	file;
 	char	*line;
 
-	file = open(filepath, O_RDONLY);
+	file = ft_open_file(fpath, "O_RDONLY", "Error\nError opening file\n");
 	if (file == -1)
-	{
-		perror("Error\nError opening file\n");
 		return (1);
-	}
-	while (1)
+	line = NULL;
+	while (ft_read_line(file, &line, "no") != 1)
 	{
-		line = ft_gnl(file);
-		if (line == NULL)
-			break ;
 		if (*nb_lines == 0)
 			*line_len = ft_strlen(line);
 		if (ft_strlen(line) != *line_len)
@@ -100,106 +133,103 @@ int	check_shape(char *filepath, size_t *line_len, size_t *nb_lines)
 	return (0);
 }
 
-int	check_closed(char *filepath, size_t line_len, size_t nb_lines)
+int	check_closed(char *fpath, size_t line_len, size_t nb_lines)
 {
 	int	file;
 	char	*line;
 	size_t	line_nb;
 
-	file = open(filepath, O_RDONLY);
+	file = ft_open_file(fpath, "O_RDONLY", "Error\nError opening file\n");
+	if (file == -1)
+		return (1);
 	line_nb = 0;
 	line_len = line_len - 2;
-	while (line_nb < nb_lines)
+	line = NULL;
+	while (ft_read_line(file, &line, "no") != 1)
 	{
-		line = ft_gnl(file);
-		if (line == NULL)
-		{
-			close(file);
-			break ;
-		}
+		ft_printf("line: %s\n", line); // DEBUG
 		line_nb++;
 		if ((line_nb == 1 && ft_strnopbrk(line, "1\n") != NULL)
 			|| (line_nb == nb_lines && ft_strnopbrk(line, "1\n") != NULL)
 			|| ((line_nb > 1 && line_nb < nb_lines)
 				&& (line[0] != '1' || line[line_len] != '1')))
 		{
-			ft_printf("Error at line %d\n", line_nb);
-			ft_printf("line[0] = %c - line[line_len] = %c\n", line[0], line[line_len]);
 			perror("Error\nInvalid: map not closed\n");
 			close(file);
 			return (1);
 		}
 	}
-	close(file);
-	ft_printf("Map closed!\n");
+	ft_printf("Map closed!\n"); // DEBUG
 	return (0);
 }
 
-int	check_chars(char *filepath, size_t line_len, size_t nb_lines, char *set)
+
+int	check_chars(char *fpath, char *set)
 {
 	int	file;
 	char	*line;
-	size_t	line_nb;
 
-	file = open(filepath, O_RDONLY);
-	line_nb = 0;
-	line_len = line_len - 2;
-	while (line_nb < nb_lines)
+	file = ft_open_file(fpath, "O_RDONLY", "Error\nError opening file\n");
+	if (file == -1)
+		return (1);
+	line = NULL;
+	while (ft_read_line(file, &line, "no") != 1)
 	{
-		line = ft_gnl(file);
-		if (line == NULL)
-		{
-			close(file);
-			break ;
-		}
-		line_nb++;
 		if (ft_strnopbrk(line, set) != NULL)
 		{
-			ft_printf("Error at line %d\n", line_nb);
 			perror("Error\nInvalid char (req: set)\n");
 			close(file);
 			return (1);
 		}
 	}
-	close(file);
-	ft_printf("All chars valid\n");
+	ft_printf("All chars valid\n"); // DEBUG
+	return (0);
+}
+ 
+//	[0]=empty | [1]=wall | [2]=C (coll) | [3]=E (exit) | [4] =P (start pos)
+int	check_count(char *fpath, char *set)
+{
+	int	file;
+	char	*line;
+	int	occ[5];
+
+	file = ft_open_file(fpath, "O_RDONLY", "Error\nError opening file\n");
+	if (file == -1)
+		return (1);
+	ft_memset(occ, 0, 5 * sizeof(int));
+	line = NULL;
+
+// DEBUG
+	int i = 0;
+	while (i < 5)
+	{
+		ft_printf("Bef/occ[%d] : %d\n", i, occ[i]);
+		i++;
+	}
+//
+	while (ft_read_line(file, &line, "no") != 1 && occ[3] <= 1 && occ[4] <= 1)
+	{
+		ft_printf("line: %s\n", line); // DEBUG
+		count_tiles(line, set, occ);
+	}
+// DEBUG
+	i = 0;
+	while (i < 5)
+	{
+		ft_printf("Aft/occ[%d] : %d\n", i, occ[i]);
+		i++;
+	}
+//
+
+	if (occ[2] < 1 || occ[3] != 1 || occ[4] != 1)
+	{
+		perror("Error\nInvalid chars (req: C>1, Ex1, Px1)\n");
+		return (1);
+	}
+	ft_printf("The map contains only approved characters.\n"); // DEBUG
 	return (0);
 }
 
-void	init_map(t_game *game, char *filepath, size_t line_len, size_t nb_lines)
-{
-	t_map	*map;
-	char	**tilemap;
-	char	*tilemap_line;
-	size_t	i;
-	int	file;
-
-	file = open(filepath, O_RDONLY);
-	map = malloc(sizeof(t_map));
-        if (!map)
-                return ;
-        game->map = map;
-	game->map->filepath = filepath;
-	tilemap = malloc(sizeof(char *) * (nb_lines));
-	if (!tilemap)
-		return ;
-	game->map->tilemap = tilemap;
-	game->map->tm_rows = nb_lines;
-	game->map->tm_cols = line_len;
-	i = 0;
-	while (i <= nb_lines)
-	{
-		tilemap_line = ft_gnl(file);
-//		ft_printf("%s", tilemap_line);
-		if (!tilemap_line)
-			return ;
-		game->map->tilemap[i] = tilemap_line;
-		ft_printf("%s", game->map->tilemap[i]);
-		i++;
-		//free(tilemap_line);
-	//	ft_printf("mallocated %d lines\n", i);
-	}
-}
 
 /* Previous version
 int	check_chars(t_game *game, char *set)

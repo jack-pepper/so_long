@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:30 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/05 11:56:18 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/05 22:06:08 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ typedef struct	s_tile
 
 typedef struct	s_map
 {
-	char	*filepath;
+	char	*fpath;
 	char	**tilemap;
 	size_t	tm_rows;
 	size_t	tm_cols;
@@ -111,23 +111,17 @@ typedef struct	s_game
 # include "../lib/libxkit/mlx_draw_toolkit.h"
 # include "../lib/libxkit/mlx_color_toolkit.h"
 
-
-#include "./renderer.h"
+#include "./initer.h"
+#include "./event_handler.h"
 #include "./map_parser.h"
+#include "./renderer.h"
 
 int     win_close(int keysym, t_env *env);
 
-// event_handler.c
-int on_keypress(int keysym, t_game *game);
-int on_destroy(t_env *env);
 
-void	set_hooks(t_game *game);
-void	set_canvas(t_env *env);
-void	set_map(t_game *game);
-void    upload_assets(t_game *game);
-
-int		check_extension(char *filepath, char *extension);
-
+int     map_parser(t_game *game, int argc, char **argv);
+void    init_map(t_game *game, char *fpath, size_t line_len, size_t nb_lines);
+int     init_game(t_game *game);
 
 // Assets (name and path:)
 //char	*tile;

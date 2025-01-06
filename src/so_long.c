@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/05 12:51:04 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/06 01:02:28 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,92 @@ int	main(int argc, char **argv)
 	game->env = &env;
 	if (map_parser(game, argc, argv) != 0)
 		return (1);
+	if (init_game(game) != 0)
+		return (1);
+	mlx_loop_hook(game->env->mlx, &render, game);
+	mlx_loop(game->env->mlx);
+	return (0);
+}
+
+// Parsing settings: 
+//      argc = 2
+//      extension = .ber
+//      shape = rect
+//      components = 3 (wall, coll, empty)
+//      char = 0 (empty); 1 (wall); C (coll); E (exit); P (hero's start pos)
+//      map closed by wall
+//      valid path!!!
+int     map_parser(t_game *game, int argc, char **argv)
+{
+        char    filepath[256]; // CHANGE TO MALLOC
+        size_t  line_len;
+        size_t  nb_lines;
+
+        if (argc != 2)
+        {
+                perror("Error\nInvalid number of arguments (req: 1)\n");
+                return (1);
+        }
+        ft_strlcpy(filepath, argv[1], ft_strlen(argv[1]) + 1);
+        ft_printf("FILEPATH: %s\n", filepath);
+        if (check_extension(filepath, ".ber") != 0)
+                return (1);
+        ft_printf("Correct extension (req: .ber)\n"); // DEBUG
+        line_len = 0;
+        nb_lines = 0;
+        if (check_shape(filepath, &line_len, &nb_lines) != 0)
+                return (1);
+        ft_printf("Correct map shape (req: rect)!\n"); // DEBUG
+        if (check_closed(filepath, line_len, nb_lines) != 0)
+                return (1);
+        if (check_chars(filepath, "01CEP\n") != 0) // Should the nl char be accepted?
+                return (1);
+        ft_printf("Correct chars (req: 01CEP)\n"); // DEBUG
+        if (check_count(filepath, "01CEP\n") != 0) // Should the nl char be accepted?
+                return (1);
+        ft_printf("Correct counts (req: 0, 1, C>1, Ex1, Px1)\n"); // DEBUG
+        
+	init_map(game, filepath, line_len, nb_lines);
+        return (0);
+}
+
+void    init_map(t_game *game, char *fpath, size_t line_len, size_t nb_lines)
+{
+        t_map   *map;
+        char    **tilemap;
+        char    *tilemap_line;
+        size_t  i;
+        int     file;
+
+        file = open(fpath, O_RDONLY);
+        map = malloc(sizeof(t_map));
+        if (!map)
+                return ;
+        game->map = map;
+        game->map->fpath = fpath;
+        tilemap = malloc(sizeof(char *) * (nb_lines));
+        if (!tilemap)
+                return ;
+        game->map->tilemap = tilemap;
+        game->map->tm_rows = nb_lines;
+        game->map->tm_cols = line_len;
+        i = 0;
+        while (i <= nb_lines)
+        {
+                tilemap_line = ft_gnl(file);
+//              ft_printf("%s", tilemap_line);
+                if (!tilemap_line)
+                        return ;
+                game->map->tilemap[i] = tilemap_line;
+                ft_printf("%s", game->map->tilemap[i]);
+                i++;
+                //free(tilemap_line);
+        //      ft_printf("mallocated %d lines\n", i);
+        }
+}
+
+int	init_game(t_game *game)
+{	
 	game->env->mlx = mlx_init();
 	if (!game->env->mlx)
 		return (1);
@@ -33,106 +119,5 @@ int	main(int argc, char **argv)
 	set_canvas(game->env);
 	set_map(game);
 	upload_assets(game);
-	mlx_loop_hook(game->env->mlx, &render, game);
-	mlx_loop(game->env->mlx);
 	return (0);
-}
-
-void    set_hooks(t_game *game)
-{
-        mlx_hook(game->env->win, KeyPress, KeyPressMask, &on_keypress, game);
-        mlx_hook(game->env->win, DestroyNotify, StructureNotifyMask, &on_destroy, game->env);
-
-//      mlx_hook(env->win, 4, 0, mouse_handler, &env); // on mouse down event
-//      mlx_hook(env->win, 2, 1L << 0, key_handler, &env); // on key press
-//      mlx_hook(env->win, 17, 1L << 0, close_window, &env); // red cross
-}
-
-void    set_canvas(t_env *env)
-{
-        t_img   *c;
-
-        c = env->canvas;
-        c->img = mlx_new_image(env->mlx, WIN_X, WIN_Y);
-        c->addr = mlx_get_data_addr(c->img, &c->bpp, &c->l_len, &c->endian);
-}
-
-void	set_map(t_game *game)
-{
-	t_tile *wall;
-	t_tile *coll;
-	t_tile *exit;
-	
-	wall = malloc (sizeof(t_tile));
-	if (!wall)
-		return ;
-	game->map->wall = wall;	
-	
-	coll = malloc (sizeof(t_tile));
-	if (!coll)
-		return ;
-	game->map->coll = coll;	
-	
-	exit = malloc (sizeof(t_tile));
-	if (!exit)
-		return ;
-	game->map->exit = exit;
-		
-	game->map->width = WIN_X;
-	game->map->height = WIN_Y;
-	game->map->wall->width = wall_width;
-	game->map->wall->height = wall_height;
-	game->map->coll->width = coll_width;
-	game->map->coll->height = coll_height;
-	game->map->exit->width = exit_width;
-	game->map->exit->height = exit_height;
-
-}
-
-void    upload_assets(t_game *game)
-{
-	t_hero	*hero;
-        int     width;
-        int     height;
-	
-	hero = malloc(sizeof(t_hero));
-	if (!hero)
-		return ;
-	game->hero = hero;	
-
-	// Init hero pos
-	t_pos *hero_pos;
-	hero_pos = malloc(sizeof(t_pos));
-	if (!hero_pos)
-		return ;
-	game->hero->pos = hero_pos;
-	game->hero->pos->x = 600;
-	game->hero->pos->y = 600;
-//	ft_printf("After init! hero_pos: %d - %d\n", game->hero->pos->x, game->hero->pos->y);
-
-	// Load background
-        game->env->canvas->img = mlx_xpm_file_to_image(game->env->mlx, bkgd_path, &width, &height);
-	if (!game->env->canvas->img)
-                return ;
-        // Load wall
-        game->map->wall->sprite = mlx_xpm_file_to_image(game->env->mlx, wall_path, &width, &height);
-        if (!game->map->wall->sprite)
-                return ;
-	// Load coll
-        game->map->coll->sprite = mlx_xpm_file_to_image(game->env->mlx, coll_path, &width, &height);
-        if (!game->map->coll->sprite)
-                return ;
-	// Load exit
-        game->map->exit->sprite = mlx_xpm_file_to_image(game->env->mlx, exit_path, &width, &height);
-        if (!game->map->exit->sprite)
-                return ;
-	// Load hero
-        hero->sprite = mlx_xpm_file_to_image(game->env->mlx, hero_path, &width, &height);
-        if (!hero->sprite)
-                return ;
-	//bkgd->addr = mlx_get_data_addr(bkgd->img, &bkgd->bits_per_pixel, &bkgd->line_length, &bkgd->endian);
-        /*
-        //block->addr = mlx_get_data_addr(block->img, &block->bits_per_pixel, &block->line_length, &block->endian);
-        //token->addr = mlx_get_data_addr(token->img, &token->bits_per_pixel, &token->line_length, &token->endian);
-        //exit->addr = mlx_get_data_addr(exit->img, &exit->bits_per_pixel, &exit->line_length, &exit->endian); */
 }

@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2025/01/01 14:32:29 by mmalie           ###   ########.fr        #
+#    Updated: 2025/01/05 21:28:24 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,8 @@ CFLAGS=-g -Wall -Wextra -Werror
 ####################
 
 DEPS = ./inc/so_long.h \
+	./inc/initer.h \
+	./inc/event_handler.h \
 	./inc/map_parser.h \
 	./inc/assets.h \
 	./inc/renderer.h \
@@ -42,6 +44,7 @@ LIBFT = ./lib/libft/libft.a
 ####################
 
 SRC = ./src/so_long.c \
+	./src/initer.c \
 	./src/map_parser.c \
 	./src/renderer.c \
 	./src/event_handler.c \

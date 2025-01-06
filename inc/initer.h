@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parser.h                                       :+:      :+:    :+:   */
+/*   initer.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/01 14:29:47 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/06 01:00:12 by mmalie           ###   ########.fr       */
+/*   Created: 2025/01/05 18:42:02 by mmalie            #+#    #+#             */
+/*   Updated: 2025/01/05 22:07:43 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_PARSER_H
-# define MAP_PARSER_H
+#ifndef INITER_H
+# define INITER_H
 
 # include "./so_long.h"
 
-int     check_extension(char *fpath, char *ext);
-int	check_shape(char *fpath, size_t *line_len, size_t *nb_lines);
-int	check_closed(char *fpath, size_t line_len, size_t nb_lines);
-int	check_chars(char *fpath, char *set);
-int	check_count(char *fpath, char *set);
+void	set_hooks(t_game *game);
+void	set_canvas(t_env *env);
+void	set_map(t_game *game);
+void	upload_assets(t_game *game);
 
 #endif
