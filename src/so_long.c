@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/06 01:02:28 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/07 11:21:43 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int	init_game(t_game *game)
 	game->env->mlx = mlx_init();
 	if (!game->env->mlx)
 		return (1);
-	game->env->win = mlx_new_window(game->env->mlx, WIN_X, WIN_Y, "So Long");
+	game->env->win = mlx_new_window(game->env->mlx, WIN_WIDTH, WIN_HEIGHT, "So Long");
 	set_hooks(game);
 	set_canvas(game->env);
 	set_map(game);

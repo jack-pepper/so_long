@@ -6,11 +6,25 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 00:03:23 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/01 21:01:40 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/07 11:31:29 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
+
+void	calc_cell_size(t_game *game)
+{
+	int	cell_width;
+	int	cell_height;
+	int	cell_size;
+
+	cell_width = WIN_WIDTH / game->map->tilemap->tm_cols;
+	cell_height = WIN_HEIGHT / game->map->tilemap->tm_rows;
+	if (cell_width <= cell_height)
+		cell_size = cell_width;
+	else
+		cell_size = cell_height;
+}
 
 int     render(t_game *game)
 {

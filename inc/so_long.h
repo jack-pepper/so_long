@@ -6,15 +6,15 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:30 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/05 22:06:08 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/07 11:20:30 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# define WIN_X 1620
-# define WIN_Y 780
+# define WIN_WIDTH 1620
+# define WIN_HEIGHT 780
 
 /* External libraries */
 # include <errno.h>
