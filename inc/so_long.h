@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:30 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/07 11:20:30 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/07 19:58:22 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,18 +75,22 @@ typedef struct	s_state
 typedef struct	s_tile
 {
 	void	*sprite;
+	t_pos	*pos;
 	int	width;
 	int	height;
 }		t_tile;
 
 typedef struct	s_map
 {
-	char	*fpath;
 	char	**tilemap;
+	char	*fpath;
 	size_t	tm_rows;
 	size_t	tm_cols;
 	int	width;
 	int	height;
+	int	cell_width;
+	int	cell_height;
+	int	cell_size;
 	t_img	*background;
 	t_tile	*wall;
 	t_tile	*coll;

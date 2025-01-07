@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/07 19:26:46 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/07 20:08:12 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void    init_map(t_game *game, char *fpath, size_t line_len, size_t nb_lines)
         game->map->tilemap = tilemap;
         game->map->tm_rows = nb_lines;
         game->map->tm_cols = line_len;
+	calc_cell_size(game);
         i = 0;
         while (i <= nb_lines)
         {
