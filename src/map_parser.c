@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 14:26:31 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/06 21:54:26 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/06 22:34:30 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,40 +52,6 @@ void	count_tiles(char *line, char *set, int *counter)
 		i++;
 	}
 }
-
-/*
-int	ft_open_file(char *fpath, char *access_mode, char *error_msg)
-{
-	int	file;
-
-	if (ft_strncmp(access_mode, "O_RDONLY", ft_strlen("O_RDONLY")) == 0)
-		file = open(fpath, O_RDONLY);
-	if (file == -1)
-	{
-		perror(error_msg);
-		return (-1);
-	}
-	return (file);
-}
-*/
-// In case of error with read(), close fd,
-// If the error_msg is different than "no", display error_msg.
-/*int	ft_read_line(int fd, char **line, char *error_msg)
-{
-	*line = ft_gnl(fd);
-	if (*line == NULL)
-	{
-		if (ft_strncmp(error_msg, "no", ft_strlen("no")) != 0)
-		{
-			close(fd);
-			perror(error_msg);
-			return (-1);
-		}
-		close(fd);
-		return (1);
-	}
-	return (0);
-}*/
 
 int	check_extension(char *fpath, char *ext)
 {
@@ -228,91 +194,3 @@ int	check_count(char *fpath, char *set)
 	ft_printf("The map contains only approved characters.\n"); // DEBUG
 	return (0);
 }
-
-
-/* Previous version
-int	check_chars(t_game *game, char *set)
-{
-	size_t	row;
-	size_t	col;
-	int	nb_coll;
-	int	nb_exit;
-	int	nb_start;
-
-	nb_coll = 0;
-	nb_exit = 0;
-	nb_start = 0;
-	row = 0;
-	while (row < game->map->tm_rows)
-	{
-		ft_printf("row: %d - tm_rows: %d\n", row, game->map->tm_rows);
-		ft_printf("%s\n", game->map->tilemap[row]);
-		if (ft_strnopbrk(game->map->tilemap[row], set) != NULL)
-		{
-			perror("Error\nInvalid chars (req: 01CEP)\n");
-			ft_printf("The map contains non-accepted characters!\n");
-			return (1);
-		}
-		col = 0;
-		while (col < game->map->tm_cols)
-		{
-			if (game->map->tilemap[row][col] == 'P')
-				nb_start++;
-			else if (game->map->tilemap[row][col] == 'E')
-				nb_exit++;
-			else if (game->map->tilemap[row][col] == 'C')
-				nb_coll++;
-			col++;
-		}
-		row++;
-	}
-	if (nb_start != 1 || nb_exit != 1 || nb_coll < 1)
-	{
-		perror("Error\nInvalid chars (req: C>1, Ex1, Px1)\n");
-		return (1);
-	}
-	ft_printf("The map contains only approved characters.\n");
-	return (0);
-}
-*/
-/* Previous version
-int	check_closed(t_game *game, size_t line_len, size_t nb_lines)
-{	
-	char	**tilemap;
-	size_t	row;
-	size_t	col;
-
-	row = 0;
-	col = 0;
-	ft_printf("line_len: %d - nb_lines: %d\n", line_len, nb_lines);
-	tilemap = game->map->tilemap;
-	line_len--;
-	nb_lines--;
-	while (col < line_len)
-	{	
-		//ft_printf("[%d, %d] %c\n", row, col, tilemap[0][col]);
-		//ft_printf("[%d, %d] %c\n", row, col, tilemap[nb_lines][col]);
-		if ((tilemap[0][col] != '1')
-			|| (tilemap[nb_lines][col] != '1'))
-		{
-			ft_printf("1/Map not closed: tilemap[%d][%d]!\n", row, col);
-			return (1);
-		}
-		col++;
-	}
-	col = 0;
-	while (row <= nb_lines)
-	{	
-		//ft_printf("[%d,%d] %c\n", row, col, tilemap[row][0]);	
-		//ft_printf("[%d,%d] %c\n", row, col, tilemap[row][line_len - 1]);
-		if ((tilemap[row][0] != '1')
-			|| (tilemap[row][line_len - 1] != '1'))
-		{
-			ft_printf("2/Map not closed: tilemap[%d][%d]!\n", row, col);
-			return (1);
-		}
-		row++;
-	}
-	ft_printf("Map is closed, good!\n");
-	return (0);
-}*/

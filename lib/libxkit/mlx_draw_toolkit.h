@@ -6,14 +6,14 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:30 by mmalie            #+#    #+#             */
-/*   Updated: 2024/12/28 22:33:21 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/06 23:22:01 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/so_long.h"
-
 #ifndef MLX_DRAW_TOOLKIT_H
 # define MLX_DRAW_TOOLKIT_H
+
+# include "../../inc/so_long.h"
 
 /* Structs */
 typedef struct  s_mlx_line

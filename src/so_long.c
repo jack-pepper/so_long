@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/06 01:02:28 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/06 23:05:05 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,6 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-// Parsing settings: 
-//      argc = 2
-//      extension = .ber
-//      shape = rect
-//      components = 3 (wall, coll, empty)
-//      char = 0 (empty); 1 (wall); C (coll); E (exit); P (hero's start pos)
-//      map closed by wall
-//      valid path!!!
 int     map_parser(t_game *game, int argc, char **argv)
 {
         char    filepath[256]; // CHANGE TO MALLOC

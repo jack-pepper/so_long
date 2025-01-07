@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_color_toolkit.h                                :+:      :+:    :+:   */
+/*   libxkit.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/24 15:25:30 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/06 23:20:02 by mmalie           ###   ########.fr       */
+/*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
+/*   Updated: 2025/01/06 23:19:14 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_COLOR_TOOLKIT_H
-# define MLX_COLOR_TOOLKIT_H
+#ifndef LIBXKIT_H
+# define LIBXKIT_H
 
-# include "../../inc/so_long.h"
-
-/* Coloring structs */
-typedef struct	s_mlx_color
-{
-	int	t;
-	int	r;
-	int	g;
-	int	b;
-}		t_mlx_color;
-
-/* Prototypes */
-int     set_color(t_mlx_color *color);
-int     get_color(t_mlx_color *color, char param);
+# include "../libft.h"
+# include "./mlx_color_toolkit.h"
+# include "./mlx_draw_toolkit.h"
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 00:03:23 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/01 21:01:40 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/06 23:05:01 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,27 +29,26 @@ void    render_background(t_env *env)
 void	render_map(t_game *game)
 {
 	char	**tilemap;	
-	int	row;
-	int	col;
+	size_t	row;
+	size_t	col;
 
 	tilemap = game->map->tilemap;
 	row = 0;
-	while (row)
+	while (row < game->map->tm_rows)
 	{
 		col = 0;
-		while (col)
+		while (col < (game->map->tm_cols - 2))
 		{
 			if (tilemap[row][col] == '1')
 				mlx_put_image_to_window(game->env->mlx, game->env->win, game->map->wall->sprite, 100, 100);
-			if (tilemap[row][col] == 'C')
+			else if (tilemap[row][col] == 'C')
 				mlx_put_image_to_window(game->env->mlx, game->env->win, game->map->coll->sprite, row * 100, col * 100);
-			if (tilemap[row][col] == 'E')
+			else if (tilemap[row][col] == 'E')
 				mlx_put_image_to_window(game->env->mlx, game->env->win, game->map->exit->sprite, row * 100, col * 100);
 			col++;
 		}
 		row++;	
 	}
-	// DOES NOT WORK.
 }
 
 void	render_hero(t_game *game)
