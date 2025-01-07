@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2024/12/29 00:24:55 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/07 11:25:55 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ void	mlx_fast_pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*pix;
 
-	if ((x >= 0 && x < WIN_X) && (y >= 0 && y < WIN_Y))
+	if ((x >= 0 && x < WIN_WIDTH) && (y >= 0 && y < WIN_HEIGHT))
 	{
 		pix = img->addr + (y * img->l_len) + (x * (img->bpp / 8));
 		*(unsigned int *)pix = color;
@@ -134,20 +134,20 @@ void	mlx_fast_pixel_put(t_img *img, int x, int y, int color)
 
 /*
         // Draw a pixel
-        //mlx_pixel_put(env.mlx, env.win, WIN_X/2, WIN_Y/2, 0xFFFFFF);
+        //mlx_pixel_put(env.mlx, env.win, WIN_WIDTH/2, WIN_HEIGHT/2, 0xFFFFFF);
         //mlx_fast_pixel_put(&img, 5, 5, 0x00FF0000);
-        //t_mlx_line line = {0, 0, WIN_X, WIN_Y};
+        //t_mlx_line line = {0, 0, WIN_WIDTH, WIN_HEIGHT};
         
         t_mlx_line line;
         line.start_x = 0;
         line.start_y = 0;
-        line.end_x = WIN_X;
-        line.end_y = WIN_Y;
+        line.end_x = WIN_WIDTH;
+        line.end_y = WIN_HEIGHT;
         draw_mlx_line(&env, &line);
 
         t_mlx_circle circle;
-        circle.center_x = WIN_X/2;
-        circle.center_y = WIN_Y/2;
+        circle.center_x = WIN_WIDTH/2;
+        circle.center_y = WIN_HEIGHT/2;
         circle.radius = 50;
         draw_mlx_circle(&env, &circle);
         
@@ -160,8 +160,8 @@ void	mlx_fast_pixel_put(t_img *img, int x, int y, int color)
                 t_mlx_rect rect;
                 rect.origin_x = 10 + i;
                 rect.origin_y = 10 + i;
-                rect.length = WIN_X - 20;
-                rect.width = WIN_Y - 20;
+                rect.length = WIN_WIDTH - 20;
+                rect.width = WIN_HEIGHT - 20;
                 draw_mlx_rect(&env, &rect);
                 i += 2;
         }

@@ -6,11 +6,25 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 00:03:23 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/06 23:05:01 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/07 19:23:47 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
+
+void	calc_cell_size(t_game *game)
+{
+	int	cell_width;
+	int	cell_height;
+	int	cell_size;
+
+	cell_width = WIN_WIDTH / game->map->tilemap->tm_cols;
+	cell_height = WIN_HEIGHT / game->map->tilemap->tm_rows;
+	if (cell_width <= cell_height)
+		cell_size = cell_width;
+	else
+		cell_size = cell_height;
+}
 
 int     render(t_game *game)
 {
@@ -29,26 +43,27 @@ void    render_background(t_env *env)
 void	render_map(t_game *game)
 {
 	char	**tilemap;	
-	size_t	row;
-	size_t	col;
+	int	row;
+	int	col;
 
 	tilemap = game->map->tilemap;
 	row = 0;
-	while (row < game->map->tm_rows)
+	while (row)
 	{
 		col = 0;
-		while (col < (game->map->tm_cols - 2))
+		while (col)
 		{
 			if (tilemap[row][col] == '1')
 				mlx_put_image_to_window(game->env->mlx, game->env->win, game->map->wall->sprite, 100, 100);
-			else if (tilemap[row][col] == 'C')
+			if (tilemap[row][col] == 'C')
 				mlx_put_image_to_window(game->env->mlx, game->env->win, game->map->coll->sprite, row * 100, col * 100);
-			else if (tilemap[row][col] == 'E')
+			if (tilemap[row][col] == 'E')
 				mlx_put_image_to_window(game->env->mlx, game->env->win, game->map->exit->sprite, row * 100, col * 100);
 			col++;
 		}
 		row++;	
 	}
+	// DOES NOT WORK.
 }
 
 void	render_hero(t_game *game)

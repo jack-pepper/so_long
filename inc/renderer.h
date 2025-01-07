@@ -6,12 +6,12 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 00:07:58 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/05 19:02:34 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/07 11:23:17 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RENDERER_H
-# define RENDERER_h
+# define RENDERER_H
 
 # include "./so_long.h"
 

@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 18:26:48 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/05 18:27:43 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/07 11:24:59 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void    set_canvas(t_env *env)
         t_img   *c;
 
         c = env->canvas;
-        c->img = mlx_new_image(env->mlx, WIN_X, WIN_Y);
+        c->img = mlx_new_image(env->mlx, WIN_WIDTH, WIN_HEIGHT);
         c->addr = mlx_get_data_addr(c->img, &c->bpp, &c->l_len, &c->endian);
 }
 
@@ -52,8 +52,8 @@ void	set_map(t_game *game)
 		return ;
 	game->map->exit = exit;
 		
-	game->map->width = WIN_X;
-	game->map->height = WIN_Y;
+	game->map->width = WIN_WIDTH;
+	game->map->height = WIN_HEIGHT;
 	game->map->wall->width = wall_width;
 	game->map->wall->height = wall_height;
 	game->map->coll->width = coll_width;
