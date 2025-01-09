@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 00:03:23 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/09 21:04:27 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/10 00:03:50 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int     render(t_game *game)
 	render_map(game);
 	render_hero(game);
 //      render_moves(env, img);
+	on_collect(game);
         return (0);
 }
 
@@ -102,4 +103,20 @@ void	render_map(t_game *game)
 void	render_hero(t_game *game)
 {
 	mlx_put_image_to_window(game->env->mlx, game->env->win, game->hero->sprite, game->hero->pos->x * RES_PIX, game->hero->pos->y * RES_PIX);
+}
+
+void	on_collect(t_game *game)
+{
+	char	**tilemap;
+	t_pos	*pos;
+
+	tilemap = game->map->tilemap;
+	pos = game->hero->pos;
+	if (tilemap[pos->y][pos->x] == 'C')
+	{
+		ft_printf("Found collectible!\n");
+		// Add one to number of collected (add to struct)
+		tilemap[pos->y][pos->x] = '0';
+		// minus one to collectibles (counter) and plus one to empty
+	}
 }

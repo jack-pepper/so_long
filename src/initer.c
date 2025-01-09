@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 18:26:48 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/09 21:11:52 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/10 00:00:12 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,9 @@ int	init_hero(t_game *game)
 	}
 	return (1);
 }
+
+
+
 
 
 int	upload_assets(t_game *game)
