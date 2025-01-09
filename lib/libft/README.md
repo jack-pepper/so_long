@@ -3,7 +3,7 @@
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
 ## Description
-Libft is a project at 42 that involves creating a personal C library. The goal is to implement a collection of standard functions from the C standard library, as well as some additional utility functions. As my cursus progresses and new challenges arise, I plan to expand this library by adding additional functions to meet specific project needs or explore a concept in depth. These updates will enhance the functionality and versatility of the library.
+Libft is a project at 42 that involves creating a personal C library by implementing a collection of standard functions from the C standard library, as well as some additional utility functions. As my cursus progresses and new challenges arise, I have decided to expand this library to enhqnce its functionality and versatility by adding additional functions to meet specific project needs or explore some concepts in depth (bitwise operations with LIBBIN, sorting algorithms with LIBSORT...).
 
 **Technologies Used:**
 - C
@@ -24,14 +24,14 @@ To use this project locally:
    git clone https://github.com/jack-pepper/mylibft.git
    ```
 
-2. Run make to compile the library mylibft.a:
+2. Run make to compile the library libft.a:
    ```bash
    make
    ```
 
 3. Include the library to your project files:
    ```bash
-   #include "mylibft.h"
+   #include "libft.h"
    ```
 
 ## Usage

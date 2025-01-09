@@ -6,9 +6,11 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2025/01/05 11:11:30 by mmalie           ###   ########.fr        #
+#    Updated: 2025/01/09 09:35:12 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+MAKEFLAGS += -s
 
 ###################################################
 ### Name of the file obtained after compilation ###
@@ -62,37 +64,37 @@ LIBFT = ./libctype/libctype.a \
 
 ### Default rules (compile the executable)
 all: $(NAME)
-	$(info   L       III  BBBBB   FFFFF  TTTTT  )
-	$(info   L        I   B   B   F        T    )
-	$(info   L        I   BBBB    FFFF     T    )
-	$(info   L        I   B   B   F        T    )
-	$(info   LLLLL   III  BBBBB   F        T    )
-	$(info )
-	$(info =====================================)
-	$(info       L I B F T   C O M P I L E D!   )
-	$(info =====================================)
-	$(info )
-	$(info )
-	$(info        .-""""""""""""""-.            )
-	$(info      .'                   '.         )
-	$(info     /   .-""""""""""""""-.  \        )
-	$(info    ;   /                 \  ;        )
-	$(info    |  ;                   ;  |       )
-	$(info    |  |   .-.       .-.   |  |       )
-	$(info    ;  |  (   )     (   )  |  |       )
-	$(info     \  ;  '-'       '-'  ;  /        )
-	$(info      '.                   .'         )
-	$(info        '-.              .-'          )
-	$(info          '-.          -'             )
-	$(info             '-.- .- .'               )
-	$(info )
-	$(info )
-	$(info Marvin doesn't really care about your compilation.)
-	$(info But it's done anyway, so congratulations!)
-	$(info )
-	$(info =========================================)
-	$(info        LIBFT - The Ultimate C Library    )
-	$(info =========================================)
+	@echo "===================================================="
+	@echo "===================================================="
+	@echo ""
+	@echo "   *      L       III  BBBBB   FFFFF  TTTTT     *   " 
+	@echo "          L        I   B   B   F        T           "
+	@echo "      *   L        I   BBBB    FFFF     T    *      "
+	@echo "          L        I   B   B   F        T           "
+	@echo "   *      LLLLL   III  BBBBB   F        T       *   "
+	@echo ""	
+	@echo "===================================================="
+	@echo "========== LIBFT - The Ultimate C Library =========="
+	@echo "===================================================="
+	@echo ""
+	@echo "    .-\"\"\"\"\"\"\"\"\"\"\"\"\"-.                     "
+	@echo "  .'                  '.                               "
+	@echo " /   .-\"\"\"\"\"\"\"\"\"\"\"\"-.   \\                 "
+	@echo ";   /                 \\  ;          :::      :::::::: "
+	@echo "|  ;                   ;  |        :+:      :+:    :+: "	
+	@echo "|  |   .-.       .-.   |  |      +:+ +:+         +:+   "
+	@echo ";  |  (   )     (   )  |  ;    +#+  +:+       +#+      "
+	@echo "\\  ;  '-'       '-'  ;  /   +#+#+#+#+#+    +#+        "
+	@echo "'.                   .'            #+#    #+#          "
+	@echo "   '-.              .-'           ###   ########.fr    "
+	@echo "     '-.          -'                                   "
+	@echo "        '-.- .- .'                                     "
+	@echo ""
+	@echo " ~ Marvin doesn't really care about your compilation. ~ "
+	@echo "     ~ But it's done anyway, so congratulations! ~      "
+	@echo ""
+                             
+
 
 ### Create a static library
 $(NAME):

@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 14:26:31 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/06 22:34:30 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/09 15:33:56 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 //	map closed by wall
 //	valid path!!!
 
-
-// TO BE DONE: Check check_count. Need to pass the array as pointer to modify it
 
 void	count_tiles(char *line, char *set, int *counter)
 {

@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/07 20:08:12 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/09 12:54:53 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,14 @@ int	main(int argc, char **argv)
 		return (1);
 	env.canvas = &canvas;
 	game->env = &env;
-	if (map_parser(game, argc, argv) != 0)
+	if ((map_parser(game, argc, argv) != 0)
+	//	|| (map_validator(game) != 0) // TBD
+		|| (init_game(game) != 0))
+		return (1);
+	/*if (init_map != 0)
 		return (1);
 	if (init_game(game) != 0)
-		return (1);
+		return (1);*/
 	mlx_loop_hook(game->env->mlx, &render, game);
 	mlx_loop(game->env->mlx);
 	return (0);
@@ -60,13 +64,13 @@ int     map_parser(t_game *game, int argc, char **argv)
         ft_printf("Correct chars (req: 01CEP)\n"); // DEBUG
         if (check_count(filepath, "01CEP\n") != 0) // Should the nl char be accepted?
                 return (1);
-        ft_printf("Correct counts (req: 0, 1, C>1, Ex1, Px1)\n"); // DEBUG
-        
-	init_map(game, filepath, line_len, nb_lines);
+        ft_printf("Correct counts (req: 0, 1, C>1, Ex1, Px1)\n"); // DEBUG 
+	if (init_map(game, filepath, line_len, nb_lines) != 0)
+		return (1);
         return (0);
 }
 
-void    init_map(t_game *game, char *fpath, size_t line_len, size_t nb_lines)
+int    init_map(t_game *game, char *fpath, size_t line_len, size_t nb_lines)
 {
         t_map   *map;
         char    **tilemap;
@@ -74,32 +78,45 @@ void    init_map(t_game *game, char *fpath, size_t line_len, size_t nb_lines)
         size_t  i;
         int     file;
 
-        file = open(fpath, O_RDONLY);
+        file = ft_open_file(fpath, "O_RDONLY", "Error\nError opening file\n");
+        if (file == -1)
+                return (1);
         map = malloc(sizeof(t_map));
         if (!map)
-                return ;
+	{
+		perror("Error\nt_map *map alloc failed\n");
+                return (1) ;
+	}
         game->map = map;
         game->map->fpath = fpath;
         tilemap = malloc(sizeof(char *) * (nb_lines));
         if (!tilemap)
-                return ;
+	{
+		perror("Error\nchar **tilemap alloc failed\n");
+                return (1) ;
+	}
         game->map->tilemap = tilemap;
         game->map->tm_rows = nb_lines;
         game->map->tm_cols = line_len;
 	calc_cell_size(game);
         i = 0;
-        while (i <= nb_lines)
+        while (i < nb_lines)
         {
+		//ft_printf("gnl: %s", ft_gnl(file));
                 tilemap_line = ft_gnl(file);
-//              ft_printf("%s", tilemap_line);
+                //ft_printf("%s\n", tilemap_line);
                 if (!tilemap_line)
-                        return ;
+		{
+			perror("Error\nchar *tilemap_line alloc failed\n");
+                        return (1);
+		}
                 game->map->tilemap[i] = tilemap_line;
                 ft_printf("%s", game->map->tilemap[i]);
                 i++;
                 //free(tilemap_line);
         //      ft_printf("mallocated %d lines\n", i);
         }
+	return (0);
 }
 
 int	init_game(t_game *game)

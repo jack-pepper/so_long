@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2025/01/05 21:28:24 by mmalie           ###   ########.fr        #
+#    Updated: 2025/01/09 12:20:58 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ DEPS = ./inc/so_long.h \
 	./lib/libxkit/mlx_draw_toolkit.h \
 	./lib/libxkit/mlx_color_toolkit.h \
 	./lib/libft/libft.h \
+	#./inc/map_validator.h \
 #DEPS_LIBFT = ./libft/libft.h
 LIBFT = ./lib/libft/libft.a
 
@@ -50,6 +51,7 @@ SRC = ./src/so_long.c \
 	./src/event_handler.c \
 	./lib/libxkit/mlx_draw_toolkit.c \
 	./lib/libxkit/mlx_color_toolkit.c \
+	#./src/map_validator.c \
 
 ### Object files
 OBJ = $(SRC:.c=.o)

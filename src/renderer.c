@@ -6,11 +6,18 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 00:03:23 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/07 20:17:40 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/09 21:04:27 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
+
+/* I need to improve rendering. Three options:
+ * - modify the size of assets? Not convenient
+ * - resize them dynamically? Not efficient
+ * - I should resize them before starting the game and use those new images
+ */
+
 
 int	calc_cell_size(t_game *game)
 {
@@ -18,8 +25,10 @@ int	calc_cell_size(t_game *game)
 	size_t	cell_height;
 	size_t	cell_size;
 
-	cell_width = WIN_WIDTH / (int)(game->map->tm_cols);
-	cell_height = WIN_HEIGHT / (int)(game->map->tm_rows);
+	//cell_width = WIN_WIDTH / (int)(game->map->tm_cols);
+	//cell_height = WIN_HEIGHT / (int)(game->map->tm_rows);
+	cell_width = RES_PIX;
+	cell_height = RES_PIX;
 	game->map->cell_width = cell_width;
 	game->map->cell_height = cell_height;
 	if (cell_width <= cell_height)
@@ -29,6 +38,21 @@ int	calc_cell_size(t_game *game)
 	game->map->cell_size = cell_size;
 	return (cell_size);
 }
+
+/*
+void	scale_img(void *mlx, void *win, void *img, int factor)
+{
+	int	img_width;
+	int	img_height;
+	int	scaled_img;
+
+	
+	img_width = img_width * factor;
+	img_height = img_height * factor;
+	scaled_img = mlx_new_image(mlx, img_width, img_height);
+	img->img = scaled_img;
+}
+*/	
 
 int     render(t_game *game)
 {
@@ -61,7 +85,10 @@ void	render_map(t_game *game)
 		while (col < game->map->tm_cols)
 		{
 			if (tilemap[row][col] == '1')
+			{
+				//scale_img(game->env->mlx, game->env->win, game->map->wall, 2);
 				mlx_put_image_to_window(game->env->mlx, game->env->win, game->map->wall->sprite, col * c_size, row * c_size);
+			}
 			if (tilemap[row][col] == 'C')
 				mlx_put_image_to_window(game->env->mlx, game->env->win, game->map->coll->sprite, col * c_size, row * c_size);
 			if (tilemap[row][col] == 'E')
@@ -70,10 +97,9 @@ void	render_map(t_game *game)
 		}
 		row++;	
 	}
-	// DOES NOT WORK.
 }
 
 void	render_hero(t_game *game)
-{	
-	mlx_put_image_to_window(game->env->mlx, game->env->win, game->hero->sprite, game->hero->pos->x, game->hero->pos->y);
+{
+	mlx_put_image_to_window(game->env->mlx, game->env->win, game->hero->sprite, game->hero->pos->x * RES_PIX, game->hero->pos->y * RES_PIX);
 }

@@ -6,11 +6,11 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:05:10 by mmalie            #+#    #+#             */
-/*   Updated: 2024/12/28 21:45:43 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/06 23:28:05 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/so_long.h"
+#include "./libxkit.h"
 
 int	set_color(t_mlx_color *color)
 {
