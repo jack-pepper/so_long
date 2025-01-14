@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/14 15:11:37 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/14 23:24:21 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,11 @@
 int	main(int argc, char **argv)
 {
 	t_state	*state;
-	t_env	env;
-	t_img	canvas;
 	t_data	data; // MV
 	char	fpath[256];
 
-	state = NULL;
 	if (init_state(&state) != 0)
-		return (1);	
-	env.canvas = &canvas;
-	state->env = &env;
-
+		return (1); // return (EXIT_FAILURE); : replace all
 	// MV
 	data.collected = 0;
 	state->data = &data;
@@ -44,14 +38,12 @@ int	main(int argc, char **argv)
                 perror("Error\nInvalid number of arguments (req: 1)\n");
                 return (1);
         }
-        ft_strlcpy(fpath, argv[1], ft_strlen(argv[1]) + 1);
+        ft_strlcpy(fpath, argv[1], ft_strlen(argv[1]) + 1); // without + 1?
         ft_printf("FILEPATH: %s\n", fpath); // DEBUG
-	if ((init_map(state, fpath, ".ber") != 0)
-		|| (map_parser(state) != 0)
-	//	|| (map_validator(state) != 0)
+	if ((init_map(state, fpath, ".ber") != 0) // Export to a function (to set different errors))
+		|| (map_parser(state) != 0)   //	|| (map_validator(state) != 0)
 		|| (set_state(state) != 0))
 		return (1);
-	//state->render_update = -1;
 	mlx_loop_hook(state->env->mlx, &render, state);
 	mlx_loop(state->env->mlx);
 	return (0);
@@ -103,7 +95,7 @@ void	set_counter_req(t_count_req *counter)
 	int	i;
 	
 	i = 0;
-	while (i < 5)
+	while (i < 6)
 	{	
 		counter->count[i] = count[i];
 		counter->req[i] = req_count[i];

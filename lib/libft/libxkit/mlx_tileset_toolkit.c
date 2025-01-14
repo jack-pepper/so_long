@@ -6,13 +6,13 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:36:40 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/14 12:15:28 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/14 19:14:51 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./mlx_tileset_toolkit.h"
 
-void    set_map(t_state *state)
+int	set_map(t_state *state)
 {
         t_tile **tileset;
         t_tile *wall;
@@ -21,20 +21,19 @@ void    set_map(t_state *state)
 
         tileset = malloc(sizeof(t_tile) * 5);
         if (!tileset)
-                return ;
+                return (ft_error(1, "Error\ntileset malloc failed\n"));
         state->map->tileset = tileset;
         wall = malloc (sizeof(t_tile));
         if (!wall)
-                return ;
+                return (1);
         state->map->tileset[0] = wall;
         coll = malloc (sizeof(t_tile));
         if (!coll)
-                return ;
+                return (1);
         state->map->tileset[1] = coll;
-
         exit = malloc (sizeof(t_tile));
         if (!exit)
-                return ;
+                return (1);
         state->map->tileset[2] = exit;
 
         state->map->width = WIN_WIDTH;
@@ -45,6 +44,7 @@ void    set_map(t_state *state)
         state->map->tileset[1]->height = coll_height;
         state->map->tileset[2]->width = exit_width;
         state->map->tileset[2]->height = exit_height;
+	return (0);
 }
 
 int     upload_assets(t_state *state)

@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 23:05:51 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/14 15:24:23 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/15 00:07:48 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,36 @@ int	on_destroy(t_env *env)
 	mlx_destroy_window(env->mlx, env->win);
 	mlx_destroy_display(env->mlx);
 	free(env->mlx);
+	free(env->win);
 	exit(0);
 	return (0);
 }
 
-int     on_resize(int win_width, int win_height, t_state *state)
+int     on_resize(int width, int height, t_state *state)
 {
-        state->env->canvas_width = win_width;
-        state->env->canvas_height = win_height;
-        return (0);
+	int	endian;
+
+	if (!state || !state->env || !state->env->canvas)
+		return (ft_error(1, "Error\nstate, env or canvas uninitialized\n"));
+	//if (!state->env->canvas_width)
+	//	return (ft_error(1, "Error\ncanvas_width uninitialized\n"));
+	ft_printf("1-");
+	//env = state->env;	
+	ft_printf("2-");
+	//	
+	//
+	ft_printf("3-");
+	if (state->env->canvas->image)
+		mlx_destroy_image(state->env->mlx, state->env->canvas->image);  // Clean up previous image	
+	ft_printf("4-");
+	state->env->canvas_width = width;
+        state->env->canvas_height = height;
+	state->env->canvas->image = mlx_new_image(state->env->mlx, width, height);
+	ft_printf("5-");
+	if (!state->env->canvas->image)
+		return (ft_error(1, "Error\nmlx_new_image failed (on_resize)\n"));
+	state->env->canvas->data = mlx_get_data_addr(state->env->canvas->image, &state->env->canvas->bpp, &state->env->canvas->size_line, &endian); 
+	return (0);
 }
 
 

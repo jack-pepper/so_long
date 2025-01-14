@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/14 15:43:17 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/14 23:59:05 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct s_map
 	char	*fpath;
 	char	**tilemap;
 	t_tile	**tileset;
-	int		tile_count[6]; // Should be mallocated for versatility
+	int		*tile_count;
 	int		width;
 	int		height;
 	int		tm_rows;
@@ -97,8 +97,6 @@ typedef struct s_state
 	t_data		*data;
 	t_map		*map;
 	t_hero		*hero;
-//	int		win_width;
-//	int		win_height;
 	//t_mouse		*mouse;
 }		t_state;
 
