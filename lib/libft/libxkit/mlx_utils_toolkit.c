@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validator.h                                    :+:      :+:    :+:   */
+/*   mlx_utils_toolkit.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/30 13:51:51 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/12 23:25:12 by mmalie           ###   ########.fr       */
+/*   Created: 2025/01/11 20:49:05 by mmalie            #+#    #+#             */
+/*   Updated: 2025/01/13 12:09:00 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_VALIDATOR_H
-# define MAP_VALIDATOR_H
+#include "./mlx_utils_toolkit.h"
 
-int	map_validator(t_state *state);
-void	flood_count(char **tab , t_pos size, t_pos begin);
-
-#endif
+/* The name "mlx_put_image_to_window" with 5 parameters is too long to display.
+ * To respect the 42 Norm, this function reduces its length by 15 characters.
+ */
+void	mlx_show(t_xvar *xvar, t_win_list *win, XImage *img, t_pos pos)
+{
+	mlx_put_image_to_window(xvar, win, img, pos.x, pos.y);
+}

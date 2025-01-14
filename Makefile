@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2025/01/09 12:20:58 by mmalie           ###   ########.fr        #
+#    Updated: 2025/01/14 12:01:02 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,29 +28,19 @@ CFLAGS=-g -Wall -Wextra -Werror
 ####################
 
 DEPS = ./inc/so_long.h \
-	./inc/initer.h \
-	./inc/event_handler.h \
-	./inc/map_parser.h \
 	./inc/assets.h \
-	./inc/renderer.h \
-	./lib/libxkit/mlx_draw_toolkit.h \
-	./lib/libxkit/mlx_color_toolkit.h \
+	./lib/libft/libxkit/libxkit.h \
 	./lib/libft/libft.h \
 	#./inc/map_validator.h \
 #DEPS_LIBFT = ./libft/libft.h
 LIBFT = ./lib/libft/libft.a
+LIBXKIT = ./lib/libft/libxkit/libxkit.a
 
 ####################
 ### Source files ###
 ####################
 
 SRC = ./src/so_long.c \
-	./src/initer.c \
-	./src/map_parser.c \
-	./src/renderer.c \
-	./src/event_handler.c \
-	./lib/libxkit/mlx_draw_toolkit.c \
-	./lib/libxkit/mlx_color_toolkit.c \
 	#./src/map_validator.c \
 
 ### Object files
@@ -66,13 +56,13 @@ $(LIBFT):
 	cd lib/libft && make
 
 $(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(OBJ) -Llib/libft -lft -lm -Lminilibx -lmlx -lXext -lX11 -o $(NAME)
+	$(CC) $(OBJ) -Llib/libft -lft -lm -Llib/libft/libxkit/minilibx -lmlx -lXext -lX11 -o $(NAME)
 
 ######################################
 ### Compile .c files into .o files ###
 ######################################
 
-$(OBJ): %.o: %.c $(DEPS) $(DEPS_LIBFT)
+$(OBJ): %.o: %.c $(DEPS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 #########################

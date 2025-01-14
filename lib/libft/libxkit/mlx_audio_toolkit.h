@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validator.h                                    :+:      :+:    :+:   */
+/*   mlx_audio_toolkit.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/30 13:51:51 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/12 23:25:12 by mmalie           ###   ########.fr       */
+/*   Created: 2025/01/12 00:51:34 by mmalie            #+#    #+#             */
+/*   Updated: 2025/01/13 11:29:27 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_VALIDATOR_H
-# define MAP_VALIDATOR_H
+#ifndef MLX_AUDIO_TOOLKIT_H
+# define MLX_AUDIO_TOOLKIT_H
 
-int	map_validator(t_state *state);
-void	flood_count(char **tab , t_pos size, t_pos begin);
+# include "./libxkit.h"
+
+void	play_sound(const char *sound_file);
+void	stop_sound(void);
+void	set_audio_volume(float volume);
+void	pause_audio(void);
+void	resume_audio(void);
 
 #endif

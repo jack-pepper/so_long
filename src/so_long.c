@@ -6,128 +6,160 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/09 12:54:53 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/14 15:11:37 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
+/*
+ * My custom library LIBXKIT, based on the graphics library MiniLibX, allows
+ * to modify the game settings with minimal effort:
+ * - parsing map (rectangular only) with any extension, set and count.   
+ * - 
+ * At the moment (01/2025) this engine handles 2D collecting top-view games.
+ * LIBXKIT, though, can be used for various types of projects.
+ */
 
 int	main(int argc, char **argv)
 {
-	t_game	*game;
+	t_state	*state;
 	t_env	env;
 	t_img	canvas;
+	t_data	data; // MV
+	char	fpath[256];
 
-	game = malloc(sizeof(t_game));
-	if (!game)
-		return (1);
+	state = NULL;
+	if (init_state(&state) != 0)
+		return (1);	
 	env.canvas = &canvas;
-	game->env = &env;
-	if ((map_parser(game, argc, argv) != 0)
-	//	|| (map_validator(game) != 0) // TBD
-		|| (init_game(game) != 0))
-		return (1);
-	/*if (init_map != 0)
-		return (1);
-	if (init_game(game) != 0)
-		return (1);*/
-	mlx_loop_hook(game->env->mlx, &render, game);
-	mlx_loop(game->env->mlx);
-	return (0);
-}
+	state->env = &env;
 
-int     map_parser(t_game *game, int argc, char **argv)
-{
-        char    filepath[256]; // CHANGE TO MALLOC
-        size_t  line_len;
-        size_t  nb_lines;
+	// MV
+	data.collected = 0;
+	state->data = &data;
+	//
 
         if (argc != 2)
         {
                 perror("Error\nInvalid number of arguments (req: 1)\n");
                 return (1);
         }
-        ft_strlcpy(filepath, argv[1], ft_strlen(argv[1]) + 1);
-        ft_printf("FILEPATH: %s\n", filepath);
-        if (check_extension(filepath, ".ber") != 0)
+        ft_strlcpy(fpath, argv[1], ft_strlen(argv[1]) + 1);
+        ft_printf("FILEPATH: %s\n", fpath); // DEBUG
+	if ((init_map(state, fpath, ".ber") != 0)
+		|| (map_parser(state) != 0)
+	//	|| (map_validator(state) != 0)
+		|| (set_state(state) != 0))
+		return (1);
+	//state->render_update = -1;
+	mlx_loop_hook(state->env->mlx, &render, state);
+	mlx_loop(state->env->mlx);
+	return (0);
+}
+
+//
+int     map_parser(t_state *state)
+{
+        char	**tilemap;
+	t_count_req	counter;
+	size_t  line_len;
+        size_t  nb_lines;
+	int	i;
+	
+	set_counter_req(&counter);
+	tilemap = state->map->tilemap;
+        line_len = state->map->tm_cols;
+        nb_lines = state->map->tm_rows;
+        if (check_border(tilemap, line_len, nb_lines, '1') != 0)
                 return (1);
-        ft_printf("Correct extension (req: .ber)\n"); // DEBUG
-        line_len = 0;
-        nb_lines = 0;
-        if (check_shape(filepath, &line_len, &nb_lines) != 0)
-                return (1);
-        ft_printf("Correct map shape (req: rect)!\n"); // DEBUG
-        if (check_closed(filepath, line_len, nb_lines) != 0)
-                return (1);
-        if (check_chars(filepath, "01CEP\n") != 0) // Should the nl char be accepted?
+        ft_printf("Map is closed\n"); // DEBUG
+        if (check_chars(tilemap, nb_lines, "01CEP\n") != 0)
                 return (1);
         ft_printf("Correct chars (req: 01CEP)\n"); // DEBUG
-        if (check_count(filepath, "01CEP\n") != 0) // Should the nl char be accepted?
+        if (check_count(tilemap, nb_lines, "01CEP\n", &counter) != 0) // Should the nl char be accepted?
                 return (1);
         ft_printf("Correct counts (req: 0, 1, C>1, Ex1, Px1)\n"); // DEBUG 
-	if (init_map(game, filepath, line_len, nb_lines) != 0)
-		return (1);
-        return (0);
-}
-
-int    init_map(t_game *game, char *fpath, size_t line_len, size_t nb_lines)
-{
-        t_map   *map;
-        char    **tilemap;
-        char    *tilemap_line;
-        size_t  i;
-        int     file;
-
-        file = ft_open_file(fpath, "O_RDONLY", "Error\nError opening file\n");
-        if (file == -1)
-                return (1);
-        map = malloc(sizeof(t_map));
-        if (!map)
+	i = 0;
+	while (i < 6)
 	{
-		perror("Error\nt_map *map alloc failed\n");
-                return (1) ;
+		state->map->tile_count[i] = counter.count[i];
+		i++;
 	}
-        game->map = map;
-        game->map->fpath = fpath;
-        tilemap = malloc(sizeof(char *) * (nb_lines));
-        if (!tilemap)
-	{
-		perror("Error\nchar **tilemap alloc failed\n");
-                return (1) ;
-	}
-        game->map->tilemap = tilemap;
-        game->map->tm_rows = nb_lines;
-        game->map->tm_cols = line_len;
-	calc_cell_size(game);
-        i = 0;
-        while (i < nb_lines)
-        {
-		//ft_printf("gnl: %s", ft_gnl(file));
-                tilemap_line = ft_gnl(file);
-                //ft_printf("%s\n", tilemap_line);
-                if (!tilemap_line)
-		{
-			perror("Error\nchar *tilemap_line alloc failed\n");
-                        return (1);
-		}
-                game->map->tilemap[i] = tilemap_line;
-                ft_printf("%s", game->map->tilemap[i]);
-                i++;
-                //free(tilemap_line);
-        //      ft_printf("mallocated %d lines\n", i);
-        }
+	state->data->to_be_collected = counter.count[2];
 	return (0);
 }
 
-int	init_game(t_game *game)
+// [0]=empty | [1]=wall | [2]=C (coll) | [3]=E (exit) | [4] =P (start pos)
+/* For each index (matching counter index), 'required' expects: 
+ * - if expected a precise value: a positive int (1 = only one)
+ * - if expected a minimal value: a negative int (-1 = at least 1)
+ * - 0 is considered positive (0 = not even one).
+ * The counter array should be initialised to 0 beforehand.
+ */
+void	set_counter_req(t_count_req *counter)
 {	
-	game->env->mlx = mlx_init();
-	if (!game->env->mlx)
-		return (1);
-	game->env->win = mlx_new_window(game->env->mlx, WIN_WIDTH, WIN_HEIGHT, "So Long");
-	set_hooks(game);
-	set_canvas(game->env);
-	set_map(game);
-	upload_assets(game);
+	int	count[6] = {0, 0, 0, 0, 0, 0};
+	int	req_count[6] = {-1, -1, -1, 1, 1, -1};
+	int	i;
+	
+	i = 0;
+	while (i < 5)
+	{	
+		counter->count[i] = count[i];
+		counter->req[i] = req_count[i];
+		i++;
+	}
+	return;	
+}
+
+int	render(t_state *state)
+{
+	render_background(state);
+	render_map(state);
+	render_hero(state);
+	update_render(state);
 	return (0);
+}
+
+void	on_coll_tile(t_state *state, t_pos *pos)
+{	
+	int	*score;
+
+	score = &(state->data->collected);
+        ft_printf("Found collectible!\n");
+        (*score)++;
+        state->map->tilemap[pos->y][pos->x] = '0';
+	(state->map->tile_count[2])++;
+	(state->map->tile_count[0])--;
+}
+
+void	on_exit_tile(t_state *state)
+{
+	// on exit
+        if (state->data->collected == state->data->to_be_collected)
+        {
+        	ft_printf("YOU WIN!\n");
+		exit(0);
+        }
+        else
+        	ft_printf("Keep searching!\n");
+}
+
+void    update_render(t_state *state)
+{
+        //char    **tilemap;
+        t_pos   *pos;
+
+        //tilemap = state->map->tilemap;
+        pos = state->hero->pos;
+
+	// DEBUG
+	//ft_printf("coll: %d - tbc: %d\n", state->data->collected, state->data->to_be_collected);
+	// END DEBUG
+        if (state->map->tilemap[pos->y][pos->x] == 'C')
+        {
+		on_coll_tile(state, pos);
+        }
+        else if (state->map->tilemap[pos->y][pos->x] == 'E')
+		on_exit_tile(state);
 }

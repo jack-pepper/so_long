@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validator.h                                    :+:      :+:    :+:   */
+/*   mlx_state_init_toolkit.h                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/30 13:51:51 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/12 23:25:12 by mmalie           ###   ########.fr       */
+/*   Created: 2025/01/14 09:13:33 by mmalie            #+#    #+#             */
+/*   Updated: 2025/01/14 14:59:21 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_VALIDATOR_H
-# define MAP_VALIDATOR_H
+#ifndef MLX_STATE_INIT_H
+# define MLX_STATE_INIT_H
 
-int	map_validator(t_state *state);
-void	flood_count(char **tab , t_pos size, t_pos begin);
+# include "./libxkit.h"
+
+int	init_state(t_state **state);
+int	set_state(t_state *state);
+void	set_window(t_state *state);
+void	set_hooks(t_state *state);
+void	set_canvas(t_env *env);
 
 #endif

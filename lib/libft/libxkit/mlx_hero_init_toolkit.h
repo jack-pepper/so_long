@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validator.h                                    :+:      :+:    :+:   */
+/*   mlx_hero_init_toolkit.h                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/30 13:51:51 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/12 23:25:12 by mmalie           ###   ########.fr       */
+/*   Created: 2025/01/14 08:57:08 by mmalie            #+#    #+#             */
+/*   Updated: 2025/01/14 08:59:34 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_VALIDATOR_H
-# define MAP_VALIDATOR_H
+#ifndef MLX_HERO_INIT_TOOLKIT_H
+# define MLX_HERO_INIT_TOOLKIT_H
 
-int	map_validator(t_state *state);
-void	flood_count(char **tab , t_pos size, t_pos begin);
+# include "./libxkit.h"
+
+int	init_hero(t_state *state);
+void	set_hero_pos(t_state *state);
 
 #endif

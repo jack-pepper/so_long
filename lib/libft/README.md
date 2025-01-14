@@ -41,9 +41,7 @@ To use this project locally:
 
 ## Features
 
-### Standard Libraries Implementations
-
-#### LIBCTYPE (From ctype.h)
+### LIBCTYPE (From ctype.h)
 - [42] ft_isalpha - Checks if a character is an alphabetic letter (A-Z or a-z).
 - [42] ft_isdigit - Checks if a character is a digit (0-9).
 - [42] ft_isalnum - Checks if a character is either alphabetic or a digit.
@@ -56,7 +54,7 @@ To use this project locally:
 - [42] ft_toupper - Converts a lowercase letter to uppercase.
 - [42] ft_tolower - Converts an uppercase letter to lowercase.
 
-#### LIBSTRING (From string.h)
+### LIBSTRING (From string.h)
 - [42] ft_strlen - Returns the length of a string (excluding the null terminator).
 - [42] ft_memset - Fills a block of memory with a specified value.
 - [42] ft_bzero - Sets a block of memory to zero.
@@ -76,7 +74,7 @@ To use this project locally:
 - ft_strpbrk - Locates the first occurrence in the string s of any of the bytes in the string accept.
 - ft_strnopbrk - Locates the first occurrence in the string s of any of the bytes NOT in the string accept.
 
-#### LIBSTDLIB (From stdlib.h)
+### LIBSTDLIB (From stdlib.h)
 - [42] ft_calloc - Allocates memory for an array and initializes it to zero.
 - [42] ft_memdel - (Non-standard) Frees allocated memory and sets the pointer to null. 
 - [42] ft_atoi - Converts a string to an integer, handling whitespace and signs.
@@ -132,43 +130,43 @@ To use this project locally:
 - clean_stash - Frees the stash and sets the pointer to null.
 
 ### LIBBIN - For bits operations
-# Display
+#### Display
 - ft_show_bin - Displays the int num in binary notation.
 - ft_get_bin - Gets the int num in binary notation and stores it in an array send in parameter.
 - ft_bin_to_char - Displays the binary as an ASCII char.
-# Basic bit operations
+#### Basic bit operations
 - ft_set_bit - Sets the specific bit of num at bit_pos to 1.
 - ft_clear_bit - Clears the specific bit of num at bit_pos (sets it to 0).
 - ft_toggle_bit - Toggles the specific bit of num at bit_pos (flips between 1 and 0).
 - ft_is_bit_set - Checks if the specific bit of num at bit_pos is set (1) or not (0).
-# Counting bits
+#### Counting bits
 - ft_count_set_bits - Counts the number of bits set to 1.
 - ft_count_clear_bits - Counts the number of bits set to 0.
 - ft_first_set_bit_pos - Gets the position of the first bit set to 1.
 - ft_highest_set_bit_pos - Gets the position of the most significant bit.
-# Masking bits
+#### Masking bits
 - ft_extract_bits - Extracts a subset of bits from a number (from start_bit to end_bit).
 - ft_set_bits - Sets a subset of bits in a number (from start_bit to end_bit) to a given value.
 - ft_match_bits - Checks if a subset of bits matches a specific value.
-# Shifting and rotating
+#### Shifting and rotating
 - ft_rotate_left - Performs a left circular shift (rotates bits left).
 - ft_rotate_right - Performs a right circular shift (rotates bits right).
 - ft_arithmetic_shift_left - Performs an arithmetic shift left.
 - ft_arithmetic_shift_right - Performs an arithmetic shift right.
-# Testing and comparison
+#### Testing and comparison
 - ft_is_power_of_two - Tests if a number is a power of 2.
 - ft_are_bits_equal - Tests if two numbers have the same bits set.
-# Utilities
+#### Utilities
 - ft_reverse_bits - Reverses all bits in a number.
 - ft_swap_bits - Swaps two bits in a number.
 - ft_count_leading_zeros - Counts the leading zeros in a number.
 - ft_count_trailing_zeros - Counts the trailing zeros in a number.
 - ft_get_parity - Gets the parity of a number (1 if odd number of bits sets, 0 if even).
-# Specialized operations
+#### Specialized operations
 - ft_pack_two_int - Packs two integers into a single 32-bit value.
 - ft_unpack_first_half - Unpacks the first 16 bits of a packed 32-bit value.
 - ft_unpack_second_half - Unpacks the second 16 bits of a packed 32-bit value.
-# Custom bit patterns
+#### Custom bit patterns
 - ft_create_bitmask - Create a bitmask with n least significant bits set to 1.
 - ft_create_range_bitmask - Create a bitmask with bits set to 1 between start_bit and end_bit.
 
