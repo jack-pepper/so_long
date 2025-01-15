@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 21:03:38 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/13 12:08:34 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/15 13:10:27 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	render_hero(t_state *state)
 
 	env = state->env;
 	hero_sprite = state->hero->sprite;
-	hero_pos.x = state->hero->pos->x * RES_PIX;
-	hero_pos.y = state->hero->pos->y * RES_PIX;
+	hero_pos.x = (state->hero->pos->x * RES_PIX) + ((WIN_WIDTH - state->map->tm_cols * RES_PIX) / 2);
+	hero_pos.y = (state->hero->pos->y * RES_PIX) + ((WIN_HEIGHT - state->map->tm_rows * RES_PIX) / 2);
 	mlx_show(env->mlx, env->win, hero_sprite, hero_pos);
 }

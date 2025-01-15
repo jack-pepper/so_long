@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:03:33 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/15 00:37:23 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/15 23:15:40 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,32 +16,28 @@ int	init_state(t_state **state)
 {
 	*state = malloc(sizeof(t_state));
 	if (!*state)
-	{
-		perror("Error\nstate malloc failed\n");
 		return (ft_error(1, "Error\nstate malloc failed\n"));
-	}
-	memset(*state, 0, sizeof(t_state));
+	ft_memset(*state, 0, sizeof(t_state));
 	ft_printf("STATE MALLOCATED\n"); // DEBUG
 	(*state)->env = malloc(sizeof(t_env));
     	if ((*state)->env == NULL)
     	{
-        	perror("Error\nenv malloc failed\n");
-        	free(*state);
-        	return (1);
+		free(*state);
+        	return (ft_error(1, "Error\nenv malloc failed\n"));
     	}
+	ft_memset((*state)->env, 0, sizeof(t_env)); 
 	ft_printf("ENV MALLOCATED\n"); // DEBUG
 	(*state)->env->canvas = malloc(sizeof(t_img));
     	if ((*state)->env->canvas == NULL)
     	{
-        	perror("Error\ncanvas malloc failed\n");
         	free((*state)->env);
 		free(*state);
-        	return (1);
-    	}	
+        	return (ft_error(1, "Error\ncanvas malloc failed\n"));
+    	}
+	ft_memset((*state)->env->canvas, 0, sizeof(t_img));
 	ft_printf("CANVAS MALLOCATED\n"); // DEBUG
 	(*state)->env->canvas_width = WIN_WIDTH;
 	(*state)->env->canvas_height = WIN_HEIGHT;
-	(*state)->env->mlx = NULL;
 	(*state)->env->mlx = NULL;
 	return (0);
 }
@@ -67,6 +63,9 @@ int     set_state(t_state *state)
 	ft_printf("REACHED SET_STATE 6 :o\n");
 	if (upload_assets(state) != 0)
 		return (ft_error(1, "Error\nupload_assets failed\n"));
+	ft_printf("REACHED SET_STATE 7! :o\n");
+	if (set_cam(state) != 0)
+		return (ft_error(1, "Error\nset_cam failed\n"));
 	ft_printf("REACHED SET_STATE FINAL! :o\n");
 	return (0);
 }
@@ -77,9 +76,9 @@ int	set_window(t_state *state)
 
 	ft_printf("REACHED SET_WINDOW 1\n");
 	ft_printf("REACHED SET_WINDOW 1 - mlx: %p\n", state->env->mlx);	
-	win = mlx_new_window(state->env->mlx, WIN_WIDTH, WIN_HEIGHT, "So Long");	
+	//win = mlx_new_window(state->env->mlx, WIN_WIDTH, WIN_HEIGHT, "So Long");	
 	ft_printf("REACHED SET_WINDOW 2\n");
-	// state->env->win = mlx_new_window(state->env->mlx, WIN_WIDTH, WIN_HEIGHT, "So Long");
+	win = mlx_new_window(state->env->mlx, WIN_WIDTH, WIN_HEIGHT, "So Long");
 	if (!win)
 		return (ft_error(1, "Error\nmlx_new_window failed\n"));		
 	ft_printf("REACHED SET_WINDOW 3\n");

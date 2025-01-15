@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_input_toolkit.h                                :+:      :+:    :+:   */
+/*   mlx_event_on_motion.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/12 19:57:40 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/15 10:15:36 by mmalie           ###   ########.fr       */
+/*   Created: 2025/01/15 19:20:41 by mmalie            #+#    #+#             */
+/*   Updated: 2025/01/15 19:28:58 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_INPUT_TOOLKIT_H
-# define MLX_INPUT_TOOLKIT_H
+#ifndef MLX_EVENT_ON_MOTION_H
+# define MLX_EVENT_ON_MOTION_H
 
 # include "./libxkit.h"
 
-int		on_keypress(int keysym, t_state *state);
-void	kp_motion(int keysym, t_state *state);
-int		on_destroy(t_state *state);
-int	on_resize(int width, int height, t_state *state);
+void	on_motion_up(t_state *state);
+void	on_motion_down(t_state *state);
+void	on_motion_left(t_state *state);
+void	on_motion_right(t_state *state);
 
 #endif

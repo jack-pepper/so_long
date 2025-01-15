@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/14 09:59:39 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/15 19:30:44 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,12 @@
 # include "./mlx_anim_toolkit.h"
 # include "./mlx_audio_toolkit.h"
 # include "./mlx_background_render_toolkit.h"
+# include "./mlx_camera_toolkit.h"
 # include "./mlx_collisions_toolkit.h"
 # include "./mlx_color_toolkit.h"
 # include "./mlx_debug_toolkit.h"
 # include "./mlx_draw_toolkit.h"
+# include "./mlx_event_on_motion.h"
 # include "./mlx_hero_init_toolkit.h"
 # include "./mlx_hero_render_toolkit.h"
 # include "./mlx_input_toolkit.h"

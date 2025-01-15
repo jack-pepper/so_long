@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/05 10:55:56 by mmalie            #+#    #+#              #
-#    Updated: 2025/01/14 09:44:45 by mmalie           ###   ########.fr        #
+#    Updated: 2025/01/15 19:29:51 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,10 +45,12 @@ DEPS =	./libxkit.h \
 	./mlx_anim_toolkit.h \
 	./mlx_audio_toolkit.h \
 	./mlx_background_render_toolkit.h \
+	./mlx_camera_toolkit.h \
 	./mlx_collisions_toolkit.h \
 	./mlx_color_toolkit.h \
 	./mlx_debug_toolkit.h \
 	./mlx_draw_toolkit.h \
+	./mlx_event_on_motion.h \
 	./mlx_hero_init.toolkit.h \
 	./mlx_hero_render_toolkit.h \
 	./mlx_input_toolkit.h \
@@ -74,10 +76,12 @@ LIBXKIT = ./mlx_ai_toolkit.c \
 	./mlx_anim_toolkit.c \
 	./mlx_audio_toolkit.c \
 	./mlx_background_render_toolkit.c \
+	./mlx_camera_toolkit.c \
 	./mlx_collisions_toolkit.c \
 	./mlx_color_toolkit.c \
 	./mlx_debug_toolkit.c \
 	./mlx_draw_toolkit.c \
+	./mlx_event_on_motion.c \
 	./mlx_hero_init_toolkit.c \
 	./mlx_hero_render_toolkit.c \
 	./mlx_input_toolkit.c \

@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 19:47:31 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/14 10:35:17 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/15 22:28:03 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,44 @@
 //void    draw_grid(t_env *env, int cell_size, int color)
 void	render_map(t_state *state)
 {
+	t_cam	*cam;
 	int	cell_size;
 	int	row;
 	int	col;
 
+	cam = state->cam;
 	//cell_size = state->map->cell_size;
 	cell_size = RES_PIX;
+	
 	row = 0;
-	while (row < (state->map->tm_rows))
+	if ((state->map->height <= state->env->canvas_height)
+		&& (state->map->width <= state->env->canvas_width))
 	{
-		col = 0;
-		while (col < (state->map->tm_cols))
+		while (row < (state->map->tm_rows))
 		{
-			rm_put_tiles(state, row, col, cell_size);
-			col++;
+			col = 0;
+			while (col < (state->map->tm_cols))
+			{
+				rm_put_tiles(state, row, col, cell_size);
+				col++;
+			}
+			row++;
 		}
-		row++;
+	}
+	else
+	{
+		while (row < (state->env->canvas_height))
+		{
+			col = 0;
+			while (col < (state->env->canvas_width))
+			{
+				if ((cam->pos.x + col) < (state->map->width)
+					&& (cam->pos.y + row) < (state->map->height))
+				rm_put_tiles(state, cam->pos.x + col, cam->pos.y + row, cell_size);
+				col++;
+			}
+			row++;
+		}
 	}
 }
 
@@ -49,8 +71,8 @@ void	rm_put_tiles(t_state *state, int row, int col, int cell_size)
 	env = state->env;
 	tilemap = state->map->tilemap;
 	tileset = state->map->tileset;
-	pos.x = col * cell_size;
-	pos.y = row * cell_size;
+	pos.x = (col * cell_size) + ((WIN_WIDTH - (state->map->tm_cols * cell_size)) / 2);
+	pos.y = (row * cell_size) + ((WIN_HEIGHT - (state->map->tm_rows * cell_size)) / 2);
 	if (tilemap[row][col] == '1')
 	{
 		mlx_show(env->mlx, env->win, tileset[0]->sprite, pos);

@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 23:05:51 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/15 00:07:48 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/15 19:23:48 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,27 +42,85 @@ void	kp_motion(int keysym, t_state *state)
 	hero_pos = state->hero->pos;
 	if ((keysym == XK_w || keysym == XK_Up)
 		&& (tilemap[hero_pos->y - 1][hero_pos->x] != '1'))
-		hero_pos->y -= 1;
+		{
+			on_motion_up(state);
+		}
 	else if ((keysym == XK_a || keysym == XK_Left)
 		&& (tilemap[hero_pos->y][hero_pos->x - 1] != '1'))
-		hero_pos->x -= 1;
+		{
+			on_motion_left(state);
+		}
 	else if ((keysym == XK_s || keysym == XK_Down)
 		&& (tilemap[hero_pos->y + 1][hero_pos->x] != '1'))
-		hero_pos->y += 1;
+		{
+			on_motion_down(state);
+		}
 	else if ((keysym == XK_d || keysym == XK_Right)
 		&& (tilemap[hero_pos->y][hero_pos->x + 1] != '1'))
-		hero_pos->x += 1;
-	return ;
+		{
+			on_motion_right(state);
+		}
 }
 
-int	on_destroy(t_env *env)
+int	on_destroy(t_state *state)
 {
-	mlx_destroy_window(env->mlx, env->win);
-	mlx_destroy_display(env->mlx);
-	free(env->mlx);
-	free(env->win);
+/*
+	if (!state)
+		return (0);
+	if (state->map)
+	{
+        	if (state->map->tilemap)
+            		free(state->map->tilemap);
+        	if (state->map->tileset)
+		{
+			int i = 0;
+			while (i < 3)
+			{
+				if (state->map->tileset[i])
+				{
+					mlx_destroy_image(state->env->mlx, state->map->tileset[i]->sprite);
+					free(state->map->tileset[i]);
+				}
+				i++;
+			}
+            		free(state->map->tileset);
+		}
+		if (state->map->tile_count)
+	   		free(state->map->tile_count);
+        	free(state->map);
+    }
+    if (state->hero)
+    {
+    	if (state->hero->pos)
+        	free(state->hero->pos);
+        free(state->hero);
+    }
+    if (state->env && state->env->canvas)
+    {
+        if (state->env->canvas->image)
+        {
+        	mlx_destroy_image(state->env->mlx, state->env->canvas->image);
+        }
+        free(state->env->canvas);
+        state->env->canvas = NULL;
+    }
+    if (state->env && state->env->win)
+    {
+        mlx_destroy_window(state->env->mlx, state->env->win);
+        state->env->win = NULL;
+    }
+    if (state->env && state->env->mlx)
+    {
+        mlx_destroy_display(state->env->mlx);
+        free(state->env->mlx);
+    }
+    if (state->env)
+    {
+        free(state->env);
+    }*/
+    	mlx_destroy_display(state->env->mlx);
+	free(state);
 	exit(0);
-	return (0);
 }
 
 int     on_resize(int width, int height, t_state *state)

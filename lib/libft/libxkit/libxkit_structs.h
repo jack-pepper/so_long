@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/14 23:59:05 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/15 19:37:32 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,16 @@ typedef struct s_env
 typedef struct s_data
 {
 	int	is_running;
+	int	nb_steps;
 	int	collected;
 	int	to_be_collected;
 }		t_data;
+
+typedef struct s_cam
+{
+	t_pos	pos;
+	t_pos	max;
+}		t_cam;
 
 typedef struct s_tile
 {
@@ -96,6 +103,7 @@ typedef struct s_state
 	t_env		*env;
 	t_data		*data;
 	t_map		*map;
+	t_cam		*cam;
 	t_hero		*hero;
 	//t_mouse		*mouse;
 }		t_state;

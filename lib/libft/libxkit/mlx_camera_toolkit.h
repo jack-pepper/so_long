@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_input_toolkit.h                                :+:      :+:    :+:   */
+/*   mlx_camera_toolkit.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/12 19:57:40 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/15 10:15:36 by mmalie           ###   ########.fr       */
+/*   Created: 2025/01/15 19:22:13 by mmalie            #+#    #+#             */
+/*   Updated: 2025/01/15 23:14:51 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_INPUT_TOOLKIT_H
-# define MLX_INPUT_TOOLKIT_H
+#ifndef MLX_CAMERA_TOOLKIT_H
+# define MLX_CAMERA_TOOLKIT_H
 
 # include "./libxkit.h"
 
-int		on_keypress(int keysym, t_state *state);
-void	kp_motion(int keysym, t_state *state);
-int		on_destroy(t_state *state);
-int	on_resize(int width, int height, t_state *state);
+int	set_cam(t_state *state);
+void	check_cam_bounds(t_cam *cam, t_env *env);
+void	center_cam_on_hero(t_cam *cam, t_pos *hero_pos, t_env *env);
+void	update_cam_pos(t_cam *cam, int y_move, int x_move, t_env *env);
 
 #endif

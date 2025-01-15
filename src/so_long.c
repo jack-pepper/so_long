@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/14 23:24:21 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/15 23:15:09 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,12 @@ int	main(int argc, char **argv)
 		return (1); // return (EXIT_FAILURE); : replace all
 	// MV
 	data.collected = 0;
+	data.nb_steps = 0;
 	state->data = &data;
 	//
 
         if (argc != 2)
-        {
-                perror("Error\nInvalid number of arguments (req: 1)\n");
-                return (1);
-        }
+                return (ft_error(1, "Error\nInvalid number of arguments (req: 1)\n"));
         ft_strlcpy(fpath, argv[1], ft_strlen(argv[1]) + 1); // without + 1?
         ft_printf("FILEPATH: %s\n", fpath); // DEBUG
 	if ((init_map(state, fpath, ".ber") != 0) // Export to a function (to set different errors))
