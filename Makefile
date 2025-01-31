@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2025/01/14 12:01:02 by mmalie           ###   ########.fr        #
+#    Updated: 2025/01/31 12:55:08 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ DEPS = ./inc/so_long.h \
 	./inc/assets.h \
 	./lib/libft/libxkit/libxkit.h \
 	./lib/libft/libft.h \
-	#./inc/map_validator.h \
+	./inc/map_validator.h \
 #DEPS_LIBFT = ./libft/libft.h
 LIBFT = ./lib/libft/libft.a
 LIBXKIT = ./lib/libft/libxkit/libxkit.a
@@ -41,7 +41,8 @@ LIBXKIT = ./lib/libft/libxkit/libxkit.a
 ####################
 
 SRC = ./src/so_long.c \
-	#./src/map_validator.c \
+      ./src/sl_events.c \
+      ./src/map_validator.c \
 
 ### Object files
 OBJ = $(SRC:.c=.o)

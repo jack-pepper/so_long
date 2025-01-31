@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validator.h                                    :+:      :+:    :+:   */
+/*   mlx_state_toolkit.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/30 13:51:51 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/31 15:15:58 by mmalie           ###   ########.fr       */
+/*   Created: 2025/01/12 22:16:04 by mmalie            #+#    #+#             */
+/*   Updated: 2025/01/12 22:16:44 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_VALIDATOR_H
-# define MAP_VALIDATOR_H
+#ifndef MLX_STATE_TOOLKIT_H
+# define MLX_STATE_TOOLKIT_H
 
-int	map_validator(t_state *state);
-void	flood_count(char **tab , t_pos size, t_pos begin, int accessed_count[2]);
-void	update_flood_count(char tile, int accessed_count[2]);
+# include "./libxkit.h"
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/15 23:15:09 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/31 12:02:02 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,20 @@
 int	main(int argc, char **argv)
 {
 	t_state	*state;
-	t_data	data; // MV
+	t_data	data;
 	char	fpath[256];
 
 	if (init_state(&state) != 0)
 		return (1); // return (EXIT_FAILURE); : replace all
-	// MV
-	data.collected = 0;
-	data.nb_steps = 0;
-	state->data = &data;
-	//
-
         if (argc != 2)
                 return (ft_error(1, "Error\nInvalid number of arguments (req: 1)\n"));
         ft_strlcpy(fpath, argv[1], ft_strlen(argv[1]) + 1); // without + 1?
         ft_printf("FILEPATH: %s\n", fpath); // DEBUG
+	if (init_data(state, &data) != 0)
+		return (1);
 	if ((init_map(state, fpath, ".ber") != 0) // Export to a function (to set different errors))
-		|| (map_parser(state) != 0)   //	|| (map_validator(state) != 0)
+		|| (map_parser(state) != 0)
+		|| (map_validator(state) != 0)
 		|| (set_state(state) != 0))
 		return (1);
 	mlx_loop_hook(state->env->mlx, &render, state);
@@ -47,7 +44,14 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-//
+int	init_data(t_state *state, t_data *data)
+{
+	data->collected = 0;
+	data->nb_steps = 0;
+	state->data = data;
+	return (0);
+}
+
 int     map_parser(t_state *state)
 {
         char	**tilemap;
@@ -111,41 +115,19 @@ int	render(t_state *state)
 	return (0);
 }
 
-void	on_coll_tile(t_state *state, t_pos *pos)
-{	
-	int	*score;
-
-	score = &(state->data->collected);
-        ft_printf("Found collectible!\n");
-        (*score)++;
-        state->map->tilemap[pos->y][pos->x] = '0';
-	(state->map->tile_count[2])++;
-	(state->map->tile_count[0])--;
-}
-
-void	on_exit_tile(t_state *state)
+void	update_render(t_state *state)
 {
-	// on exit
-        if (state->data->collected == state->data->to_be_collected)
-        {
-        	ft_printf("YOU WIN!\n");
-		exit(0);
-        }
-        else
-        	ft_printf("Keep searching!\n");
-}
-
-void    update_render(t_state *state)
-{
-        //char    **tilemap;
-        t_pos   *pos;
-
-        //tilemap = state->map->tilemap;
-        pos = state->hero->pos;
+	t_pos	*pos;
+	
+	pos = state->hero->pos;
 
 	// DEBUG
 	//ft_printf("coll: %d - tbc: %d\n", state->data->collected, state->data->to_be_collected);
 	// END DEBUG
+	if (state->map->tilemap[pos->y][pos->x])
+	{
+		
+	}
         if (state->map->tilemap[pos->y][pos->x] == 'C')
         {
 		on_coll_tile(state, pos);
