@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/31 12:02:02 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/31 22:34:08 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ int	main(int argc, char **argv)
 		|| (map_validator(state) != 0)
 		|| (set_state(state) != 0))
 		return (1);
+	state->bkgd_event = 1;
+	state->map_event = 1;
+	state->hero_event = 1;
 	mlx_loop_hook(state->env->mlx, &render, state);
 	mlx_loop(state->env->mlx);
 	return (0);
@@ -108,9 +111,23 @@ void	set_counter_req(t_count_req *counter)
 
 int	render(t_state *state)
 {
-	render_background(state);
-	render_map(state);
-	render_hero(state);
+	if (state->bkgd_event == 1)
+	{
+		render_background(state);
+		state->bkgd_event = 0;
+	}
+	if (state->map_event == 1)
+	{
+		render_map(state);
+		state->map_event = 0;
+	}
+	if (state->hero_event == 1)
+	{
+		render_background(state);
+		render_map(state);
+		render_hero(state);
+		state->hero_event = 0;
+	}
 	update_render(state);
 	return (0);
 }
@@ -131,7 +148,10 @@ void	update_render(t_state *state)
         if (state->map->tilemap[pos->y][pos->x] == 'C')
         {
 		on_coll_tile(state, pos);
+		state->map_event = 1;
         }
         else if (state->map->tilemap[pos->y][pos->x] == 'E')
+	{
 		on_exit_tile(state);
+	}	
 }

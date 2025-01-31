@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:03:33 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/15 23:15:40 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/01/31 22:09:27 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ int	init_state(t_state **state)
 	(*state)->env->canvas_width = WIN_WIDTH;
 	(*state)->env->canvas_height = WIN_HEIGHT;
 	(*state)->env->mlx = NULL;
+        (*state)->bkgd_event = 1;
+        (*state)->map_event = 1;
+        (*state)->hero_event = 1;
 	return (0);
 }
 
