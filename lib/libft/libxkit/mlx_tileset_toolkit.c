@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:36:40 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/14 19:14:51 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/02 19:17:42 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	set_map(t_state *state)
         if (!exit)
                 return (1);
         state->map->tileset[2] = exit;
-
         state->map->width = WIN_WIDTH;
         state->map->height = WIN_HEIGHT;
         state->map->tileset[0]->width = wall_width;
@@ -81,4 +80,3 @@ int     upload_assets(t_state *state)
         //token->addr = mlx_get_data_addr(token->img, &token->bits_per_pixel, &token->line_length, &token->endian);
         //exit->addr = mlx_get_data_addr(exit->img, &exit->bits_per_pixel, &exit->line_length, &exit->endian); */
 }
-

@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/31 22:34:08 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/02 19:06:06 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,25 @@ int	main(int argc, char **argv)
 	if (init_state(&state) != 0)
 		return (1); // return (EXIT_FAILURE); : replace all
         if (argc != 2)
+	{
+		// Need to free state (or move it before init_state?)
                 return (ft_error(1, "Error\nInvalid number of arguments (req: 1)\n"));
-        ft_strlcpy(fpath, argv[1], ft_strlen(argv[1]) + 1); // without + 1?
-        ft_printf("FILEPATH: %s\n", fpath); // DEBUG
+        }
+	ft_strlcpy(fpath, argv[1], ft_strlen(argv[1]) + 1);
+        //ft_printf("FILEPATH: %s\n", fpath); // DEBUG
 	if (init_data(state, &data) != 0)
+	{
+		// Need to free state... But this function actually can't fail atm
 		return (1);
+	}
 	if ((init_map(state, fpath, ".ber") != 0) // Export to a function (to set different errors))
 		|| (map_parser(state) != 0)
 		|| (map_validator(state) != 0)
 		|| (set_state(state) != 0))
 		return (1);
-	state->bkgd_event = 1;
-	state->map_event = 1;
-	state->hero_event = 1;
+	//state->bkgd_event = 1;
+	//state->map_event = 1;
+	//state->hero_event = 1;
 	mlx_loop_hook(state->env->mlx, &render, state);
 	mlx_loop(state->env->mlx);
 	return (0);

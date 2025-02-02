@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:03:33 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/31 22:09:27 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/02 19:11:45 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,16 +77,11 @@ int	set_window(t_state *state)
 {
 	void	*win;
 
-	ft_printf("REACHED SET_WINDOW 1\n");
-	ft_printf("REACHED SET_WINDOW 1 - mlx: %p\n", state->env->mlx);	
 	//win = mlx_new_window(state->env->mlx, WIN_WIDTH, WIN_HEIGHT, "So Long");	
-	ft_printf("REACHED SET_WINDOW 2\n");
-	win = mlx_new_window(state->env->mlx, WIN_WIDTH, WIN_HEIGHT, "So Long");
+	win = mlx_new_window(state->env->mlx, WIN_WIDTH, WIN_HEIGHT, "So Long"); // Define the title in .h
 	if (!win)
-		return (ft_error(1, "Error\nmlx_new_window failed\n"));		
-	ft_printf("REACHED SET_WINDOW 3\n");
+		return (ft_error(1, "Error\nmlx_new_window failed\n"));	
 	state->env->win = win;
-	ft_printf("REACHED SET_WINDOW 4\n");
 	return (0);
 }
 

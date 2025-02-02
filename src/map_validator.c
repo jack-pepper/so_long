@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:40:51 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/31 15:15:49 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/02 15:02:43 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,12 @@ char	**copy_map(char **src, t_pos size)
 	{
         	copy[i] = malloc(size.x * sizeof(char));
 		if(!copy[i])
+		{
+			while (--i >= 0)
+				free(copy[i]);
+			free(copy);
 			return (NULL);
+		}
 		ft_memcpy(copy[i], src[i], size.x * sizeof(char));
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/15 19:30:44 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/02 15:10:36 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include <math.h>
 
 /* MiniLibX libraries */
-# include "./minilibx/mlx.h"
-# include "./minilibx/mlx_int.h"
+# include "./.minilibx/mlx.h"
+# include "./.minilibx/mlx_int.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 
