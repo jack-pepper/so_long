@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 19:47:31 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/04 16:33:19 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/04 19:40:41 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void render_map(t_state *state)
 	}
 
     // Debugging Output
-    ft_printf("[render_map] Camera View - Start: (%d, %d), Max: (%d, %d)\n",
-              state->cam->pos.x / RES_PIX, state->cam->pos.y / RES_PIX, state->cam->max.x, state->cam->max.y);
+//    ft_printf("[render_map] Camera View - Start: (%d, %d), Max: (%d, %d)\n",
+  //            state->cam->pos.x / RES_PIX, state->cam->pos.y / RES_PIX, state->cam->max.x, state->cam->max.y);
 }
 
 void	rm_put_tiles(t_state *state, int row, int col, int cell_size)
@@ -88,15 +88,21 @@ void	rm_put_tiles(t_state *state, int row, int col, int cell_size)
 	// Ensure corresponding sprite is not NULL before drawing
 	if (tile == '1' && tileset[0] && tileset[0]->sprite)
 	{
-		mlx_show(env->mlx, env->win, tileset[0]->sprite, pos);
+		//mlx_show(env->mlx, env->win, tileset[0]->sprite, pos);
+		//mlx_draw_to_canvas(env->canvas, tileset[0]->sprite, pos);
+		mlx_put_image_to_window(env->mlx, env->win, tileset[0]->sprite, pos.x, pos.y);	
 	}
 	else if (tile == 'C' && tileset[1] && tileset[1]->sprite)
 	{
-		mlx_show(env->mlx, env->win, tileset[1]->sprite, pos);
+		//mlx_show(env->mlx, env->win, tileset[1]->sprite, pos);
+		//mlx_draw_to_canvas(env->canvas, tileset[1]->sprite, pos);
+		mlx_put_image_to_window(env->mlx, env->win, tileset[1]->sprite, pos.x, pos.y);	
 	}
 	else if (tile == 'E' && tileset[2] && tileset[2]->sprite)
 	{
-		mlx_show(env->mlx, env->win, tileset[2]->sprite, pos);
+		//mlx_show(env->mlx, env->win, tileset[2]->sprite, pos);
+		//mlx_draw_to_canvas(env->canvas, tileset[2]->sprite, pos);
+		mlx_put_image_to_window(env->mlx, env->win, tileset[2]->sprite, pos.x, pos.y);	
 	}
 	//else
 	//{

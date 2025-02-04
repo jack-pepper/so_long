@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 18:37:27 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/04 16:11:02 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/04 18:43:28 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ void	center_cam_on_hero(t_cam *cam, t_pos *hero_pos, t_env *env)
 	//	cam->pos.x = 0;
 	//if (cam->max.y < 0)
 	//	cam->pos.y = 0;
-	ft_printf("[center_cam_on_hero, before check bounds] Centered: cam.pos.x: %d - cam.pos.y: %d\n", cam->pos.x, cam->pos.y);
+//	ft_printf("[center_cam_on_hero, before check bounds] Centered: cam.pos.x: %d - cam.pos.y: %d\n", cam->pos.x, cam->pos.y);
 	check_cam_bounds(cam, env);
-	ft_printf("[center_cam_on_hero, after check bounds] Centered: cam.pos.x: %d - cam.pos.y: %d\n", cam->pos.x, cam->pos.y);
+//	ft_printf("[center_cam_on_hero, after check bounds] Centered: cam.pos.x: %d - cam.pos.y: %d\n", cam->pos.x, cam->pos.y);
 }
 
 void	update_cam_pos(t_cam *cam, int y_move , int x_move, t_env *env)
@@ -69,5 +69,5 @@ void	update_cam_pos(t_cam *cam, int y_move , int x_move, t_env *env)
 	if (x_move != 0)
 		cam->pos.x += x_move * RES_PIX;
 	check_cam_bounds(cam, env);	
-	ft_printf("[update_cam_pos] Centered: cam.pos.x: %d - cam.pos.y: %d\n", cam->pos.x, cam->pos.y);
+//	ft_printf("[update_cam_pos] Centered: cam.pos.x: %d - cam.pos.y: %d\n", cam->pos.x, cam->pos.y);
 }

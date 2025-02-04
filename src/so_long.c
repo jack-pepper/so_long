@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/02 19:06:06 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/04 19:46:37 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,26 +117,32 @@ void	set_counter_req(t_count_req *counter)
 
 int	render(t_state *state)
 {
-	if (state->bkgd_event == 1)
+	//mlx_destroy_image(state->env->mlx, state->env->canvas->img);
+	//state->env->canvas->img = mlx_new_image(state->env->mlx, WID_WIDTH, WID_LENGTH);
+	
+	if (state->hero_event == 1 || state->map_event == 1 || state->bkgd_event == 1)
 	{
 		render_background(state);
 		state->bkgd_event = 0;
+		state->map_event = 1;
 	}
 	if (state->map_event == 1)
 	{
 		render_map(state);
 		state->map_event = 0;
+		state->hero_event = 1;
 	}
 	if (state->hero_event == 1)
 	{
-		render_background(state);
-		render_map(state);
+//		render_background(state);
+//		render_map(state);
 		render_hero(state);
+		update_render(state);
 		state->hero_event = 0;
 	}
-	update_render(state);
 	return (0);
 }
+
 
 void	update_render(t_state *state)
 {

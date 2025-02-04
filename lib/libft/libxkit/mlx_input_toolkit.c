@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 23:05:51 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/04 14:56:53 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/04 19:29:00 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,10 @@ int	on_destroy(t_state *state)
     {
         free(state->env);
     }*/
-    	mlx_destroy_display(state->env->mlx);
+    	mlx_destroy_image(state->env->mlx, state->map->tilemap[0]);
+    	mlx_destroy_image(state->env->mlx, state->map->tilemap[1]);
+    	mlx_destroy_image(state->env->mlx, state->map->tilemap[2]); // etc.
+	mlx_destroy_display(state->env->mlx);
 	free(state);
 	exit(0);
 }

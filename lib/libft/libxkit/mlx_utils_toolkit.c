@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 20:49:05 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/04 14:39:06 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/04 16:39:11 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,3 +25,30 @@ int	ft_error(int return_val, char *error_msg)
 	perror(error_msg);
 	return (return_val);
 }
+
+void mlx_draw_to_canvas(t_img *canvas, t_img *sprite, t_pos pos)
+{
+    int x, y;
+    char *dst, *src;
+
+    if (!canvas || !sprite || !canvas->addr || !sprite->addr)
+    {
+        ft_printf("Error: Uninitialized canvas or sprite in mlx_draw_to_canvas\n");
+        return;
+    }
+
+    // Copy pixel data from sprite to canvas
+    for (y = 0; y < sprite->height; y++)
+    {
+        for (x = 0; x < sprite->width; x++)
+        {
+            // Compute memory addresses
+            src = sprite->addr + (y * sprite->l_len + x * (sprite->bpp / 8));
+            dst = canvas->addr + ((pos.y + y) * canvas->l_len + (pos.x + x) * (canvas->bpp / 8));
+
+            // Copy pixel
+            *(unsigned int *)dst = *(unsigned int *)src;
+        }
+    }
+}
+

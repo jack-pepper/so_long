@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/04 15:31:45 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/04 16:49:00 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_img
 typedef struct s_env
 {
 	t_img		*canvas;
-	void		*bkgd_img;
+	t_img		*bkgd_img;
 	void		*mlx;
 	void		*win;
 	int			canvas_width;
