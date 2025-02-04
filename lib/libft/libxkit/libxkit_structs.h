@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/31 21:13:31 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/04 15:31:45 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct s_pos
 	int		y;
 }		t_pos;
 
-/* Redefinition from mlx_int.h
+/* Redefinition from mlx_int.h */
 typedef struct s_img
 {
 	void	*img;
@@ -28,12 +28,15 @@ typedef struct s_img
 	int		bpp;
 	int		l_len;
 	int		endian;
+	int		width;
+	int		height;
 }		t_img;
-*/
+
 
 typedef struct s_env
 {
 	t_img		*canvas;
+	void		*bkgd_img;
 	void		*mlx;
 	void		*win;
 	int			canvas_width;
@@ -56,7 +59,7 @@ typedef struct s_cam
 
 typedef struct s_tile
 {
-	XImage		*sprite;
+	t_img		*sprite;
 	t_pos		*pos;
 	int			width;
 	int			height;
@@ -86,14 +89,14 @@ typedef struct s_count_req
 
 typedef struct s_enemy
 {
-	XImage		*sprite;
+	void		*sprite;
 	t_img		**frames;
 	t_pos		*pos;
 }		t_enemy;
 
 typedef struct s_hero
 {
-	XImage		*sprite;
+	t_img		*sprite;
 	t_img		**frames;
 	t_pos		*pos;
 }		t_hero;

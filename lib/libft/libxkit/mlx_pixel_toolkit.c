@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/13 12:01:38 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/04 15:12:06 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	mlx_fast_pixel_put(t_img *img, int x, int y, int color)
 
 	if ((x >= 0 && x < img->width) && (y >= 0 && y < img->height))
 	{
-		pix = img->data + (y * img->size_line) + (x * (img->bpp / 8));
+		pix = img->addr + (y * img->l_len) + (x * (img->bpp / 8));
 		*(unsigned int *)pix = color;
 	}
 }

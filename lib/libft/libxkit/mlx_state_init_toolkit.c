@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:03:33 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/02 19:11:45 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/04 15:12:45 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,16 @@ int	set_canvas(t_env *env)
 	c = env->canvas;
 	if (!c)
 		return (ft_error(1, "Error\ncanvas uninitialized\n"));
-	c->image = mlx_new_image(env->mlx, WIN_WIDTH, WIN_HEIGHT);
-	if (!c->image)
+	c->img = mlx_new_image(env->mlx, WIN_WIDTH, WIN_HEIGHT);
+	if (!c->img)
 		return (ft_error(1, "Error\nmlx_new_image failed\n"));
-	c->data = mlx_get_data_addr(c->image, &c->bpp, &c->size_line, &endian);
-	if (!c->data)
+	//c->data = mlx_get_data_addr(c->image, &c->bpp, &c->size_line, &endian);
+	c->addr = mlx_get_data_addr(c->img, &c->bpp, &c->l_len, &endian);	
+	if (!c->addr)
 		return (ft_error(1, "Error\nmlx_get_data_addr failed\n"));
-	env->canvas_width = WIN_WIDTH;
-	env->canvas_height = WIN_HEIGHT;
+	c->width = WIN_WIDTH;
+	c->height = WIN_WIDTH;
+	//env->canvas_width = WIN_WIDTH;
+	//env->canvas_height = WIN_HEIGHT;
 	return (0);
 }

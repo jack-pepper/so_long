@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/05 10:55:56 by mmalie            #+#    #+#              #
-#    Updated: 2025/01/15 19:29:51 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/04 14:12:38 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,8 @@ ARFLAGS=-rcs
 ### MiniLibX repository ###
 ###########################
 
-MLX_REPO = https://github.com/42Paris/minilibx-linux.git
-MLX_DIR = ./minilibx
+### MLX_REPO = https://github.com/42Paris/minilibx-linux.git
+MLX_DIR = ./.minilibx
 MLX_LIB = $(MLX_DIR)/libmlx.a
 
 ####################
@@ -124,11 +124,12 @@ all: $(NAME)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 ### Download and build MiniLibX if not already present
-$(MLX_LIB): 
-	if [ ! -d "$(MLX_DIR)" ]; then \
-		git clone $(MLX_REPO) $(MLX_DIR); \
-	fi
+$(MLX_LIB):
 	make -C $(MLX_DIR)
+###	if [ ! -d "$(MLX_DIR)" ]; then \
+###		git clone $(MLX_REPO) $(MLX_DIR); \
+###	fi
+###	make -C $(MLX_DIR)
 
 ###############################
 ### Create a static library ###
@@ -144,7 +145,7 @@ $(NAME): $(MLX_LIB) $(OBJ)
 
 clean:
 	rm -f $(OBJ)
-	if [ -d "$(MLX_DIR)" ]; then rm -rf $(MLX_DIR); fi
+#	if [ -d "$(MLX_DIR)" ]; then rm -rf $(MLX_DIR); fi
 
 fclean: clean
 	rm -f $(NAME)

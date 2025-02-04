@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:36:40 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/02 19:17:42 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/04 15:35:35 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,11 @@ int     upload_assets(t_state *state)
 	if (init_hero(state) != 0)
 		return (1);
         // Load background
-        state->env->canvas->image = mlx_xpm_file_to_image(state->env->mlx, bkgd_path, &width, &height);
-        if (!state->env->canvas->image)
+	state->env->bkgd_img = malloc(sizeof(t_img));
+	if (!state->env->bkgd_img)
+		return (1);
+        state->env->bkgd_img = mlx_xpm_file_to_image(state->env->mlx, bkgd_path, &width, &height);
+        if (!state->env->bkgd_img)
                 return (1);
         // Load wall
         state->map->tileset[0]->sprite = mlx_xpm_file_to_image(state->env->mlx, wall_path, &width, &height);

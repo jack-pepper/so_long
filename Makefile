@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2025/01/31 12:55:08 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/04 14:05:26 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ $(LIBFT):
 	cd lib/libft && make
 
 $(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(OBJ) -Llib/libft -lft -lm -Llib/libft/libxkit/minilibx -lmlx -lXext -lX11 -o $(NAME)
+	$(CC) $(OBJ) -Llib/libft -lft -lm -Llib/libft/libxkit/.minilibx -lmlx -lXext -lX11 -o $(NAME)
 
 ######################################
 ### Compile .c files into .o files ###

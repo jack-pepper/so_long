@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 23:05:51 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/15 19:23:48 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/04 14:56:53 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ int	on_destroy(t_state *state)
 	exit(0);
 }
 
+/*
 int     on_resize(int width, int height, t_state *state)
 {
 	int	endian;
@@ -149,7 +150,7 @@ int     on_resize(int width, int height, t_state *state)
 	state->env->canvas->data = mlx_get_data_addr(state->env->canvas->image, &state->env->canvas->bpp, &state->env->canvas->size_line, &endian); 
 	return (0);
 }
-
+*/
 
 //int	on_keyrelease(int keysym, t_state *state)
 //int	on_mouseclick(int button, t_pos pos, t_state *state)

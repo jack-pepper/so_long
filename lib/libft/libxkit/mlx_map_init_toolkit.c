@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 13:16:14 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/15 18:52:05 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/04 14:57:37 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	init_map(t_state *state, char *fpath, char *ext)
 		perror("Error\nt_map *map alloc failed\n");
 		return (1);
 	}
-	memset(map, 0, sizeof(t_map));
+	ft_memset(map, 0, sizeof(t_map));
 	state->map = map;
 	if (set_map_data(map, fpath) != 0)
 	{
