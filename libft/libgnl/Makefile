@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2025/02/05 11:15:43 by mmalie           ###   ########.fr        #
+#    Updated: 2024/12/29 01:45:41 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,70 +14,78 @@
 ### Name of the file obtained after compilation ###
 ###################################################
 
-NAME = so_long
+NAME = libgnl.a
 
 ############################
 ### Compilation settings ###
 ############################
 
 CC=cc
-CFLAGS=-g -Wall -Wextra -Werror
+CFLAGS=-Wall -Wextra -Werror
+
+AR=ar
+ARFLAGS=-rcs
 
 ####################
 ### Dependencies ###
 ####################
 
-DEPS = ./inc/so_long.h \
-	./inc/assets.h \
-	./libft/libxkit/libxkit.h \
-	./libft/libft.h \
-	./inc/map_validator.h \
-#DEPS_LIBFT = ./libft/libft.h
-LIBFT = ./libft/libft.a
-LIBXKIT = ./libft/libxkit/libxkit.a
+DEPS_LIBFT = ../libft.h
+DEPS = libgnl.h
 
 ####################
 ### Source files ###
 ####################
 
-SRC = ./src/so_long.c \
-      ./src/sl_events.c \
-      ./src/map_validator.c \
+LIBGNL = ft_gnl.c \
+	 ft_gnl_utils.c \
 
-### Object files
+SRC = ${LIBGNL}
+
+####################
+### Object files ###
+####################
+
 OBJ = $(SRC:.c=.o)
 
-##############################################
-### Default rules (compile the executable) ###
-##############################################
+### Default rules (compile the executable)
+all: $(NAME)
+	$(info )
+	$(info   L       III  BBBBB   GGGG  N   N  L       )
+	$(info   L        I   B   B  G      NN  N  L       )
+	$(info   L        I   BBBB   G  GG  N N N  L       )
+	$(info   L        I   B   B  G   G  N  NN  L       )
+	$(info   LLLLL   III  BBBBB   GGG   N   N  LLLLL   )
+	$(info )
+	$(info ============================================)
+	$(info       L I B G N L   C O M P I L E D!        )
+	$(info ============================================)
+	$(info )
 
-all: $(LIBFT) $(NAME)
 
-$(LIBFT):
-	cd libft && make
+### Compile .c files into .o files
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@ 
 
-$(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(OBJ) -Llibft -lft -lm -Llibft/libxkit/.minilibx -lmlx -lXext -lX11 -o $(NAME)
+###############################
+### Create a static library ###
+###############################
 
-######################################
-### Compile .c files into .o files ###
-######################################
-
-$(OBJ): %.o: %.c $(DEPS)
-	$(CC) $(CFLAGS) -c $< -o $@
+$(NAME): $(OBJ)
+	$(AR) $(ARFLAGS) $(NAME) $(OBJ)
+	ranlib $(NAME)
 
 #########################
 ### Cleaning-up rules ###
 #########################
 
 clean:
-	cd libft && make clean
 	rm -f $(OBJ)
 
 fclean: clean
-	cd libft && make fclean
 	rm -f $(NAME)
 
+# Rule to recompile everything (execute fclean, then re)
 re: fclean all
 
 #########################

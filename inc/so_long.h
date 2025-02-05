@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:30 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/04 23:23:10 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/05 11:16:33 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 /* External libraries */
 # include <errno.h>
 # include <math.h>
-# include "../lib/libft/libxkit/.minilibx/mlx.h"
+# include "../libft/libxkit/.minilibx/mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 
@@ -29,8 +29,8 @@
 # include "assets.h"
 
 /* Custom libraries */
-# include "../lib/libft/libft.h"
-# include "../lib/libft/libxkit/libxkit.h"
+# include "../libft/libft.h"
+# include "../libft/libxkit/libxkit.h"
 # include "./map_validator.h"
 
 int	map_parser(t_state *state);

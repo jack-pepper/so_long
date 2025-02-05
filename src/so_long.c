@@ -6,11 +6,11 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/05 00:46:28 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/05 11:46:06 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// TODO [mlx_map_parser_toolkit] move init_ints and abs to libft
+// TODO 
 //	[idem] check ft_ret and use with perror?
 //	norminette
 //	
@@ -123,6 +123,7 @@ int	render(t_state *state)
 	//state->env->canvas->img = mlx_new_image(state->env->mlx, WID_WIDTH, WID_LENGTH);
 	
 	if (state->hero_event == 1 || state->map_event == 1 || state->bkgd_event == 1)
+	//if (state->map_event == 1 || state->bkgd_event == 1)
 	{
 		render_background(state);
 		state->bkgd_event = 0;
