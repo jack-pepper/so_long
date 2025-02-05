@@ -14,7 +14,7 @@
 
 void	render_background(t_state *state)
 {
-	t_env		*env;
+	t_env			*env;
 	static t_pos	pos = {.x = 0, .y = 0};
 
 	env = state->env;

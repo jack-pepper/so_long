@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 18:37:27 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/05 00:52:10 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/05 22:25:11 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	set_cam(t_state *state)
 	if (state->cam->max.x < 0)
 		state->cam->max.x = 0;
 	center_cam_on_hero(state->cam, state->hero->pos, state->env);
+	ft_printfinal fantasy album voicef("[set cam] cam set and centered on hero at [x: %d, y: %d]\n",
+		cam->pos.x, cam->pos.y);
 	return (0);
 }
 
@@ -47,9 +49,7 @@ void	center_cam_on_hero(t_cam *cam, t_pos *hero_pos, t_env *env)
 {
 	cam->pos.y = ((hero_pos->y * RES_PIX - (env->canvas_height / 2)));
 	cam->pos.x = ((hero_pos->x * RES_PIX - (env->canvas_width / 2)));
-//	ft_printf("[center_cam_on_hero] Centered: cam.pos.x: %d - cam.pos.y: %d\n", cam->pos.x, cam->pos.y);
 	check_cam_bounds(cam, env);
-//	ft_printf("[center_cam_on_hero, after check bounds] Centered: cam.pos.x: %d - cam.pos.y: %d\n", cam->pos.x, cam->pos.y);
 }
 
 void	update_cam_pos(t_cam *cam, int y_move, int x_move, t_env *env)
@@ -59,5 +59,4 @@ void	update_cam_pos(t_cam *cam, int y_move, int x_move, t_env *env)
 	if (x_move != 0)
 		cam->pos.x += x_move * RES_PIX;
 	check_cam_bounds(cam, env);	
-//	ft_printf("[update_cam_pos] Centered: cam.pos.x: %d - cam.pos.y: %d\n", cam->pos.x, cam->pos.y);
 }

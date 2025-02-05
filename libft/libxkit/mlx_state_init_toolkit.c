@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:03:33 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/05 11:49:47 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/05 17:40:26 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,10 @@ int	init_state(t_state **state)
 	(*state)->env->canvas_width = WIN_WIDTH;
 	(*state)->env->canvas_height = WIN_HEIGHT;
 	(*state)->env->mlx = NULL;
-	(*state)->bkgd_event = 1;
-	(*state)->map_event = 1;
-	(*state)->hero_event = 1;
 	return (0);
 }
 
-int     set_state(t_state *state)
+int	set_state(t_state *state)
 {
 	ft_printf("[set_state 0] Setting state...\n");
 	state->env->mlx = mlx_init();
@@ -58,7 +55,7 @@ int     set_state(t_state *state)
 	if (set_canvas(state->env) != 0)
 		return (ft_error(1, "Error\nset_canvas failed\n"));
 	ft_printf("[4] canvas set\n");
-	if (set_map(state) != 0)	
+	if (set_map(state) != 0)
 		return (ft_error(1, "Error\nset_map failed\n"));
 	ft_printf("[5] map set\n");
 	if (upload_assets(state) != 0)
@@ -76,12 +73,12 @@ int	set_window(t_state *state)
 
 	win = mlx_new_window(state->env->mlx, WIN_WIDTH, WIN_HEIGHT, "So Long");
 	if (!win)
-		return (ft_error(1, "Error\nmlx_new_window failed\n"));	
+		return (ft_error(1, "Error\nmlx_new_window failed\n"));
 	state->env->win = win;
 	return (0);
 }
 
-int    set_hooks(t_state *state)
+int	set_hooks(t_state *state)
 {
 	t_env	*env;
 
@@ -97,8 +94,8 @@ int    set_hooks(t_state *state)
 
 int	set_canvas(t_env *env)
 {
-	t_img   *c;
-	int     endian;
+	t_img	*c;
+	int		endian;
 
 	c = env->canvas;
 	if (!c)
@@ -106,7 +103,7 @@ int	set_canvas(t_env *env)
 	c->img = mlx_new_image(env->mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (!c->img)
 		return (ft_error(1, "Error\nmlx_new_image failed\n"));
-	c->addr = mlx_get_data_addr(c->img, &c->bpp, &c->l_len, &endian);	
+	c->addr = mlx_get_data_addr(c->img, &c->bpp, &c->l_len, &endian);
 	if (!c->addr)
 		return (ft_error(1, "Error\nmlx_get_data_addr failed\n"));
 	c->width = WIN_WIDTH;

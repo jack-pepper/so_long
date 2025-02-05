@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 13:16:14 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/05 11:35:20 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/05 21:56:09 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,23 @@ int	check_border(char **arr, int line_len, int nb_lines, char b_chr)
 	last_i = nb_lines - 1;
 	last_j = line_len - 2;
 	ft_init_ints(0, 2, &i, &j);
-	while (j < last_j)
+	while (j++ < last_j)
 	{
 		if (arr[0][j] != b_chr || arr[last_i][j] != b_chr)
 		{
 			perror("Error\nInvalid: map not closed\n");
 			return (1);
 		}
-		j++;
 	}
-	while (i < last_i)
+	while (i++ < last_i)
 	{
 		if (arr[i][0] != b_chr || arr[i][last_j] != b_chr)
 		{
 			perror("Error\nInvalid: map not closed\n");
 			return (1);
 		}
-		i++;
 	}
-	ft_printf("[check_border] map is closed!\n"); // DEBUG
+	ft_printf("[check_border] map is closed\n"); // DEBUG
 	return (0);
 }
 
@@ -124,29 +122,3 @@ void	count_chars(char *str, char *set, int *counter)
 	ft_printf("[count_chars] 0: %d | 1: %d | C: %d | E: %d | P: %d\n",
 		counter[0], counter[1], counter[2], counter[3], counter[4]);
 }
-
-/*
-void	init_ints(int init_value, int count, ...)
-{
-	va_list	args;
-	int		*cur_int_arg;
-	int		i;
-
-	va_start(args, count);
-	i = 0;
-	while (i < count)
-	{
-		cur_int_arg = va_arg(args, int *);
-		*cur_int_arg = init_value;
-		i++;
-	}
-	va_end(args);
-	return ;
-}
-*/
-/*int	get_abs_int(int nb)
-{
-	if (nb < 0)
-		return (-nb);
-	return (nb);
-}*/

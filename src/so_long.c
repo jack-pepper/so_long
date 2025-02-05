@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/05 11:46:06 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/05 22:08:00 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	main(int argc, char **argv)
                 return (ft_error(1, "Error\nInvalid number of arguments (req: 1)\n"));
         }
 	ft_strlcpy(fpath, argv[1], ft_strlen(argv[1]) + 1);
-        //ft_printf("FILEPATH: %s\n", fpath); // DEBUG
 	if (init_data(state, &data) != 0)
 	{
 		// Need to free state... But this function actually can't fail atm
@@ -50,9 +49,7 @@ int	main(int argc, char **argv)
 		|| (map_validator(state) != 0)
 		|| (set_state(state) != 0))
 		return (1);
-	//state->bkgd_event = 1;
-	//state->map_event = 1;
-	//state->hero_event = 1;
+	state->hero_event = 1;
 	mlx_loop_hook(state->env->mlx, &render, state);
 	mlx_loop(state->env->mlx);
 	return (0);
@@ -66,24 +63,24 @@ int	init_data(t_state *state, t_data *data)
 	return (0);
 }
 
-int     map_parser(t_state *state)
+int	map_parser(t_state *state)
 {
-        char	**tilemap;
+	char	**tilemap;
 	t_count_req	counter;
 	size_t  line_len;
-        size_t  nb_lines;
+	size_t  nb_lines;
 	int	i;
-	
+
 	set_counter_req(&counter);
 	tilemap = state->map->tilemap;
-        line_len = state->map->tm_cols;
-        nb_lines = state->map->tm_rows;
-        if (check_border(tilemap, line_len, nb_lines, '1') != 0)
-                return (1);
-        if (check_chars(tilemap, nb_lines, "01CEP\n") != 0)
-                return (1);
-        if (check_count(tilemap, nb_lines, "01CEP\n", &counter) != 0)
-                return (1);
+	line_len = state->map->tm_cols;
+	nb_lines = state->map->tm_rows;
+	if (check_border(tilemap, line_len, nb_lines, '1') != 0)
+		return (1);
+	if (check_chars(tilemap, nb_lines, "01CEP\n") != 0)
+		return (1);
+	if (check_count(tilemap, nb_lines, "01CEP\n", &counter) != 0)
+		return (1);
 	i = 0;
 	while (i < 6)
 	{
@@ -129,7 +126,7 @@ int	render(t_state *state)
 		state->bkgd_event = 0;
 		state->map_event = 1;
 	}
-	if (state->map_event == 1)
+	if (state->hero_event == 1 || state->map_event == 1)
 	{
 		render_map(state);
 		state->map_event = 0;

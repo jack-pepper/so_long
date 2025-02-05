@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:36:40 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/05 11:55:12 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/05 21:48:47 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int	upload_assets(t_state *state)
 
 	if (init_hero(state) != 0)
 		return (1);
-	// Load background
 	state->env->bkgd_img = mlx_xpm_file_to_image(state->env->mlx, BKGD_PATH, &width, &height);
 	if (!state->env->bkgd_img)
 		return (1);

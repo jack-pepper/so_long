@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 13:16:14 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/05 11:48:21 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/05 22:15:23 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	init_map(t_state *state, char *fpath, char *ext)
 		perror("Error\nsetting map data failed\n");
 		return (1);
 	}
+	ft_printf("\nMap [%s]:\n\n", fpath);
 	if (fconv_arr_chr(map->tilemap, map->fpath, map->tm_rows) != 0)
 	{
 		perror("Error\nfile to tilemap conversion failed\n");
@@ -54,19 +55,20 @@ int	check_extension(char *fpath, char *ext)
 	j = ft_strlen(fpath) - 1;
 	if (j < i)
 	{
-		perror("Error\nFilepath shorter than extension\n");
+		perror("Error\n[check_extension] filepath too short\n");
 		return (1);
 	}
 	while (i >= 0)
 	{
 		if (fpath[j] != ext[i])
 		{
-			perror("Error\nInvalid extension\n");
+			perror("Error\n[check_extension] invalid extension\n");
 			return (1);
 		}
 		i--;
 		j--;
 	}
+	ft_printf("[check_extension] extension is valid\n");
 	return (0);
 }
 
@@ -143,14 +145,12 @@ int	fconv_arr_chr(char **arr, char *fpath, int nb_lines)
 	while (i < nb_lines)
 	{
 		line = ft_gnl(file);
+		ft_printf("%s", line);
 		if (!line)
 		{
 			perror("Error\nline alloc failed or premature EOF\n");
-			while (i > 0)
-			{
+			while (i-- > 0)
 				free(arr[i - 1]);
-				i--;
-			}
 			close(file);
 			return (1);
 		}

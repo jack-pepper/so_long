@@ -32,7 +32,6 @@ typedef struct s_img
 	int		height;
 }		t_img;
 
-
 typedef struct s_env
 {
 	t_img		*canvas;
@@ -108,9 +107,9 @@ typedef struct s_state
 	t_map		*map;
 	t_cam		*cam;
 	t_hero		*hero;
-	int		bkgd_event;
-	int		map_event;
-	int		hero_event;
+	int			bkgd_event;
+	int			map_event;
+	int			hero_event;
 	//t_mouse		*mouse;
 }		t_state;
 

@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 08:52:17 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/05 11:59:45 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/05 21:23:13 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,11 @@ void	set_hero_pos(t_state *state)
 			{
 				state->hero->pos->x = col;
 				state->hero->pos->y = row;
-				//ft_printf("Hero start: y(row)=%d - x(col)=%d\n", state->hero->pos->y, state->hero->pos->x);
-                                return ;
-                        }
-                        col++;
-                }
-                row++;
-        }
+				return ;
+			}
+			col++;
+		}
+		row++;
+	}
 	return ;
 }
