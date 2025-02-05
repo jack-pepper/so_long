@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:40:51 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/02 15:02:43 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/05 00:40:26 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ char	**copy_map(char **src, t_pos size)
 		ft_memcpy(copy[i], src[i], size.x * sizeof(char));
 		i++;
 	}
-	ft_printf("[copy_map] copy success!\n"); // DEBUG
 	copy[i] = NULL;
 	return	(copy);
 }
@@ -62,49 +61,45 @@ void	set_start_pos(t_state *state, t_pos *start_pos)
 	int     row;
 	int     col;
 
-        row = 0;
-        col = 0;
-        while (row < state->map->tm_rows)
-        {
-                col = 0;
-                while (col < state->map->tm_cols)
-                {
-                        if (state->map->tilemap[row][col] == 'P')
-                        {
-                                start_pos->x = col;
-                                start_pos->y = row;
-                                ft_printf("start_pos: y(row)=%d - x(col)=%d\n", start_pos->y, start_pos->x); // DEBUG
-                                return ;
-                        }
-                        col++;
-                }
-                row++;
-        }
-        return ;
+	row = 0;
+	while (row < state->map->tm_rows)
+	{
+		col = 0;
+		while (col < state->map->tm_cols)
+		{
+			if (state->map->tilemap[row][col] == 'P')
+			{
+				start_pos->x = col;
+				start_pos->y = row;
+				ft_printf("[set_start_pos]: x: %d - y: %d\n", start_pos->x, start_pos->y); // DEBUG
+				return ;
+			}
+			col++;
+		}
+		row++;
+	}
+	return ;
 }
 
 // accessed_count[0] = collectibles / [1] = exit
 int	map_validator(t_state *state)
 {
+	char	**map_copy;
+	int	accessed_count[2] = {0, 0};
 	t_pos	map_size;
 	t_pos	start_pos;
-	int	accessed_count[2] = {0, 0};
-	char	**map_copy;
 
 	map_size.x = state->map->tm_cols;
 	map_size.y = state->map->tm_rows;
-	
 	map_copy = copy_map(state->map->tilemap, map_size);
 	if (!map_copy)
 		return (1);
-	ft_printf("[map_validator] map_copy success: %c!\n", map_copy[3][1]); // DEBUG
 	set_start_pos(state, &start_pos);
-
-	ft_printf("[BEFORE FLOOD] accessed: %d coll, %d exit | required: %d coll, %d exit\n", accessed_count[0], accessed_count[1], state->map->tile_count[2], state->map->tile_count[3]);
-
+	ft_printf("[map_validator] required: %d coll, %d exit\n",
+		state->map->tile_count[2], state->map->tile_count[3]);
 	flood_count(map_copy, map_size, start_pos, accessed_count);
-	ft_printf("[AFTER FLOOD] accessed: %d coll, %d exit | required: %d coll, %d exit\n", accessed_count[0], accessed_count[1], state->map->tile_count[2], state->map->tile_count[3]);
-
+	ft_printf("[~ flood ~] reachable: %d coll, %d exit\n", 
+		accessed_count[0], accessed_count[1]);
 	if ((accessed_count[0] == state->map->tile_count[2])
 		&& (accessed_count[1] == state->map->tile_count[3]))
 	{

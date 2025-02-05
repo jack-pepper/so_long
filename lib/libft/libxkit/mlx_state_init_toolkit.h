@@ -6,12 +6,12 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:13:33 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/02 19:05:18 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/04 23:31:26 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_STATE_INIT_H
-# define MLX_STATE_INIT_H
+#ifndef MLX_STATE_INIT_TOOLKIT_H
+# define MLX_STATE_INIT_TOOLKIT_H
 
 # include "./libxkit.h"
 

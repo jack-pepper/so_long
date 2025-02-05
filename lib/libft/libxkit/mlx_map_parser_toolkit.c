@@ -1,4 +1,4 @@
-	/* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   mlx_map_parser_toolkit.c                           :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 13:16:14 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/14 18:41:43 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/05 00:30:46 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	check_border(char **arr, int line_len, int nb_lines, char b_chr)
 			return (1);
 		}
 		j++;
-	}	
+	}
 	while (i < last_i)
 	{
 		if (arr[i][0] != b_chr || arr[i][last_j] != b_chr)
@@ -40,7 +40,7 @@ int	check_border(char **arr, int line_len, int nb_lines, char b_chr)
 		}
 		i++;
 	}
-	ft_printf("Map is closed!\n"); // DEBUG
+	ft_printf("[check_border] map is closed!\n"); // DEBUG
 	return (0);
 }
 
@@ -53,22 +53,21 @@ int	check_chars(char **arr, int nb_lines, char *set)
 	{
 		if (ft_strnopbrk(arr[i], set) != NULL)
 		{
-			perror("Error\nInvalid char (req: set)\n");
+			perror("Error\n[check_chars] char not in set\n");
 			return (1);
 		}
 		i++;
 	}
-	ft_printf("All chars valid\n"); // DEBUG
+	ft_printf("[check_chars] all chars valid\n"); // DEBUG
 	return (0);
 }
-
-//      [0]=empty | [1]=wall | [2]=C (coll) | [3]=E (exit) | [4] =P (start pos)
 
 /* For each index (matching counter index), 'required' expects: 
  * - if expected a precise value: a positive int (1 = only one)
  * - if expected a minimal value: a negative int (-1 = at least 1)
  * - 0 is considered positive (0 = not even one).
  * The counter array should be initialised to 0 beforehand.
+ * [0]=empty | [1]=wall | [2]=C (coll) | [3]=E (exit) | [4]=P (start pos)
  */
 int	check_count(char **arr, int nb_lines, char *set, t_count_req *c)
 {
@@ -78,7 +77,6 @@ int	check_count(char **arr, int nb_lines, char *set, t_count_req *c)
 	init_ints(0, 2, &i, &j);
 	while (i < nb_lines)
 	{
-		ft_printf("arr[%d]: %s\n", i, arr[i]); // DEBUG
 		count_chars(arr[i], set, c->count);
 		i++;
 	}
@@ -87,12 +85,12 @@ int	check_count(char **arr, int nb_lines, char *set, t_count_req *c)
 		if ((c->req[j] >= 0 && c->count[j] != c->req[j])
 			|| (c->req[j] < 0 && c->count[j] < (get_abs_int(c->req[j]))))
 		{
-			perror("Error\nInvalid chars (req: C>1, Ex1, Px1)\n");
+			perror("Error\n[check_count] invalid chars\n");
 			return (1);
 		}
-		ft_printf("The map contains only approved characters.\n"); // DEBUG
 		j++;
 	}
+	ft_printf("[check_count] correct count\n"); // DEBUG
 	return (0);
 }
 
@@ -108,25 +106,23 @@ void	count_chars(char *str, char *set, int *counter)
 
 	set_len = ft_strlen(set);
 	str_len = ft_strlen(str) - 1;
-        // ft_printf("[count_chars]line_len: %d - set_len: %d\n", str_len, set_len);
 	i = 0;
 	while (i < str_len)
 	{
 		j = 0;
 		while (j < set_len)
 		{
-			//ft_printf("[count_chars]line[%d] = %c - set[%d] = %c\n", i, line[i], j, set[j]);
 			if (str[i] == set[j])
 			{
 				counter[j] = counter[j] + 1;
-	//			ft_printf("[count_chars]counter[%d] incremented: now %d\n", j, counter[j]);
 				break ;
 			}
 			j++;
 		}
 		i++;
 	}
-	return ;
+	ft_printf("[count_chars] 0: %d | 1: %d | C: %d | E: %d | P: %d\n",
+		counter[0], counter[1], counter[2], counter[3], counter[4]);
 }
 
 void	init_ints(int init_value, int count, ...)

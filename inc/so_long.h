@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:30 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/31 11:49:47 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/04 23:23:10 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # define WIN_WIDTH 1620
 # define WIN_HEIGHT 780
+
+# define PROG_NAME "So long"
 
 /* External libraries */
 # include <errno.h>

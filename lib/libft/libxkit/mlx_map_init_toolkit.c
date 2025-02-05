@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 13:16:14 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/04 14:57:37 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/04 23:07:30 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,13 +99,13 @@ int	set_map_data(t_map *map, char *fpath)
 	return (0);
 }
 
-	// Get line_len and nb_lines. Handles only rect maps.
+// Get line_len and nb_lines. Handles only rect maps.
 int	get_map_size(t_map *map, int *line_len, int *nb_lines)
 {
 	char	*line;
-	int		file;
 	char	*fpath;
-	
+	int		file;
+
 	line = NULL;
 	fpath = map->fpath;
 	file = ft_open_file(fpath, "O_RDONLY", "Error\nError opening file\n");
@@ -132,8 +132,8 @@ int	get_map_size(t_map *map, int *line_len, int *nb_lines)
 // Copy .ber file to tilemap array.
 int	fconv_arr_chr(char **arr, char *fpath, int nb_lines)
 {
-	int		file;
 	char	*line;
+	int		file;
 	int		i;
 
 	file = ft_open_file(fpath, "O_RDONLY", "Error\nError opening file\n");
@@ -146,7 +146,7 @@ int	fconv_arr_chr(char **arr, char *fpath, int nb_lines)
 		if (!line)
 		{
 			perror("Error\nline alloc failed or premature EOF\n");
-			while(i > 0)
+			while (i > 0)
 			{
 				free(arr[i - 1]);
 				i--;
@@ -157,14 +157,14 @@ int	fconv_arr_chr(char **arr, char *fpath, int nb_lines)
 		arr[i] = line;	
 		i++;
 	}
-// DEBUG
+/* DEBUG
 	ft_printf("fconv_arr_chr (nlx_map_init.c)\n");
         ft_printf("[]tilemap[0] = %s\n", arr[0]);
         ft_printf("[]tilemap[1] = %s\n", arr[1]);
         ft_printf("[]tilemap[2] = %s\n", arr[2]);
         ft_printf("[]tilemap[3] = %s\n", arr[3]);
         ft_printf("[]tilemap[4] = %s\n", arr[4]);
-// END DEBUG
+ END DEBUG */
 	close(file);
 	return (0);
 }

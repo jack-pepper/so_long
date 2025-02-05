@@ -6,9 +6,14 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/04 19:46:37 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/05 00:46:28 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+// TODO [mlx_map_parser_toolkit] move init_ints and abs to libft
+//	[idem] check ft_ret and use with perror?
+//	norminette
+//	
 
 #include "../inc/so_long.h"
 /*
@@ -75,13 +80,10 @@ int     map_parser(t_state *state)
         nb_lines = state->map->tm_rows;
         if (check_border(tilemap, line_len, nb_lines, '1') != 0)
                 return (1);
-        ft_printf("Map is closed\n"); // DEBUG
         if (check_chars(tilemap, nb_lines, "01CEP\n") != 0)
                 return (1);
-        ft_printf("Correct chars (req: 01CEP)\n"); // DEBUG
-        if (check_count(tilemap, nb_lines, "01CEP\n", &counter) != 0) // Should the nl char be accepted?
+        if (check_count(tilemap, nb_lines, "01CEP\n", &counter) != 0)
                 return (1);
-        ft_printf("Correct counts (req: 0, 1, C>1, Ex1, Px1)\n"); // DEBUG 
 	i = 0;
 	while (i < 6)
 	{
@@ -134,8 +136,6 @@ int	render(t_state *state)
 	}
 	if (state->hero_event == 1)
 	{
-//		render_background(state);
-//		render_map(state);
 		render_hero(state);
 		update_render(state);
 		state->hero_event = 0;
@@ -143,20 +143,12 @@ int	render(t_state *state)
 	return (0);
 }
 
-
 void	update_render(t_state *state)
 {
 	t_pos	*pos;
 	
 	pos = state->hero->pos;
 
-	// DEBUG
-	//ft_printf("coll: %d - tbc: %d\n", state->data->collected, state->data->to_be_collected);
-	// END DEBUG
-	if (state->map->tilemap[pos->y][pos->x])
-	{
-		
-	}
         if (state->map->tilemap[pos->y][pos->x] == 'C')
         {
 		on_coll_tile(state, pos);
