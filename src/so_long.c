@@ -6,11 +6,12 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/05 23:04:28 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/06 12:29:48 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// TODO 
+// TODO
+//
 //	[idem] check ft_ret and use with perror?
 //	norminette
 //	
@@ -27,23 +28,17 @@
 
 void	display_start_screen()
 {
+/*
 	ft_printf("\033[1;32m");
 	ft_printf(" ___     ___              _       ___    _  _     ___    \n"); 
-	ft_printf("/ __|   / _ \     o O O  | |     / _ \  | \| |   / __|   \n");
-	ft_printf("\__ \  | (_) |   o       | |__  | (_) | | .` |  | (_ |   \n");
-	ft_printf("|___/   \___/   TS__[O]  |____|  \___/  |_|\_|   \___|   \n");
+	ft_printf("/ __|   / _ \\     o O O  | |     / _ \\  | \\| |   / __|   \n");
+	ft_printf("\\__\\  | (_) |   o       | |__  | (_) | | .` |  | (_ |   \n");
+	ft_printf("|___/   \\___/   TS__[O]  |____|  \\___/  |_|\\_|   \\___|   \n");
 	ft_printf("_|"""""|_|"""""| {======|_|"""""|_|"""""|_|"""""|_|"""""|\n"); 
-	ft_printf(""`-0-0-'"`-0-0-'./o--000'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'\n");
+	ft_printf("\"`-0-0-'\"`-0-0-'./o--000'\"`-0-0-'\"`-0-0-'\"`-0-0-'\"`-0-0-'\n");
 	ft_printf("\033[0m"); // Reset color
+*/
 }
-
-int main()
-{
-    display_start_screen();
-    return 0;
-}
-
-
 
 int	main(int argc, char **argv)
 {
@@ -69,10 +64,12 @@ int	main(int argc, char **argv)
 		|| (map_validator(state) != 0)
 		|| (set_state(state) != 0))
 		return (1);
-	display_start_screen();
+	//display_start_screen();
 	state->hero_event = 1;
 	mlx_loop_hook(state->env->mlx, &render, state);
 	mlx_loop(state->env->mlx);
+//	sl_memfree(state);
+//	ft_printf("[main] Free all! \n");
 	return (0);
 }
 

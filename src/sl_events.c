@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 10:27:53 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/31 10:36:44 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/06 12:36:24 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	on_exit_tile(t_state *state)
 	if (state->data->collected == state->data->to_be_collected)
 	{
 		ft_printf("YOU WIN!\n");
+		sl_memfree(state); // 
+		ft_printf("[on_exit_tile] Free all! \n"); //
 		exit(0);
 	}
 	else

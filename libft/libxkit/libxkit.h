@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/05 22:47:08 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/06 12:21:01 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@
 # include "./mlx_map_init_toolkit.h"
 # include "./mlx_map_parser_toolkit.h"
 # include "./mlx_map_render_toolkit.h"
+# include "./mlx_memfree_toolkit.h"
 # include "./mlx_particles_toolkit.h"
 # include "./mlx_physics_toolkit.h"
 # include "./mlx_pixel_toolkit.h"
