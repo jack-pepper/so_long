@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 12:10:39 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/06 14:06:36 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/06 14:58:43 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,22 @@ void    sl_memfree(t_state *state)
 
 void    sl_destroy_imgs(t_state *state)
 {
-        mlx_destroy_image(state->env->mlx, state->env->bkgd_img); //  
-        mlx_destroy_image(state->env->mlx, state->map->tileset[0]->sprite); //  
-        mlx_destroy_image(state->env->mlx, state->map->tileset[1]->sprite); //
-        mlx_destroy_image(state->env->mlx, state->map->tileset[2]->sprite); //
-	//mlx_destroy_image(state->env->mlx, state->map->player_front.xpm_ptr);
-        mlx_destroy_image(state->env->mlx, state->hero->sprite);
-        mlx_destroy_image(state->env->mlx, state->env->canvas->img);
+	mlx_destroy_image(state->env->mlx, state->env->bkgd_img);
+	mlx_destroy_image(state->env->mlx, state->map->tileset[0]->sprite);
+	mlx_destroy_image(state->env->mlx, state->map->tileset[1]->sprite);
+	mlx_destroy_image(state->env->mlx, state->map->tileset[2]->sprite);
+	mlx_destroy_image(state->env->mlx, state->hero->sprite);
+	mlx_destroy_image(state->env->mlx, state->env->canvas->img);
 }
 
 void    sl_free_map(t_state *state)
 {
-        int     row;
+	int	row;
 
-        row = 0;
-        while (row < state->map->tm_rows)
+	row = 0;
+	while (row < state->map->tm_rows);
 	{        
-        	free(state->map->tilemap[row]);
+		free(state->map->tilemap[row]);
 		row++;
 	}
 	free(state->map->tilemap);
@@ -55,5 +54,4 @@ void    sl_free_map(t_state *state)
 	free(state->map->tile_count);
 	free(state->map->tileset);
 	free(state->map);
-
 }

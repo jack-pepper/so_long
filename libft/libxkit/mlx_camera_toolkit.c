@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 18:37:27 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/05 22:43:07 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/06 14:56:04 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,5 @@ void	update_cam_pos(t_cam *cam, int y_move, int x_move, t_env *env)
 		cam->pos.y += y_move * RES_PIX;
 	if (x_move != 0)
 		cam->pos.x += x_move * RES_PIX;
-	check_cam_bounds(cam, env);	
+	check_cam_bounds(cam, env);
 }
