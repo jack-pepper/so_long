@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2024/12/29 01:46:54 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/07 23:32:45 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,17 +52,20 @@ OBJ = $(SRC:.c=.o)
 
 ### Default rules (compile the executable)
 all: $(NAME)
-	$(info )
-	$(info   L       III  BBBBB   SSSSS  TTTTT  DDDD    L      III  BBBBB  )
-	$(info   L        I   B   B   S        T    D   D   L       I   B   B  )
-	$(info   L        I   BBBB    SSSSS    T    D   D   L       I   BBBB   )
-	$(info   L        I   B   B      S     T    D   D   L       I   B   B  )
-	$(info   LLLLL   III  BBBBB   SSSSS    T    DDDD    LLLLL  III  BBBBB  )
-	$(info )
-	$(info ================================================================)
-	$(info       L I B S T D L I B   C O M P I L E D!                      )
-	$(info ================================================================)
-	$(info )
+	@echo
+	@echo "   L      III  BBBBB  SSSSS  TTTTT  DDDD   L      III  BBBBB   "
+	@echo "   L       I   B   B  S        T    D   D  L       I   B   B   "
+	@echo "   L       I   BBBB   SSSSS    T    D   D  L       I   BBBB    "
+	@echo "   L       I   B   B      S    T    D   D  L       I   B   B   "
+	@echo "   LLLLL  III  BBBBB  SSSSS    T    DDDD   LLLLL  III  BBBBB   "
+	@echo
+	@echo "   ⚙️  🔢  💾  📊  🔍  🗑️  "
+	@echo
+	@echo "======================================================="
+	@echo "   L I B S T D L I B   C O M P I L E D!   🛠️ ✅ "
+	@echo "======================================================="
+	@echo "     Standard functions ready!  ⚙️ "
+	@echo
 
 ### Compile .c files into .o files
 %.o: %.c

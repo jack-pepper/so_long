@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2024/12/29 01:46:34 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/07 23:25:41 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,17 +55,20 @@ OBJ = $(SRC:.c=.o)
 
 ### Default rules (compile the executable)
 all: $(NAME)
-	$(info )
-	$(info   L       III  BBBBB   PPPP   RRRR   III  N   N  TTTTT  FFFFF   )
-	$(info   L        I   B   B   P   P  R   R   I   NN  N    T    F       )
-	$(info   L        I   BBBB    PPPP   RRRR    I   N N N    T    FFFF    )
-	$(info   L        I   B   B   P      R  R    I   N  NN    T    F       )
-	$(info   LLLLL   III  BBBBB   P      R   R  III  N   N    T    F       )
-	$(info )
-	$(info ================================================================)
-	$(info       L I B P R I N T F   C O M P I L E D!                      )
-	$(info ================================================================)
-	$(info )
+	@echo
+	@echo "   L       III  BBBBB   PPPP   RRRR   III  N   N  TTTTT  FFFFF   "
+	@echo "   L        I   B   B   P   P  R   R   I   NN  N    T    F       "
+	@echo "   L        I   BBBB    PPPP   RRRR    I   N N N    T    FFFF    "
+	@echo "   L        I   B   B   P      R  R    I   N  NN    T    F       "
+	@echo "   LLLLL   III  BBBBB   P      R   R  III  N   N    T    F       "
+	@echo
+	@echo "   📢  🔤  🖨️  📜  ⚙️  ✏️  🔣  💡  🎯  "
+	@echo
+	@echo "================================================================="
+	@echo "   L I B P R I N T F   C O M P I L E D!   🎨 ✅ "
+	@echo "================================================================="
+	@echo "     Formatted output is ready!  ✨ "
+	@echo
 
 ### Compile .c files into .o files
 %.o: %.c

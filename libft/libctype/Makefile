@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2024/12/29 01:19:36 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/07 23:29:48 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,16 +56,20 @@ SRC = ${LIBCTYPE}
 ####################
 
 all: $(NAME)
-	$(info )
-	$(info   L       III  BBBBB   CCCC  TTTTT  Y   Y  PPPP  EEEEE   )
-	$(info   L        I   B   B  C        T    Y   Y  P   P E       )
-	$(info   L        I   BBBB   C        T     Y Y   PPPP  EEEE    )
-	$(info   L        I   B   B  C        T      Y    P     E       )
-	$(info   LLLLL   III  BBBBB   CCCC    T      Y    P     EEEEE   )
-	$(info )
-	$(info =========================================================)
-	$(info              L I B C T Y P E   C O M P I L E D!          )
-	$(info =========================================================)
+	@echo
+	@echo "   L       III  BBBBB   CCCC  TTTTT  Y   Y  PPPP   EEEEE  "
+	@echo "   L        I   B   B  C        T     Y Y   P   P  E      "
+	@echo "   L        I   BBBB   C        T      Y    PPPP   EEEE   "
+	@echo "   L        I   B   B  C        T      Y    P      E      "
+	@echo "   LLLLL   III  BBBBB   CCCC    T      Y    P      EEEEE  "
+	@echo
+	@echo "   🔡  🔠  🔢  ✅  ✍️  ⚙️  🔍  "
+	@echo
+	@echo "=========================================================="
+	@echo "   L I B C T Y P E   C O M P I L E D!   🔤 ✅ "
+	@echo "=========================================================="
+	@echo "     Ready to classify characters!  🔍 "
+	@echo
 
 OBJ = $(SRC:.c=.o)
 

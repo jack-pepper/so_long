@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2024/12/29 01:22:15 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/07 23:21:01 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,16 +77,20 @@ OBJ = $(SRC:.c=.o)
 
 ### Default rules (compile the executable)
 all: $(NAME)
-	$(info )
-	$(info   L       III  BBBBB  BBBBB   III  N   N )
-	$(info   L        I   B   B  B   B    I   NN  N )
-	$(info   L        I   BBBB   BBBB     I   N N N )
-	$(info   L        I   B   B  B   B    I   N  NN )
-	$(info   LLLLL   III  BBBBB  BBBBB   III  N   N )
-	$(info )
-	$(info =========================================)
-	$(info       L I B B I N   C O M P I L E D!     )
-	$(info =========================================)
+	@echo
+	@echo "   L       III  BBBBB  BBBBB   III  N   N  "
+	@echo "   L        I   B   B  B   B    I   NN  N  "
+	@echo "   L        I   BBBB   BBBB     I   N N N  "
+	@echo "   L        I   B   B  B   B    I   N  NN  "
+	@echo "   LLLLL   III  BBBBB  BBBBB   III  N   N  "
+	@echo
+	@echo "   1️⃣  0️⃣  ⚙️  💾  💡  🔢  💻  🧠  🎛️  🕹️  "
+	@echo
+	@echo "========================================="
+	@echo "   L I B B I N   C O M P I L E D!   ⚡ ✅ "
+	@echo "========================================="
+	@echo "     Bits toggled, shifting complete!  🔄 "
+	@echo
 
 ### Compile .c files into .o files
 %.o: %.c
