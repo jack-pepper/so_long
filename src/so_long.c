@@ -6,38 +6,32 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/06 14:51:51 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/07 14:56:36 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// TODO
-//
-//	[idem] check ft_ret and use with perror?
-//	norminette
+// TODO [leak] when exit on map parsing errors. Seems to come from the
+//		unfreed persistant stash in ft_gnl. extern is not allowed (global)
+//	[norminette]
 //	
 
 #include "../inc/so_long.h"
 /*
- * My custom library LIBXKIT, based on the graphics library MiniLibX, allows
- * to modify the game settings with minimal effort:
- * - parsing map (rectangular only) with any extension, set and count.   
- * - 
+ * So_long uses my library LIBXKIT, based on the graphics library MiniLibX.
  * At the moment (01/2025) this engine handles 2D collecting top-view games.
  * LIBXKIT, though, can be used for various types of projects.
  */
 
-void	display_start_screen()
+void	display_start_screen(void)
 {
-/*
 	ft_printf("\033[1;32m");
-	ft_printf(" ___     ___              _       ___    _  _     ___    \n"); 
-	ft_printf("/ __|   / _ \\     o O O  | |     / _ \\  | \\| |   / __|   \n");
-	ft_printf("\\__\\  | (_) |   o       | |__  | (_) | | .` |  | (_ |   \n");
-	ft_printf("|___/   \\___/   TS__[O]  |____|  \\___/  |_|\\_|   \\___|   \n");
-	ft_printf("_|"""""|_|"""""| {======|_|"""""|_|"""""|_|"""""|_|"""""|\n"); 
-	ft_printf("\"`-0-0-'\"`-0-0-'./o--000'\"`-0-0-'\"`-0-0-'\"`-0-0-'\"`-0-0-'\n");
+	ft_printf(" ___     ___         _      ___    _  _    ___    \n");
+	ft_printf("/ __|   / _ \\   o O | |    / _ \\  | \\| |  / __|   \n");
+	ft_printf("\\__ \\  | (_) |  o   | |__ | (_) | | .` | | (_ |   \n");
+	ft_printf("|___/   \\___/  [O]  |____| \\___/  |_|\\_|  \\___|   \n");
+	ft_printf("_|'''''|_|'''''| {=|_|''''|_|''''|_|'''''|\n");
+	ft_printf("\"`-0-0-'\"`-0-0-'./0'\"`-0-0-'\"`-0-0-'\"`-0-0-'     \n");
 	ft_printf("\033[0m"); // Reset color
-*/
 }
 
 int	main(int argc, char **argv)
@@ -46,30 +40,28 @@ int	main(int argc, char **argv)
 	t_data	data;
 	char	fpath[256];
 
+	if (argc != 2)
+		return (ft_err(1, "Error\nInvalid number of arguments (req: 1)\n"));
 	if (init_state(&state) != 0)
-		return (1); // return (EXIT_FAILURE); : replace all
-        if (argc != 2)
-	{
-		// Need to free state (or move it before init_state?)
-                return (ft_error(1, "Error\nInvalid number of arguments (req: 1)\n"));
-        }
+		return (1); // return (EXIT_FAILURE) ?
 	ft_strlcpy(fpath, argv[1], ft_strlen(argv[1]) + 1);
-	if (init_data(state, &data) != 0)
-	{
-		// Need to free state... But this function actually can't fail atm
-		return (1);
-	}
+	init_data(state, &data);
 	if ((init_map(state, fpath, ".ber") != 0) // Export to a function (to set different errors))
 		|| (map_parser(state) != 0)
 		|| (map_validator(state) != 0)
 		|| (set_state(state) != 0))
-		return (1);
-	//display_start_screen();
+	{
+		{
+			ft_printf("error code (%d)\n", state->error_code);
+			sl_memfree(state);
+			return (1);
+		}
+	}
+	state->error_code = 5;
+	display_start_screen();
 	state->hero_event = 1;
 	mlx_loop_hook(state->env->mlx, &render, state);
 	mlx_loop(state->env->mlx);
-//	sl_memfree(state);
-//	ft_printf("[main] Free all! \n");
 	return (0);
 }
 
@@ -89,6 +81,7 @@ int	map_parser(t_state *state)
 	size_t  nb_lines;
 	int	i;
 
+	state->error_code = 2;
 	set_counter_req(&counter);
 	tilemap = state->map->tilemap;
 	line_len = state->map->tm_cols;
@@ -162,16 +155,15 @@ int	render(t_state *state)
 void	update_render(t_state *state)
 {
 	t_pos	*pos;
-	
-	pos = state->hero->pos;
 
-        if (state->map->tilemap[pos->y][pos->x] == 'C')
-        {
+	pos = state->hero->pos;
+	if (state->map->tilemap[pos->y][pos->x] == 'C')
+	{
 		on_coll_tile(state, pos);
 		state->map_event = 1;
-        }
-        else if (state->map->tilemap[pos->y][pos->x] == 'E')
+	}
+	else if (state->map->tilemap[pos->y][pos->x] == 'E')
 	{
 		on_exit_tile(state);
-	}	
+	}
 }

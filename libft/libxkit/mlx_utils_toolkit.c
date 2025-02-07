@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 20:49:05 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/05 11:56:21 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/07 11:14:01 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	mlx_show(void *xvar, void *win, void *img, t_pos pos)
 	mlx_put_image_to_window(xvar, win, img, pos.x, pos.y);
 }
 
-int	ft_error(int return_val, char *error_msg)
+int	ft_err(int return_val, char *error_msg)
 {
 	perror(error_msg);
 	return (return_val);

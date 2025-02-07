@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/04 16:49:00 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/07 12:11:45 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,9 @@ typedef struct s_map
 {
 	char	*fpath;
 	char	**tilemap;
-	t_tile	**tileset;
+	t_tile	*wall;
+	t_tile	*coll;
+	t_tile	*exit;
 	int		*tile_count;
 	int		width;
 	int		height;
@@ -110,6 +112,7 @@ typedef struct s_state
 	int			bkgd_event;
 	int			map_event;
 	int			hero_event;
+	int			error_code;
 	//t_mouse		*mouse;
 }		t_state;
 

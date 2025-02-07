@@ -6,29 +6,28 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:40:51 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/05 00:40:26 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/07 14:59:10 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
 // Free arr and each element
-void    sl_free_all(char **arr)
+void	sl_free_all(char **arr)
 {
-        int     i;
+	int     i;
 
-        if (arr == NULL)
-                return ;
-        i = 0;
-        while (arr[i] != NULL)
-        {
-                free(arr[i]);
-                i++;
-        }
-        free(arr);
-        return ;
+	if (arr == NULL)
+		return ;
+	i = 0;
+	while (arr[i] != NULL)
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+	return ;
 }
-
 
 char	**copy_map(char **src, t_pos size)
 {
@@ -89,6 +88,7 @@ int	map_validator(t_state *state)
 	t_pos	map_size;
 	t_pos	start_pos;
 
+	state->error_code = 3;
 	map_size.x = state->map->tm_cols;
 	map_size.y = state->map->tm_rows;
 	map_copy = copy_map(state->map->tilemap, map_size);

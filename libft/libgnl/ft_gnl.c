@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_gnl.c                                    :+:      :+:    :+:   */
+/*   ft_gnl.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 09:33:12 by mmalie            #+#    #+#             */
-/*   Updated: 2024/11/19 09:34:54 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/07 14:41:34 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,20 @@ char	*ft_gnl(int fd)
 	if (stash != NULL && *stash != '\0')
 		cursor = ft_strchr(stash, '\n');
 	stash = read_and_stash(fd, &buf, &stash, &cursor);
-	if (!stash)
-	{
-		free(buf);
-		return (NULL);
-	}
 	free(buf);
+	if (!stash)
+		return (NULL);
+	//if (!stash)
+	//{
+	//	free(buf);
+	//	return (NULL);
+	//}
+	//free(buf);
+	if (*stash == '\0')
+	{
+		clean_stash(&stash);
+		return (NULL);	
+	}
 	return (seize_line(&stash, cursor));
 }
 
@@ -130,6 +138,7 @@ char	*seize_eof(char **next_line, char **stash)
 		return (NULL);
 	ft_strlcpy(*next_line, *stash, chunk_len + 1);
 	clean_stash(stash);
+	free(stash);
 	return (*next_line);
 }
 

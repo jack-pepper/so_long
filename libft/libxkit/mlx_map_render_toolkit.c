@@ -6,13 +6,12 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 19:47:31 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/05 12:01:40 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/07 10:32:29 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./mlx_map_render_toolkit.h"
 
-// Draw a grid.
 //void    draw_grid(t_env *env, int cell_size, int color)
 
 void	render_map(t_state *state)
@@ -36,24 +35,20 @@ void	render_map(t_state *state)
 		}
 		row++;
 	}
-//	ft_printf("[render_map] Camera View - Start: (%d, %d), Max: (%d, %d)\n",
-//	state->cam->pos.x / RES_PIX, state->cam->pos.y / RES_PIX, state->cam->max.x, state->cam->max.y);
 }
 
 void	rm_put_tiles(t_state *state, int row, int col, int cell_size)
 {
 	t_env	*env;
-	t_tile	**tileset;
-	char	**tilemap;
+	t_map	*map;
 	char	tile;
 	t_pos	pos;
 
 	env = state->env;
-	tilemap = state->map->tilemap;
-	tileset = state->map->tileset;
-	if (!tilemap || !tileset)
+	map = state->map;
+	if (!map)
 	{
-		ft_printf("Error: NULL tilemap or tileset in rm_put_tiles()\n");
+		ft_printf("Error: NULL map or tilemap in rm_put_tiles()\n");
 		return;
 	}
 	pos.x = ((col) * cell_size) - state->cam->pos.x;
@@ -62,20 +57,14 @@ void	rm_put_tiles(t_state *state, int row, int col, int cell_size)
 		pos.x += (WIN_WIDTH - (state->map->tm_cols * cell_size)) / 2;
 	if (state->map->tm_rows * cell_size <= WIN_HEIGHT)
 		pos.y += (WIN_HEIGHT - (state->map->tm_rows * cell_size)) / 2;
-	// Debugging output
-    	//ft_printf("[put_tiles] Tile (%d, %d) -> Screen Pos: (%d, %d)\n", col, row, pos.x, pos.y);
-	tile = tilemap[row][col];
-	if (tile == '1' && tileset[0] && tileset[0]->sprite)
-	//	mlx_show(env->mlx, env->win, tileset[0]->sprite, pos);
-		mlx_put_image_to_window(env->mlx, env->win, tileset[0]->sprite, pos.x, pos.y); // put_image seems to solve flickering... not mlx_show
-	else if (tile == 'C' && tileset[1] && tileset[1]->sprite)
-	//	mlx_show(env->mlx, env->win, tileset[1]->sprite, pos);
-		mlx_put_image_to_window(env->mlx, env->win, tileset[1]->sprite, pos.x, pos.y);	
-	else if (tile == 'E' && tileset[2] && tileset[2]->sprite)	
-	//	mlx_show(env->mlx, env->win, tileset[2]->sprite, pos);
-		mlx_put_image_to_window(env->mlx, env->win, tileset[2]->sprite, pos.x, pos.y);	
+	tile = map->tilemap[row][col];
+	if (tile == '1' && map->wall && map->wall->sprite)
+		mlx_put_image_to_window(env->mlx, env->win, map->wall->sprite, pos.x, pos.y);
+	else if (tile == 'C' && map->coll && map->coll->sprite)
+		mlx_put_image_to_window(env->mlx, env->win, map->coll->sprite, pos.x, pos.y);
+	else if (tile == 'E' && map->exit && map->exit->sprite)
+		mlx_put_image_to_window(env->mlx, env->win, map->exit->sprite, pos.x, pos.y);
 }
 
-/* Scrolling map */
-//void    scroll_map(t_pos *camera_pos, t_pos *hero_pos, 
-	//int screen_width, int screen_height) {}
+//void    scroll_map(t_pos *cam_pos, t_pos *hero_pos, int win_width, 
+	//int win_height)

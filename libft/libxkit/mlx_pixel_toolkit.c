@@ -6,24 +6,11 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/04 15:12:06 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/07 10:39:43 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./mlx_pixel_toolkit.h"
-
-/* Previous version
-void	mlx_fast_pixel_put(t_img *img, int x, int y, int color)
-{
-	char	*pix;
-
-	if ((x >= 0 && x < WIN_X) && (y >= 0 && y < WIN_Y))
-	{
-		pix = img->addr + (y * img->l_len) + (x * (img->bpp / 8));
-		*(unsigned int *)pix = color;
-	}
-}
-*/
 
 void	mlx_fast_pixel_put(t_img *img, int x, int y, int color)
 {
