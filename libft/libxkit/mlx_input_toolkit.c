@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 23:05:51 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/07 12:56:21 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/07 20:35:14 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	on_keypress(int keysym, t_state *state)
 	{
 		sl_memfree(state);
 		ft_printf("[on_keypress] Free all! \n");
-	//	mlx_destroy_window(state->env->mlx, state->env->win);
 		exit(0);
 	}
 	else if ((keysym == XK_w || keysym == XK_Up)

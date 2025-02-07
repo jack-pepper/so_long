@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 13:16:14 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/07 15:41:13 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/07 20:40:39 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,21 +71,15 @@ int	set_map_data(t_map *map, char *fpath)
 	int		line_len;
 	int		nb_lines;
 
-	ft_init_ints(0, 2, &line_len, &nb_lines); 
+	ft_init_ints(0, 2, &line_len, &nb_lines);
 	map->fpath = fpath;
 	if (get_map_size(map, &line_len, &nb_lines) != 0)
-	{
-		free(map);
 		return (1);
-	}
 	map->tm_rows = nb_lines;
 	map->tm_cols = line_len;
 	map->tilemap = malloc(sizeof(char *) * (nb_lines));
 	if (!map->tilemap)
-	{
-		free(map);
 		return (ft_err(1, "Error\nchar **tilemap alloc failed\n"));
-	}
 	map->tile_count = malloc(sizeof(int) * 6);
 	if (!map->tile_count)
 	{

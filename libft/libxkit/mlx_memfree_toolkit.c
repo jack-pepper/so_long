@@ -6,51 +6,38 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 12:10:39 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/07 15:32:13 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/07 20:34:40 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./mlx_memfree_toolkit.h"
 
-void    sl_memfree(t_state *state)
+/* Fail on [1] init_map | [2] map_parser | [3] map_validator | 
+ * [4] set_state | [5] game loop
+ */
+void	sl_memfree(t_state *state)
 {
-	/*sl_destroy_imgs(state);
-	free(state->hero->pos);
-	free(state->hero);
-	free(state->cam);
-	free(state->env->canvas);
-	sl_free_map(state);
-	mlx_destroy_window(state->env->mlx, state->env->win);
-	mlx_destroy_display(state->env->mlx);
-	free(state->env->mlx);
-	free(state->env);
-	free(state);*/
-	
-	if (state->error_code > 4) // fail after set_state, on game loop (5)
+	if (state->error_code > 4)
 	{
 		sl_destroy_imgs(state);
 		free(state->hero->pos);
 		free(state->hero);
-		free(state->cam);	
-		mlx_destroy_window(state->env->mlx, state->env->win);	
-		mlx_destroy_display(state->env->mlx);		
+		free(state->cam);
+		mlx_destroy_window(state->env->mlx, state->env->win);
+		mlx_destroy_display(state->env->mlx);
 		free(state->env->mlx);
-		//free(state->env->canvas);
 	}
-	if (state->error_code > 1) // fail on (2) map_parser (3) map_validator (4) set_state
+	if (state->error_code > 1)
 		sl_free_map(state);
-	if (state->error_code > 0) // (1) fail on init_map
+	if (state->error_code > 0)
 	{
-		//mlx_destroy_window(state->env->mlx, state->env->win);
-	//	mlx_destroy_display(state->env->mlx);		
-//		free(state->env->mlx);
 		free(state->env->canvas);
 		free(state->env);
 		free(state);
 	}
 }
 
-void    sl_destroy_imgs(t_state *state)
+void	sl_destroy_imgs(t_state *state)
 {
 	mlx_destroy_image(state->env->mlx, state->env->bkgd_img);
 	mlx_destroy_image(state->env->mlx, state->map->wall->img);
@@ -60,13 +47,13 @@ void    sl_destroy_imgs(t_state *state)
 	mlx_destroy_image(state->env->mlx, state->env->canvas->img);
 }
 
-void    sl_free_map(t_state *state)
+void	sl_free_map(t_state *state)
 {
 	int	row;
 
 	row = 0;
 	while (row < state->map->tm_rows)
-	{        
+	{
 		free(state->map->tilemap[row]);
 		row++;
 	}
@@ -76,4 +63,21 @@ void    sl_free_map(t_state *state)
 	free(state->map->exit);
 	free(state->map->tile_count);
 	free(state->map);
+}
+
+// Free arr and each element
+void	sl_free_all(char **arr)
+{
+	int	i;
+
+	if (arr == NULL)
+		return ;
+	i = 0;
+	while (arr[i] != NULL)
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+	return ;
 }

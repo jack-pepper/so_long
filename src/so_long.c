@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/07 14:56:36 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/07 20:52:55 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	display_start_screen(void)
 	ft_printf("|___/   \\___/  [O]  |____| \\___/  |_|\\_|  \\___|   \n");
 	ft_printf("_|'''''|_|'''''| {=|_|''''|_|''''|_|'''''|\n");
 	ft_printf("\"`-0-0-'\"`-0-0-'./0'\"`-0-0-'\"`-0-0-'\"`-0-0-'     \n");
-	ft_printf("\033[0m"); // Reset color
+	ft_printf("\033[0m");
 }
 
 int	main(int argc, char **argv)
@@ -41,21 +41,17 @@ int	main(int argc, char **argv)
 	char	fpath[256];
 
 	if (argc != 2)
-		return (ft_err(1, "Error\nInvalid number of arguments (req: 1)\n"));
+		return (ft_err(1, "Error\nWrong number of args (req: 1)\n"));
 	if (init_state(&state) != 0)
-		return (1); // return (EXIT_FAILURE) ?
+		return (1);
 	ft_strlcpy(fpath, argv[1], ft_strlen(argv[1]) + 1);
 	init_data(state, &data);
-	if ((init_map(state, fpath, ".ber") != 0) // Export to a function (to set different errors))
-		|| (map_parser(state) != 0)
-		|| (map_validator(state) != 0)
-		|| (set_state(state) != 0))
+	if ((init_map(state, fpath, ".ber") != 0) || (map_parser(state) != 0)
+		|| (map_validator(state) != 0) || (set_state(state) != 0))
 	{
-		{
-			ft_printf("error code (%d)\n", state->error_code);
-			sl_memfree(state);
-			return (1);
-		}
+		ft_printf("error code (%d)\n", state->error_code);
+		sl_memfree(state);
+		return (1);
 	}
 	state->error_code = 5;
 	display_start_screen();
@@ -77,9 +73,9 @@ int	map_parser(t_state *state)
 {
 	char	**tilemap;
 	t_count_req	counter;
-	size_t  line_len;
-	size_t  nb_lines;
-	int	i;
+	size_t	line_len;
+	size_t	nb_lines;
+	int		i;
 
 	state->error_code = 2;
 	set_counter_req(&counter);
@@ -110,28 +106,32 @@ int	map_parser(t_state *state)
  * The counter array should be initialised to 0 beforehand.
  */
 void	set_counter_req(t_count_req *counter)
-{	
-	int	count[6] = {0, 0, 0, 0, 0, 0};
-	int	req_count[6] = {-1, -1, -1, 1, 1, -1};
+{
+	int	count[6];
+	int	req_count[6];
 	int	i;
-	
+
+	req_count[0] = -1;
+	req_count[1] = -1;
+	req_count[2] = -1;
+	req_count[3] = 1;
+	req_count[4] = 1;
+	req_count[5] = -1;
+	ft_memset(count, 0, sizeof(count));
 	i = 0;
 	while (i < 6)
-	{	
+	{
 		counter->count[i] = count[i];
 		counter->req[i] = req_count[i];
 		i++;
 	}
-	return;	
+	return ;
 }
 
 int	render(t_state *state)
 {
-	//mlx_destroy_image(state->env->mlx, state->env->canvas->img);
-	//state->env->canvas->img = mlx_new_image(state->env->mlx, WID_WIDTH, WID_LENGTH);
-	
-	if (state->hero_event == 1 || state->map_event == 1 || state->bkgd_event == 1)
-	//if (state->map_event == 1 || state->bkgd_event == 1)
+	if ((state->hero_event == 1 || state->map_event == 1)
+		|| (state->bkgd_event == 1))
 	{
 		render_background(state);
 		state->bkgd_event = 0;

@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 13:16:14 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/05 21:56:09 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/07 20:26:10 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,14 @@ int	check_border(char **arr, int line_len, int nb_lines, char b_chr)
 	while (j++ < last_j)
 	{
 		if (arr[0][j] != b_chr || arr[last_i][j] != b_chr)
-		{
-			perror("Error\nInvalid: map not closed\n");
-			return (1);
-		}
+			return (ft_err(1, "Error\n[check_border] map open\n"));
 	}
 	while (i++ < last_i)
 	{
 		if (arr[i][0] != b_chr || arr[i][last_j] != b_chr)
-		{
-			perror("Error\nInvalid: map not closed\n");
-			return (1);
-		}
+			return (ft_err(1, "Error\n[check_border] map open\n"));
 	}
-	ft_printf("[check_border] map is closed\n"); // DEBUG
+	ft_printf("[check_border] map is closed\n");
 	return (0);
 }
 
@@ -56,7 +50,7 @@ int	check_chars(char **arr, int nb_lines, char *set)
 		}
 		i++;
 	}
-	ft_printf("[check_chars] all chars valid\n"); // DEBUG
+	ft_printf("[check_chars] all chars valid\n");
 	return (0);
 }
 
@@ -88,7 +82,7 @@ int	check_count(char **arr, int nb_lines, char *set, t_count_req *c)
 		}
 		j++;
 	}
-	ft_printf("[check_count] correct count\n"); // DEBUG
+	ft_printf("[check_count] correct count\n");
 	return (0);
 }
 
