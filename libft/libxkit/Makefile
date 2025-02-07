@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/05 10:55:56 by mmalie            #+#    #+#              #
-#    Updated: 2025/02/06 12:22:45 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/07 21:29:32 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,8 @@ DEPS =	./libxkit.h \
 	./mlx_map_init_toolkit.h \
 	./mlx_map_render_toolkit.h \
 	./mlx_map_parser_toolkit.h \
+	./mlx_map_validator_toolkit.h \
+	./mlx_map_validator_flood_count.h \
 	./mlx_memfree_toolkit.h \
 	./mlx_particles_toolkit.h \
 	./mlx_physics_toolkit.h \
@@ -90,6 +92,8 @@ LIBXKIT = ./mlx_ai_toolkit.c \
 	./mlx_map_init_toolkit.c \
 	./mlx_map_parser_toolkit.c \
 	./mlx_map_render_toolkit.c \
+	./mlx_map_validator_toolkit.c \
+	./mlx_map_validator_flood_count.c \
 	./mlx_memfree_toolkit.c \
 	./mlx_particles_toolkit.c \
 	./mlx_physics_toolkit.c \

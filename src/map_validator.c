@@ -6,12 +6,13 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:40:51 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/07 20:48:12 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/07 21:26:06 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
+/*
 char	**copy_map(char **src, t_pos size)
 {
 	char	**copy;
@@ -143,3 +144,5 @@ void	update_flood_count(char tile, int reached[2])
 		reached[1] += 1;
 	}
 }
+
+*/
