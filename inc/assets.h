@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 00:10:38 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/09 14:57:50 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/05 22:34:51 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,28 @@
 # define ASSETS_H
 
 // Background
-# define bkgd_path "./ass/background.xpm"
-# define bkgd_width WIN_WIDTH
-# define bkgd_height WIN_HEIGHT
+# define BKGD_PATH "./textures/basic_level/background.xpm"
+# define BKGD_WIDTH WIN_WIDTH
+# define BKGD_HEIGHT WIN_HEIGHT
 
 // Block
-# define wall_path "./ass/wall.xpm"
-# define wall_width RES_PIX
-# define wall_height RES_PIX
+# define WALL_PATH "./textures/basic_level/wall.xpm"
+# define WALL_WIDTH RES_PIX
+# define WALL_HEIGHT RES_PIX
 
 // Token (collectible)
-# define coll_path "./ass/coll.xpm"
-# define coll_width RES_PIX
-# define coll_height RES_PIX
+# define COLL_PATH "./textures/basic_level/coll.xpm"
+# define COLL_WIDTH RES_PIX
+# define COLL_HEIGHT RES_PIX
 
 // Exit
-# define exit_path "./ass/exit.xpm"
-# define exit_width RES_PIX
-# define exit_height RES_PIX
+# define EXIT_PATH "./textures/basic_level/exit.xpm"
+# define EXIT_WIDTH RES_PIX
+# define EXIT_HEIGHT RES_PIX
 
 // Hero
-# define hero_path "./ass/hero.xpm"
-# define hero_width RES_PIX
-# define hero_height RES_PIX
+# define HERO_PATH "./textures/basic_level/hero.xpm"
+# define HERO_WIDTH RES_PIX
+# define HERO_HEIGHT RES_PIX
 
 #endif

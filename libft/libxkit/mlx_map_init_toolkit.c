@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 13:16:14 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/07 14:39:03 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/07 15:41:13 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	init_map(t_state *state, char *fpath, char *ext)
 		return (1);
 	map = malloc(sizeof(t_map));
 	if (!map)
-		return (ft_err(1, "Error\n[init_map] map alloc fail"));	
+		return (ft_err(1, "Error\n[init_map] map alloc fail"));
 	ft_memset(map, 0, sizeof(t_map));
 	state->map = map;
 	if (set_map_data(map, fpath) != 0)
@@ -71,8 +71,7 @@ int	set_map_data(t_map *map, char *fpath)
 	int		line_len;
 	int		nb_lines;
 
-	line_len = 0;
-	nb_lines = 0;
+	ft_init_ints(0, 2, &line_len, &nb_lines); 
 	map->fpath = fpath;
 	if (get_map_size(map, &line_len, &nb_lines) != 0)
 	{
@@ -118,7 +117,7 @@ int	get_map_size(t_map *map, int *line_len, int *nb_lines)
 		if (ft_strlen(line) != (size_t)(*line_len))
 		{
 			free(line);
-			close(file);	
+			close(file);
 			return (ft_err(1, "Error\nmap not rectangular\n"));
 		}
 		(*nb_lines)++;
@@ -147,7 +146,7 @@ int	fconv_arr_chr(char **arr, char *fpath, int nb_lines)
 		{
 			while (i-- > 0)
 				free(arr[i - 1]);
-			close(file);	
+			close(file);
 			return (ft_err(1, "Error\nline alloc fail\n"));
 		}
 		arr[i] = line;

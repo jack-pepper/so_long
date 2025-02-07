@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 12:10:39 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/07 13:46:33 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/07 15:32:13 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ void    sl_memfree(t_state *state)
 void    sl_destroy_imgs(t_state *state)
 {
 	mlx_destroy_image(state->env->mlx, state->env->bkgd_img);
-	mlx_destroy_image(state->env->mlx, state->map->wall->sprite);
-	mlx_destroy_image(state->env->mlx, state->map->coll->sprite);
-	mlx_destroy_image(state->env->mlx, state->map->exit->sprite);
-	mlx_destroy_image(state->env->mlx, state->hero->sprite);
+	mlx_destroy_image(state->env->mlx, state->map->wall->img);
+	mlx_destroy_image(state->env->mlx, state->map->coll->img);
+	mlx_destroy_image(state->env->mlx, state->map->exit->img);
+	mlx_destroy_image(state->env->mlx, state->hero->img);
 	mlx_destroy_image(state->env->mlx, state->env->canvas->img);
 }
 

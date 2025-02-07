@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:30 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/05 11:16:33 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/07 15:46:14 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 
-
 # include "assets.h"
 
 /* Custom libraries */
@@ -33,13 +32,13 @@
 # include "../libft/libxkit/libxkit.h"
 # include "./map_validator.h"
 
-int	map_parser(t_state *state);
-int	init_state(t_state **state);
-int	init_data(t_state *state, t_data *data);
-int     render(t_state *state);
+int		map_parser(t_state *state);
+int		init_state(t_state **state);
+int		init_data(t_state *state, t_data *data);
+int		render(t_state *state);
 void	update_render(t_state *state);
-void    on_events(t_state *state);
-void    set_counter_req(t_count_req *counter);
+void	on_events(t_state *state);
+void	set_counter_req(t_count_req *counter);
 
 // Events
 void	on_coll_tile(t_state *state, t_pos *pos);

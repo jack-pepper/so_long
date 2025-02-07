@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 21:03:38 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/05 00:48:32 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/07 15:33:39 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	render_hero(t_state *state)
 	t_pos	hero_pos;
 
 	env = state->env;
-	hero_sprite = state->hero->sprite;
+	hero_sprite = state->hero->img;
 	hero_pos.x = (state->hero->pos->x * RES_PIX) - (state->cam->pos.x);
 	hero_pos.y = (state->hero->pos->y * RES_PIX) - (state->cam->pos.y);
 	if (state->map->tm_cols * RES_PIX <= WIN_WIDTH)

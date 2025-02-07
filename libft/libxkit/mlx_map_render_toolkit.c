@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 19:47:31 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/07 10:32:29 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/07 15:57:21 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,31 +39,30 @@ void	render_map(t_state *state)
 
 void	rm_put_tiles(t_state *state, int row, int col, int cell_size)
 {
-	t_env	*env;
-	t_map	*map;
 	char	tile;
-	t_pos	pos;
+	t_pos	p;
 
-	env = state->env;
-	map = state->map;
-	if (!map)
+	if (!state->map)
 	{
 		ft_printf("Error: NULL map or tilemap in rm_put_tiles()\n");
-		return;
+		return ;
 	}
-	pos.x = ((col) * cell_size) - state->cam->pos.x;
-	pos.y = ((row) * cell_size) - state->cam->pos.y;
+	p.x = ((col) * cell_size) - state->cam->pos.x;
+	p.y = ((row) * cell_size) - state->cam->pos.y;
 	if (state->map->tm_cols * cell_size <= WIN_WIDTH)
-		pos.x += (WIN_WIDTH - (state->map->tm_cols * cell_size)) / 2;
+		p.x += (WIN_WIDTH - (state->map->tm_cols * cell_size)) / 2;
 	if (state->map->tm_rows * cell_size <= WIN_HEIGHT)
-		pos.y += (WIN_HEIGHT - (state->map->tm_rows * cell_size)) / 2;
-	tile = map->tilemap[row][col];
-	if (tile == '1' && map->wall && map->wall->sprite)
-		mlx_put_image_to_window(env->mlx, env->win, map->wall->sprite, pos.x, pos.y);
-	else if (tile == 'C' && map->coll && map->coll->sprite)
-		mlx_put_image_to_window(env->mlx, env->win, map->coll->sprite, pos.x, pos.y);
-	else if (tile == 'E' && map->exit && map->exit->sprite)
-		mlx_put_image_to_window(env->mlx, env->win, map->exit->sprite, pos.x, pos.y);
+		p.y += (WIN_HEIGHT - (state->map->tm_rows * cell_size)) / 2;
+	tile = state->map->tilemap[row][col];
+	if (tile == '1' && state->map->wall && state->map->wall->img)
+		mlx_put_image_to_window(state->env->mlx, state->env->win,
+			state->map->wall->img, p.x, p.y);
+	else if (tile == 'C' && state->map->coll && state->map->coll->img)
+		mlx_put_image_to_window(state->env->mlx, state->env->win,
+			state->map->coll->img, p.x, p.y);
+	else if (tile == 'E' && state->map->exit && state->map->exit->img)
+		mlx_put_image_to_window(state->env->mlx, state->env->win,
+			state->map->exit->img, p.x, p.y);
 }
 
 //void    scroll_map(t_pos *cam_pos, t_pos *hero_pos, int win_width, 

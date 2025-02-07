@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:40:51 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/07 14:59:10 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/07 15:51:20 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // Free arr and each element
 void	sl_free_all(char **arr)
 {
-	int     i;
+	int	i;
 
 	if (arr == NULL)
 		return ;
@@ -32,16 +32,16 @@ void	sl_free_all(char **arr)
 char	**copy_map(char **src, t_pos size)
 {
 	char	**copy;
-	int	i;
+	int		i;
 
 	copy = malloc(sizeof(char *) * (size.y + 1));
 	if (!copy)
 		return (NULL);
 	i = 0;
-    	while (i < size.y)
+	while (i < size.y)
 	{
-        	copy[i] = malloc(size.x * sizeof(char));
-		if(!copy[i])
+		copy[i] = malloc(size.x * sizeof(char));
+		if (!copy[i])
 		{
 			while (--i >= 0)
 				free(copy[i]);
@@ -70,7 +70,8 @@ void	set_start_pos(t_state *state, t_pos *start_pos)
 			{
 				start_pos->x = col;
 				start_pos->y = row;
-				ft_printf("[set_start_pos]: x: %d - y: %d\n", start_pos->x, start_pos->y); // DEBUG
+				ft_printf("[set_start_pos]: x: %d - y: %d\n",
+					start_pos->x, start_pos->y);
 				return ;
 			}
 			col++;
@@ -80,11 +81,11 @@ void	set_start_pos(t_state *state, t_pos *start_pos)
 	return ;
 }
 
-// accessed_count[0] = collectibles / [1] = exit
+// reached[0] = collectibles / [1] = exit
 int	map_validator(t_state *state)
 {
 	char	**map_copy;
-	int	accessed_count[2] = {0, 0};
+	int	reached[2] = {0, 0};
 	t_pos	map_size;
 	t_pos	start_pos;
 
@@ -97,11 +98,11 @@ int	map_validator(t_state *state)
 	set_start_pos(state, &start_pos);
 	ft_printf("[map_validator] required: %d coll, %d exit\n",
 		state->map->tile_count[2], state->map->tile_count[3]);
-	flood_count(map_copy, map_size, start_pos, accessed_count);
+	flood_count(map_copy, map_size, start_pos, reached);
 	ft_printf("[~ flood ~] reachable: %d coll, %d exit\n", 
-		accessed_count[0], accessed_count[1]);
-	if ((accessed_count[0] == state->map->tile_count[2])
-		&& (accessed_count[1] == state->map->tile_count[3]))
+		reached[0], reached[1]);
+	if ((reached[0] == state->map->tile_count[2])
+		&& (reached[1] == state->map->tile_count[3]))
 	{
 		sl_free_all(map_copy);
 		return (0);
@@ -110,7 +111,7 @@ int	map_validator(t_state *state)
 	return (1);
 }
 
-void	flood_count(char **tab, t_pos size, t_pos begin, int accessed_count[2])
+void	flood_count(char **tab, t_pos size, t_pos begin, int reached[2])
 {
 	t_pos	p;
 
@@ -118,46 +119,46 @@ void	flood_count(char **tab, t_pos size, t_pos begin, int accessed_count[2])
 	{
 		p.y = begin.y - 1;
 		p.x = begin.x;
-		update_flood_count(tab[p.y][p.x], accessed_count);
+		update_flood_count(tab[p.y][p.x], reached);
 		tab[p.y][p.x] = '1';
-		flood_count(tab, size, p, accessed_count);
+		flood_count(tab, size, p, reached);
 	}
 	if (begin.y < (size.y - 1) && tab[begin.y + 1][begin.x] != '1')
 	{
 		p.y = begin.y + 1;
 		p.x = begin.x;
-		update_flood_count(tab[p.y][p.x], accessed_count);
+		update_flood_count(tab[p.y][p.x], reached);
 		tab[p.y][p.x] = '1';
-		flood_count(tab, size, p, accessed_count);
+		flood_count(tab, size, p, reached);
 	}
 	if (begin.x > 0 && tab[begin.y][begin.x - 1] != '1')
 	{
 		p.y = begin.y;
 		p.x = begin.x - 1;
-		update_flood_count(tab[p.y][p.x], accessed_count);	
+		update_flood_count(tab[p.y][p.x], reached);	
 		tab[p.y][p.x] = '1';
-		flood_count(tab, size, p, accessed_count);
+		flood_count(tab, size, p, reached);
 	}
 	if (begin.x < (size.x - 1) && tab[begin.y][begin.x + 1] != '1')
 	{
 		p.y = begin.y;
 		p.x = begin.x + 1;
-		update_flood_count(tab[p.y][p.x], accessed_count);
+		update_flood_count(tab[p.y][p.x], reached);
 		tab[p.y][p.x] = '1';
-		flood_count(tab, size, p, accessed_count);
+		flood_count(tab, size, p, reached);
 	}
 }
 
 
-void	update_flood_count(char tile, int accessed_count[2])
+void	update_flood_count(char tile, int reached[2])
 {
 
 	if (tile == 'C')
 	{
-		accessed_count[0] += 1;
+		reached[0] += 1;
 	}
 	else if (tile == 'E')
 	{
-		accessed_count[1] += 1;
+		reached[1] += 1;
 	}
 }

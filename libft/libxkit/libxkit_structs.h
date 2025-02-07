@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/07 12:11:45 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/07 15:32:45 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct s_cam
 
 typedef struct s_tile
 {
-	t_img		*sprite;
+	t_img		*img;
 	t_pos		*pos;
 	int			width;
 	int			height;
@@ -90,14 +90,14 @@ typedef struct s_count_req
 
 typedef struct s_enemy
 {
-	void		*sprite;
+	void		*img;
 	t_img		**frames;
 	t_pos		*pos;
 }		t_enemy;
 
 typedef struct s_hero
 {
-	t_img		*sprite;
+	t_img		*img;
 	t_img		**frames;
 	t_pos		*pos;
 }		t_hero;

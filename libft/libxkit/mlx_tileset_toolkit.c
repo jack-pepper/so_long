@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:36:40 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/07 10:23:30 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/07 16:02:04 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,25 @@ int	upload_assets(t_state *state)
 
 	if (init_hero(state) != 0)
 		return (1);
-	state->env->bkgd_img = mlx_xpm_file_to_image(state->env->mlx, BKGD_PATH, &width, &height);
+	state->env->bkgd_img = mlx_xpm_file_to_image(state->env->mlx,
+		BKGD_PATH, &width, &height);
 	if (!state->env->bkgd_img)
 		return (1);
-	state->map->wall->sprite = mlx_xpm_file_to_image(state->env->mlx, WALL_PATH, &width, &height);
-	if (!state->map->wall->sprite)
+	state->map->wall->img = mlx_xpm_file_to_image(state->env->mlx,
+		WALL_PATH, &width, &height);
+	if (!state->map->wall->img)
 		return (1);
-	state->map->coll->sprite = mlx_xpm_file_to_image(state->env->mlx, COLL_PATH, &width, &height);
-	if (!state->map->coll->sprite)
+	state->map->coll->img = mlx_xpm_file_to_image(state->env->mlx,
+		COLL_PATH, &width, &height);
+	if (!state->map->coll->img)
 		return (1);
-	state->map->exit->sprite = mlx_xpm_file_to_image(state->env->mlx, EXIT_PATH, &width, &height);
-	if (!state->map->exit->sprite)
+	state->map->exit->img = mlx_xpm_file_to_image(state->env->mlx,
+		EXIT_PATH, &width, &height);
+	if (!state->map->exit->img)
 		return (1);
-	state->hero->sprite = mlx_xpm_file_to_image(state->env->mlx, HERO_PATH, &width, &height);
-	if (!state->hero->sprite)
+	state->hero->img = mlx_xpm_file_to_image(state->env->mlx,
+		HERO_PATH, &width, &height);
+	if (!state->hero->img)
 		return (1);
 	return (0);
 }
