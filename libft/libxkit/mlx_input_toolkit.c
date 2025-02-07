@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./mlx_input_toolkit.h"
+#include "./libxkit.h"
 
 /* Keyboard input handling */
 

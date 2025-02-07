@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./mlx_memfree_toolkit.h"
+#include "./libxkit.h"
 
 /* Fail on [1] init_map | [2] map_parser | [3] map_validator | 
  * [4] set_state | [5] game loop

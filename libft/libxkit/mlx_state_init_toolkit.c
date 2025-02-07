@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./mlx_state_init_toolkit.h"
+#include "./libxkit.h"
 
 int	init_state(t_state **state)
 {

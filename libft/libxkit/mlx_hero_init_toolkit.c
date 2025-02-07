@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./mlx_hero_init_toolkit.h"
+#include "./libxkit.h"
 
 int	init_hero(t_state *state)
 {

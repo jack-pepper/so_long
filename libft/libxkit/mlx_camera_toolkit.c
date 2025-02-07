@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./mlx_camera_toolkit.h"
+#include "./libxkit.h"
 
 int	set_cam(t_state *state)
 {

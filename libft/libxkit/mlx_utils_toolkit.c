@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./mlx_utils_toolkit.h"
+#include "./libxkit.h"
 
 /* The name "mlx_put_image_to_window" with 5 parameters is too long to display.
  * To respect the 42 Norm, this function reduces its length by 15 characters.

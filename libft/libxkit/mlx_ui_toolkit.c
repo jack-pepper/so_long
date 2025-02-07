@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./mlx_ui_toolkit.h"
+#include "./libxkit.h"
 
 /* XXX Drawing UI elements */
 //void	draw_health_bar(t_env *env, t_pos pos, int width, int height, //

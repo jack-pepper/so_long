@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./mlx_pixel_toolkit.h"
+#include "./libxkit.h"
 
 void	mlx_fast_pixel_put(t_img *img, int x, int y, int color)
 {

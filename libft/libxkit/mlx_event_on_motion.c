@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./mlx_event_on_motion.h"
+#include "./libxkit.h"
 
 void	on_motion_up(t_state *state)
 {

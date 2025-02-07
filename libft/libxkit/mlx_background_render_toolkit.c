@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./mlx_background_render_toolkit.h"
+#include "./libxkit.h"
 
 void	render_background(t_state *state)
 {

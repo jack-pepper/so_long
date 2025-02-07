@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./mlx_tileset_toolkit.h"
+#include "./libxkit.h"
 
 int	set_map(t_state *state)
 {

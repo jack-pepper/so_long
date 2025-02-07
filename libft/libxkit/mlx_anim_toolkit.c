@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./mlx_anim_toolkit.h"
+#include "./libxkit.h" 
 
 /*
 void    draw_sprite_frame(t_env *env, t_img *sprite, int frame, t_pos *pos);

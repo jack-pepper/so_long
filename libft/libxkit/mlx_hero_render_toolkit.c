@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./mlx_hero_render_toolkit.h"
+#include "./libxkit.h"
 
 /* If the map is smaller than the window, it will be centered.
  * The hero position is set accordingly.

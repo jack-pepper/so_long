@@ -6,21 +6,65 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/07 15:32:45 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/07 22:57:55 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBXKIT_STRUCTS_H
 # define LIBXKIT_STRUCTS_H
 
-/* Env structs */
+/* */
+
+/* Coloring struct */
+typedef struct s_mlx_color
+{
+	int	t;
+	int	r;
+	int	g;
+	int	b;
+}		t_mlx_color;
+
+/* Drawing structs */
+typedef struct s_mlx_line
+{
+	int	start_x;
+	int	start_y;
+	int	end_x;
+	int	end_y;
+}		t_mlx_line;
+
+typedef struct s_bres_data
+{
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	err;
+}		t_bres_data;
+
+typedef struct s_mlx_circle
+{
+	int	center_x;
+	int	center_y;
+	int	radius;
+}		t_mlx_circle;
+
+typedef struct s_mlx_rect
+{
+	int	origin_x;
+	int	origin_y;
+	int	length;
+	int	width;
+}		t_mlx_rect;
+
+/* Game env structs */
 typedef struct s_pos
 {
 	int		x;
 	int		y;
 }		t_pos;
 
-/* Redefinition from mlx_int.h */
+	// To use mlx images
 typedef struct s_img
 {
 	void	*img;
@@ -81,7 +125,7 @@ typedef struct s_map
 	int		cell_size;
 }		t_map;
 
-// A counter and a requirement counter to compare it with by index.
+// A counter and a requirement counter for checking tiles count.
 typedef struct s_count_req
 {
 	int		count[6];

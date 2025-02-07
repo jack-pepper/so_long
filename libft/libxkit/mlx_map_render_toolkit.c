@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./mlx_map_render_toolkit.h"
+#include "./libxkit.h"
 
 //void    draw_grid(t_env *env, int cell_size, int color)
 

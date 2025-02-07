@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./mlx_draw_toolkit.h"
+#include "./libxkit.h"
 
 // The binary operations return 1 if start < end, else -1
 void	draw_mlx_line(t_env *env, t_mlx_line *line)

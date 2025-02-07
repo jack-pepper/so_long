@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./mlx_map_parser_toolkit.h"
+#include "./libxkit.h"
 
 int	check_border(char **arr, int line_len, int nb_lines, char b_chr)
 {

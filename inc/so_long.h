@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:30 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/07 15:46:14 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/07 23:01:29 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 /* Custom libraries */
 # include "../libft/libft.h"
 # include "../libft/libxkit/libxkit.h"
-# include "./map_validator.h"
 
 int		map_parser(t_state *state);
 int		init_state(t_state **state);

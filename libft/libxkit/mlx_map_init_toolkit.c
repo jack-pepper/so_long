@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./mlx_map_init_toolkit.h"
+#include "./libxkit.h"
 
 /* Init a t_map from a file if the file's name matches the param extension.
  * Defines map, fpath, line_len, nb_lines et tilemap.

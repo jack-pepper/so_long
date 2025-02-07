@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/05 10:55:56 by mmalie            #+#    #+#              #
-#    Updated: 2025/02/07 21:29:32 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/07 22:34:02 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,33 +41,33 @@ MLX_LIB = $(MLX_DIR)/libmlx.a
 DEPS_LIBFT = ../libft.h \
 DEPS =	./libxkit.h \
 	./libxkit_structs.h \
-	./mlx_ai_toolkit.h \
-	./mlx_anim_toolkit.h \
-	./mlx_audio_toolkit.h \
-	./mlx_background_render_toolkit.h \
-	./mlx_camera_toolkit.h \
-	./mlx_collisions_toolkit.h \
-	./mlx_color_toolkit.h \
-	./mlx_debug_toolkit.h \
-	./mlx_draw_toolkit.h \
-	./mlx_event_on_motion.h \
-	./mlx_hero_init.toolkit.h \
-	./mlx_hero_render_toolkit.h \
-	./mlx_input_toolkit.h \
-	./mlx_loop_toolkit.h \
-	./mlx_map_init_toolkit.h \
-	./mlx_map_render_toolkit.h \
-	./mlx_map_parser_toolkit.h \
-	./mlx_map_validator_toolkit.h \
-	./mlx_map_validator_flood_count.h \
-	./mlx_memfree_toolkit.h \
-	./mlx_particles_toolkit.h \
-	./mlx_physics_toolkit.h \
-	./mlx_pixel_toolkit.h \
-	./mlx_state_init_toolkit.h \
-	./mlx_tileset_toolkit.h \
-	./mlx_ui_toolkit.h \
-	./mlx_utils_toolkit.h \
+#	./mlx_ai_toolkit.h \
+#	./mlx_anim_toolkit.h \
+#	./mlx_audio_toolkit.h \
+#	./mlx_background_render_toolkit.h \
+#	./mlx_camera_toolkit.h \
+#	./mlx_collisions_toolkit.h \
+#	./mlx_color_toolkit.h \
+#	./mlx_debug_toolkit.h \
+#	./mlx_draw_toolkit.h \
+#	./mlx_event_on_motion.h \
+#	./mlx_hero_init.toolkit.h \
+#	./mlx_hero_render_toolkit.h \
+#	./mlx_input_toolkit.h \
+#	./mlx_loop_toolkit.h \
+#	./mlx_map_init_toolkit.h \
+#	./mlx_map_render_toolkit.h \
+#	./mlx_map_parser_toolkit.h \
+#	./mlx_map_validator_toolkit.h \
+#	./mlx_map_validator_flood_count.h \
+#	./mlx_memfree_toolkit.h \
+#	./mlx_particles_toolkit.h \
+#	./mlx_physics_toolkit.h \
+#	./mlx_pixel_toolkit.h \
+#	./mlx_state_init_toolkit.h \
+#	./mlx_tileset_toolkit.h \
+#	./mlx_ui_toolkit.h \
+#	./mlx_utils_toolkit.h \
 
 INCLUDES = -I $(MLX_DIR) -I ./includes
 

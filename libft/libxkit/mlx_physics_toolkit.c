@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./mlx_physics_toolkit.h"
+#include "./libxkit.h"
 
 /* Physics and movement
 void	apply_gravity(t_object *obj, float gravity, float delta_time);
