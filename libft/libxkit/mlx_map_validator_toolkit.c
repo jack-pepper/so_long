@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:40:51 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/07 21:40:46 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/09 16:46:50 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	set_start_pos(t_state *state, t_pos *start_pos)
 			{
 				start_pos->x = col;
 				start_pos->y = row;
-				ft_printf("[set_start_pos]: x: %d - y: %d\n",
+				ft_printf("👣 [set_start_pos]: x: %d - y: %d\n",
 					start_pos->x, start_pos->y);
 				return ;
 			}
@@ -80,10 +80,10 @@ int	map_validator(t_state *state)
 	if (!map_copy)
 		return (1);
 	set_start_pos(state, &start_pos);
-	ft_printf("[map_validator] required: %d coll, %d exit\n",
+	ft_printf("🕵️  [map_validator] required: %d coll, %d exit\n",
 		state->map->tile_count[2], state->map->tile_count[3]);
 	flood_count(map_copy, map_size, start_pos, reached);
-	ft_printf("~ reachable: %d coll, %d exit\n", reached[0], reached[1]);
+	ft_printf("🌊 reachable: %d coll, %d exit\n", reached[0], reached[1]);
 	if ((reached[0] == state->map->tile_count[2])
 		&& (reached[1] == state->map->tile_count[3]))
 	{

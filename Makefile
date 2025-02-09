@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2025/02/09 11:12:36 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/09 16:03:26 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,12 +28,14 @@ CFLAGS=-g -Wall -Wextra -Werror
 ####################
 
 DEPS = ./inc/so_long.h \
-	./inc/assets.h \
+	./textures/assets.h \
 	./libft/libxkit/libxkit.h \
 	./libft/libft.h \
-#DEPS_LIBFT = ./libft/libft.h
+
 LIBFT = ./libft/libft.a
 LIBXKIT = ./libft/libxkit/libxkit.a
+#TEXTURES_SRC = ./textures/
+#TEXTURES_DEST = ./libft/libxkit/textures/
 
 ####################
 ### Source files ###
@@ -53,7 +55,11 @@ OBJ = $(SRC:.c=.o)
 all: $(LIBFT) $(NAME)
 
 $(LIBFT):
-	cd libft && make
+	@cd libft && make
+
+##copy_textures:
+##	@mkdir -p $(TEXTURES_DEST)
+##	@cp -r $(TEXTURES_SRC)/* $(TEXTURES_DEST)
 
 $(NAME): $(OBJ) $(LIBFT)
 	$(CC) $(OBJ) -Llibft -lft -lm -Llibft/libxkit/.minilibx -lmlx -lXext -lX11 -o $(NAME)
@@ -76,6 +82,7 @@ clean:
 fclean: clean
 	cd libft && make fclean
 	rm -f $(NAME)
+#	rm -rf $(TEXTURES_DEST)
 
 re: fclean all
 

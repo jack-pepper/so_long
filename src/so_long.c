@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/09 14:40:24 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/09 16:06:42 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	main(int argc, char **argv)
 	}
 	state->error_code = 5;
 	display_start_screen();
-	display_defeat_screen();
 	state->render_event = 3;
 	mlx_loop_hook(state->env->mlx, &render, state);
 	mlx_loop(state->env->mlx);

@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 13:16:14 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/09 09:55:10 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/09 16:46:24 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	init_map(t_state *state, char *fpath, char *ext)
 		free(map);
 		return (ft_err(1, "Error\n[init_map] set map data fail\n"));
 	}
-	ft_printf("\nMap [%s]:\n\n", fpath);
+	ft_printf("\n🏞️  [init_map] game map [%s]:\n\n", fpath);
 	if (fconv_arr_chr(map->tilemap, map->fpath, map->tm_rows) != 0)
 	{
 		free(map);
@@ -60,7 +60,7 @@ int	check_extension(char *fpath, char *ext)
 		i--;
 		j--;
 	}
-	ft_printf("[check_extension] extension is valid\n");
+	ft_printf("✅ [check_extension] extension is valid\n");
 	return (0);
 }
 
@@ -179,5 +179,6 @@ int	fconv_arr_chr(char **arr, char *fpath, int nb_lines)
 		i++;
 	}
 	close(file);
+	ft_printf("\n");
 	return (0);
 }

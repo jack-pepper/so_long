@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 13:16:14 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/07 20:26:10 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/09 16:13:18 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	check_border(char **arr, int line_len, int nb_lines, char b_chr)
 		if (arr[i][0] != b_chr || arr[i][last_j] != b_chr)
 			return (ft_err(1, "Error\n[check_border] map open\n"));
 	}
-	ft_printf("[check_border] map is closed\n");
+	ft_printf("✅ [check_border] map is closed\n");
 	return (0);
 }
 
@@ -50,7 +50,7 @@ int	check_chars(char **arr, int nb_lines, char *set)
 		}
 		i++;
 	}
-	ft_printf("[check_chars] all chars valid\n");
+	ft_printf("✅ [check_chars] all chars valid\n");
 	return (0);
 }
 
@@ -82,7 +82,7 @@ int	check_count(char **arr, int nb_lines, char *set, t_count_req *c)
 		}
 		j++;
 	}
-	ft_printf("[check_count] correct count\n");
+	ft_printf("✅ [check_count] correct count\n");
 	return (0);
 }
 
@@ -113,6 +113,6 @@ void	count_chars(char *str, char *set, int *counter)
 		}
 		i++;
 	}
-	ft_printf("[count_chars] 0: %d | 1: %d | C: %d | E: %d | P: %d\n",
+	ft_printf("🔍 [count_chars] 0: %d | 1: %d | C: %d | E: %d | P: %d\n",
 		counter[0], counter[1], counter[2], counter[3], counter[4]);
 }

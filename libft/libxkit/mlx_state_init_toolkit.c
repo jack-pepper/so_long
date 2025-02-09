@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:03:33 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/07 13:26:30 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/09 16:47:16 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,29 +42,29 @@ int	init_state(t_state **state)
 
 int	set_state(t_state *state)
 {
-	ft_printf("[set_state 0] Setting state...\n");
 	state->env->mlx = mlx_init();
 	if (!state->env->mlx)
-		return (ft_err(1, "Error\nmlx_init failed\n"));
-	ft_printf("[1] mlx set\n");
+		return (ft_err(1, "Error\nmlx_init FAIL! 💀\n"));
+	ft_printf("🔌 [1] mlx: ✅ READY!\n");
 	if (set_window(state) != 0)
-		return (ft_err(1, "Error\nset_window failed\n"));
-	ft_printf("[2] window set\n");
+		return (ft_err(1, "Error\nset_window FAIL! 💀\n"));
+	ft_printf("🖥️  [2] window: ✅ CREATED!\n");
 	if (set_hooks(state) != 0)
-		return (ft_err(1, "Error\nset_hooks failed\n"));
-	ft_printf("[3] hooks set\n");
+		return (ft_err(1, "Error\nset_hooks FAIL! 💀\n"));
+	ft_printf("🎮 [3] hooks: ✅ CONNECTED!\n");
 	if (set_canvas(state->env) != 0)
-		return (ft_err(1, "Error\nset_canvas failed\n"));
-	ft_printf("[4] canvas set\n");
+		return (ft_err(1, "Error\nset_canvas FAIL! 💀\n"));
+	ft_printf("🖌️  [4] canvas: ✅ PAINTED!\n");
 	if (set_map(state) != 0)
-		return (ft_err(1, "Error\nset_map failed\n"));
-	ft_printf("[5] map set\n");
+		return (ft_err(1, "Error\nset_map FAIL 💀\n"));
+	ft_printf("🗺️  [5] game map: ✅ LOADED!\n");
 	if (upload_assets(state) != 0)
-		return (ft_err(1, "Error\nupload_assets failed\n"));
-	ft_printf("[6] assets... uploaded\n");
+		return (ft_err(1, "Error\nupload_assets FAIL 💀\n"));
+	ft_printf("📦 [6] sprites: ✅ TEXTURED!\n");
 	if (set_cam(state) != 0)
-		return (ft_err(1, "Error\nset_cam failed\n"));
-	ft_printf("[7] State set successfully!\n");
+		return (ft_err(1, "Error\nset_cam FAIL 💀\n"));
+	ft_printf("🎥 [7] camera: ✅ POSITIONED!\n");
+	ft_printf("\n🚀 STATE SET, GAME READY! 🕹️\n");
 	return (0);
 	state->error_code = 5;
 }

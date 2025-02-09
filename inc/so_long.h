@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:30 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/09 14:30:05 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/09 15:23:08 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 
-# include "assets.h"
+# include "../textures/assets.h"
 
 /* Custom libraries */
 # include "../libft/libft.h"
