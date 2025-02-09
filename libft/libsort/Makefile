@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2025/02/09 17:44:16 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/09 18:30:47 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,8 +71,8 @@ all: $(NAME)
 	@echo "                   LLLLL   III  BBBBB  SSSSS  OOOOO  R   R    T                     "
 	@echo "===================================================================================="
 	@echo "                        L I B S O R T   C O M P I L E D!   🧩 ✅                    "
+	@echo "                            Sorting complete! 🎯                                    "	
 	@echo "===================================================================================="
-	@echo "                            Sorting complete! 🎯  🔄 🔽 🔼                          "
 	@echo	
 ### Compile .c files into .o files
 %.o: %.c
