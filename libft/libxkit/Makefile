@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/05 10:55:56 by mmalie            #+#    #+#              #
-#    Updated: 2025/02/07 23:21:35 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/09 17:49:14 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -114,19 +114,18 @@ OBJ = $(SRC:.c=.o)
 ### Default rules (compile the executable)
 all: $(NAME)
 	@echo
-	@echo "   L       III  BBBBB  X   X  K   K  III  TTTTT    "
-	@echo "   L        I   B   B   X X   K  K    I     T      "
-	@echo "   L        I   BBBB     X    KKK     I     T      "
-	@echo "   L        I   B   B   X X   K  K    I     T      "
-	@echo "   LLLLL   III  BBBBB  X   X  K   K  III    T      "
-	@echo
-	@echo "   😃  🎮  👾  🕹️   🎵  🏆  💾  🚀  👽  🤖  "
-	@echo
-	@echo "===================================================="
-	@echo "   L I B X K I T   C O M P I L E D!   😎 ✅  "
-	@echo "===================================================="
-	@echo "     Press [Start] to Play!  🕹️  🎶  "
-	@echo
+	@echo "===================================================================================="
+	@echo "                         🖥️ ⚙️  🎮 Compiling LIBXKIT...                              "
+	@echo "===================================================================================="	
+	@echo "                  L       III  BBBBB  X   X  K   K  III  TTTTT                      "
+	@echo "                  L        I   B   B   X X   K  K    I     T                        "
+	@echo "                  L        I   BBBB     X    KKK     I     T                        "
+	@echo "                  L        I   B   B   X X   K  K    I     T                        "
+	@echo "                  LLLLL   III  BBBBB  X   X  K   K  III    T                        "
+	@echo "===================================================================================="
+	@echo "                    L I B X K I T   C O M P I L E D!   👾 ✅                        "
+	@echo "                         Press [Start] to Play!  🕹️                                 "
+	@echo "===================================================================================="
 
 ### Compile .c files into .o files
 %.o: %.c

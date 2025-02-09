@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2025/02/07 23:34:49 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/09 17:24:14 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,19 +64,18 @@ OBJ = $(SRC:.c=.o)
 ### Default rules (compile the executable)
 all: $(NAME)
 	@echo
-	@echo "   L       III  BBBBB   U   U  TTTTT  III  L       SSSSS  "
-	@echo "   L        I   B   B   U   U    T     I   L       S      "
-	@echo "   L        I   BBBB    U   U    T     I   L        SSSS  "
-	@echo "   L        I   B   B   U   U    T     I   L           S  "
-	@echo "   LLLLL   III  BBBBB    UUU     T    III  LLLLL   SSSSS  "
-	@echo
-	@echo "   🛠️  ⚡  💡  🔧  🔣  🚀  "
-	@echo
-	@echo "======================================================"
-	@echo "   L I B U T I L S   C O M P I L E D!   🛠️ ✅ "
-	@echo "======================================================"
-	@echo "     Utility functions ready!  🚀 "
-	@echo
+	@echo "===================================================================================="
+	@echo "                         ⚡ 💡 🔧 Compiling LIBUTILS...                             "
+	@echo "===================================================================================="
+	@echo "              L       III  BBBBB   U   U  TTTTT  III  L       SSSSS                 "
+	@echo "              L        I   B   B   U   U    T     I   L       S                     "
+	@echo "              L        I   BBBB    U   U    T     I   L        SSSS                 "
+	@echo "              L        I   B   B   U   U    T     I   L           S                 "
+	@echo "              LLLLL   III  BBBBB    UUU     T    III  LLLLL   SSSSS                 "
+	@echo "===================================================================================="
+	@echo "                    L I B U T I L S   C O M P I L E D!   🛠️ ✅                      "
+	@echo "                         Utility functions ready!  🚀                               "
+	@echo "===================================================================================="
 
 ### Compile .c files into .o files
 %.o: %.c

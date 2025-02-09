@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2025/02/07 23:26:14 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/09 17:36:26 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,19 +51,18 @@ OBJ = $(SRC:.c=.o)
 ### Default rules (compile the executable)
 all: $(NAME)
 	@echo
-	@echo "   L       III  BBBBB   GGGG  N   N  L       "
-	@echo "   L        I   B   B  G      NN  N  L       "
-	@echo "   L        I   BBBB   G  GG  N N N  L       "
-	@echo "   L        I   B   B  G   G  N  NN  L       "
-	@echo "   LLLLL   III  BBBBB   GGG   N   N  LLLLL   "
-	@echo
-	@echo "   📖  📜  📝  📂  💾  🔁  ⚡  🔄  🔠  📑  "
-	@echo
-	@echo "============================================"
-	@echo "   L I B G N L   C O M P I L E D!   📚 ✅ "
-	@echo "============================================"
-	@echo "     Ready to read lines efficiently!  📖 "
-	@echo
+	@echo "====================================================================================" 
+	@echo "                         📖 📝 💾 Compiling LIBGNL...                               "
+	@echo "===================================================================================="
+	@echo "                      L       III  BBBBB   GGGG  N   N  L                           "
+	@echo "                      L        I   B   B  G      NN  N  L                           "
+	@echo "                      L        I   BBBB   G  GG  N N N  L                           "
+	@echo "                      L        I   B   B  G   G  N  NN  L                           "
+	@echo "                      LLLLL   III  BBBBB   GGG   N   N  LLLLL                       "
+	@echo "===================================================================================="
+	@echo "                        L I B G N L   C O M P I L E D!   📚 ✅                      "
+	@echo "                          Ready to read lines efficiently! 📑                       "
+	@echo "===================================================================================="
 
 ### Compile .c files into .o files
 %.o: %.c
