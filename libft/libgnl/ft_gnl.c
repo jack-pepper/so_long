@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 09:33:12 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/07 14:41:34 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/09 10:00:47 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,6 @@ char	*ft_gnl(int fd)
 	free(buf);
 	if (!stash)
 		return (NULL);
-	//if (!stash)
-	//{
-	//	free(buf);
-	//	return (NULL);
-	//}
-	//free(buf);
-	if (*stash == '\0')
-	{
-		clean_stash(&stash);
-		return (NULL);	
-	}
 	return (seize_line(&stash, cursor));
 }
 
@@ -144,6 +133,11 @@ char	*seize_eof(char **next_line, char **stash)
 
 /* GNL launcher. Kept for debugging and expansion.*/
 /* #include <stdio.h>
+int	main(void)
+{
+	char	*next_line;
+	int		fd;
+	int		i;
 
 int	main(void)
 {

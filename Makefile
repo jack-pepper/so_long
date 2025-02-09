@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2025/02/07 23:59:01 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/09 11:12:36 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ LIBXKIT = ./libft/libxkit/libxkit.a
 ####################
 
 SRC = ./src/so_long.c \
+      ./src/sl_screens.c \
       ./src/sl_events.c \
 
 ### Object files

@@ -6,11 +6,11 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 13:16:14 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/09 09:55:10 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/07 20:40:39 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libxkit.h"
+#include "./mlx_map_init_toolkit.h"
 
 /* Init a t_map from a file if the file's name matches the param extension.
  * Defines map, fpath, line_len, nb_lines et tilemap.
@@ -92,40 +92,8 @@ int	set_map_data(t_map *map, char *fpath)
 	return (0);
 }
 
-/* Get line_len and nb_lines. Handles only rect maps.
- * The loop has to reach the end in all cases so the stash
- * in GNL will be freed.
- */
+// Get line_len and nb_lines. Handles only rect maps.
 int	get_map_size(t_map *map, int *line_len, int *nb_lines)
-{
-	char	*line;
-	char	*fpath;
-	int		file;
-	int		not_rect;
-
-	not_rect = 0;
-	line = NULL;
-	fpath = map->fpath;
-	file = ft_open_file(fpath, "O_RDONLY", "Error\nError opening file\n");
-	if (file == -1)
-		return (1);
-	while (ft_read_line(file, &line, "no") != 1)
-	{
-		if (*nb_lines == 0)
-			*line_len = ft_strlen(line);
-		if (ft_strlen(line) != (size_t)(*line_len))
-			not_rect = 1;
-		(*nb_lines)++;
-		free(line);
-	}
-	close(file);
-	if (not_rect == 1)
-		return (ft_err(1, "Error\nmap not rectangular\n"));
-	return (0);
-}
-
-// Kept for future improving
-/*int	get_map_size(t_map *map, int *line_len, int *nb_lines)
 {
 	char	*line;
 	char	*fpath;
@@ -151,7 +119,7 @@ int	get_map_size(t_map *map, int *line_len, int *nb_lines)
 	}
 	close(file);
 	return (0);
-}*/
+}
 
 // Copy .ber file to tilemap array.
 int	fconv_arr_chr(char **arr, char *fpath, int nb_lines)

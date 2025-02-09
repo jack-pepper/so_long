@@ -6,14 +6,9 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/07 20:52:55 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/09 14:40:24 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// TODO [leak] when exit on map parsing errors. Seems to come from the
-//		unfreed persistant stash in ft_gnl. extern is not allowed (global)
-//	[norminette]
-//	
 
 #include "../inc/so_long.h"
 /*
@@ -21,18 +16,6 @@
  * At the moment (01/2025) this engine handles 2D collecting top-view games.
  * LIBXKIT, though, can be used for various types of projects.
  */
-
-void	display_start_screen(void)
-{
-	ft_printf("\033[1;32m");
-	ft_printf(" ___     ___         _      ___    _  _    ___    \n");
-	ft_printf("/ __|   / _ \\   o O | |    / _ \\  | \\| |  / __|   \n");
-	ft_printf("\\__ \\  | (_) |  o   | |__ | (_) | | .` | | (_ |   \n");
-	ft_printf("|___/   \\___/  [O]  |____| \\___/  |_|\\_|  \\___|   \n");
-	ft_printf("_|'''''|_|'''''| {=|_|''''|_|''''|_|'''''|\n");
-	ft_printf("\"`-0-0-'\"`-0-0-'./0'\"`-0-0-'\"`-0-0-'\"`-0-0-'     \n");
-	ft_printf("\033[0m");
-}
 
 int	main(int argc, char **argv)
 {
@@ -55,7 +38,8 @@ int	main(int argc, char **argv)
 	}
 	state->error_code = 5;
 	display_start_screen();
-	state->hero_event = 1;
+	display_defeat_screen();
+	state->render_event = 3;
 	mlx_loop_hook(state->env->mlx, &render, state);
 	mlx_loop(state->env->mlx);
 	return (0);
@@ -71,11 +55,11 @@ int	init_data(t_state *state, t_data *data)
 
 int	map_parser(t_state *state)
 {
-	char	**tilemap;
+	char		**tilemap;
 	t_count_req	counter;
-	size_t	line_len;
-	size_t	nb_lines;
-	int		i;
+	size_t		line_len;
+	size_t		nb_lines;
+	int			i;
 
 	state->error_code = 2;
 	set_counter_req(&counter);
@@ -128,42 +112,30 @@ void	set_counter_req(t_count_req *counter)
 	return ;
 }
 
+// Render events: [1] = bkgd - [2] = map - [3] = hero
 int	render(t_state *state)
-{
-	if ((state->hero_event == 1 || state->map_event == 1)
-		|| (state->bkgd_event == 1))
-	{
-		render_background(state);
-		state->bkgd_event = 0;
-		state->map_event = 1;
-	}
-	if (state->hero_event == 1 || state->map_event == 1)
-	{
-		render_map(state);
-		state->map_event = 0;
-		state->hero_event = 1;
-	}
-	if (state->hero_event == 1)
-	{
-		render_hero(state);
-		update_render(state);
-		state->hero_event = 0;
-	}
-	return (0);
-}
-
-void	update_render(t_state *state)
 {
 	t_pos	*pos;
 
-	pos = state->hero->pos;
-	if (state->map->tilemap[pos->y][pos->x] == 'C')
+	if (state->render_event >= 1)
 	{
-		on_coll_tile(state, pos);
-		state->map_event = 1;
+		render_background(state);
+		state->render_event = 2;
 	}
-	else if (state->map->tilemap[pos->y][pos->x] == 'E')
+	if (state->render_event >= 2)
 	{
-		on_exit_tile(state);
+		render_map(state);
+		state->render_event = 3;
 	}
+	if (state->render_event >= 3)
+	{
+		pos = state->hero->pos;
+		render_hero(state);
+		if (state->map->tilemap[pos->y][pos->x] == 'C')
+			on_coll_tile(state, pos);
+		else if (state->map->tilemap[pos->y][pos->x] == 'E')
+			on_exit_tile(state);
+		state->render_event = 0;
+	}
+	return (0);
 }

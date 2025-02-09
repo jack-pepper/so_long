@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/07 22:57:55 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/09 14:30:51 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,9 +153,7 @@ typedef struct s_state
 	t_map		*map;
 	t_cam		*cam;
 	t_hero		*hero;
-	int			bkgd_event;
-	int			map_event;
-	int			hero_event;
+	int			render_event;
 	int			error_code;
 	//t_mouse		*mouse;
 }		t_state;
