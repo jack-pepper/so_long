@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/09 14:30:51 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/09 23:17:44 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,16 +134,25 @@ typedef struct s_count_req
 
 typedef struct s_enemy
 {
-	void		*img;
-	t_img		**frames;
+	t_img		*img;
+	t_img		**frames;	
+	t_img		*to_up;
+	t_img		*to_down;
+	t_img		*to_left;
+	t_img		*to_right;
 	t_pos		*pos;
+	int			frame;
 }		t_enemy;
 
 typedef struct s_hero
 {
 	t_img		*img;
-	t_img		**frames;
+	t_img		*to_up;
+	t_img		*to_down;
+	t_img		*to_left;
+	t_img		*to_right;
 	t_pos		*pos;
+	int			frame;
 }		t_hero;
 
 typedef struct s_state
@@ -153,6 +162,7 @@ typedef struct s_state
 	t_map		*map;
 	t_cam		*cam;
 	t_hero		*hero;
+	t_enemy		*enemy;
 	int			render_event;
 	int			error_code;
 	//t_mouse		*mouse;

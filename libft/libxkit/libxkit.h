@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/09 16:04:25 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/09 23:31:17 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@
 # include "./libxkit_structs.h"
 
 	/* mlx_ai_toolkit.c */
+int		init_enemy(t_state *state);
+void	set_enemy_pos(t_state *state);
 //void    ai_move_towards_target(t_hero *hero, t_pos target);
 //int     ai_decision_state(t_hero *hero);
 //void    ai_patrol_area(t_enemy *enemy, t_area *patrol_zone);
@@ -162,8 +164,11 @@ int		set_canvas(t_env *env);
 	/* mlx_tileset_toolkit.c */
 int		set_map(t_state *state);
 int		upload_assets(t_state *state);
+int		upload_hero(t_state *state);
+int		upload_enemy(t_state *state);
 
 	/* mlx_ui_toolkit.c */
+void    display_steps_on_screen(t_state *state);
 //void  draw_health_bar(t_env *env, t_pos pos, int width, int height,// 
 //float percent);
 //void  draw_score(t_env *env, t_pos pos, int score, int color);

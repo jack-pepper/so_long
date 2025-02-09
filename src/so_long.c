@@ -6,9 +6,11 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/09 16:06:42 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/09 21:22:41 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+// TODO: Replace init_ints with a non-variadic version? (norm issue?)
 
 #include "../inc/so_long.h"
 /*
@@ -38,6 +40,7 @@ int	main(int argc, char **argv)
 	}
 	state->error_code = 5;
 	display_start_screen();
+	state->hero->frame = 0;
 	state->render_event = 3;
 	mlx_loop_hook(state->env->mlx, &render, state);
 	mlx_loop(state->env->mlx);
@@ -111,6 +114,20 @@ void	set_counter_req(t_count_req *counter)
 	return ;
 }
 
+void	display_steps_on_screen(t_state *state)
+{
+	static char	steps_msg[8] = "STEPS: ";
+	char		*nb_steps;
+	char		*final_msg;
+
+	nb_steps = ft_itoa(state->data->nb_steps);
+	final_msg = ft_strjoin(steps_msg, nb_steps);
+	mlx_string_put(state->env->mlx, state->env->win,
+		50, 50, 0xFFFFFF, final_msg);
+	free(nb_steps);
+	free(final_msg);
+}
+
 // Render events: [1] = bkgd - [2] = map - [3] = hero
 int	render(t_state *state)
 {
@@ -130,6 +147,7 @@ int	render(t_state *state)
 	{
 		pos = state->hero->pos;
 		render_hero(state);
+		display_steps_on_screen(state);
 		if (state->map->tilemap[pos->y][pos->x] == 'C')
 			on_coll_tile(state, pos);
 		else if (state->map->tilemap[pos->y][pos->x] == 'E')

@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 12:10:39 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/07 20:34:40 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/09 23:15:47 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,15 @@ void	sl_destroy_imgs(t_state *state)
 	mlx_destroy_image(state->env->mlx, state->map->coll->img);
 	mlx_destroy_image(state->env->mlx, state->map->exit->img);
 	mlx_destroy_image(state->env->mlx, state->hero->img);
+	mlx_destroy_image(state->env->mlx, state->hero->to_up);
+	mlx_destroy_image(state->env->mlx, state->hero->to_down);
+	mlx_destroy_image(state->env->mlx, state->hero->to_left);
+	mlx_destroy_image(state->env->mlx, state->hero->to_right);
+	mlx_destroy_image(state->env->mlx, state->enemy->img);
+	mlx_destroy_image(state->env->mlx, state->enemy->to_up);
+	mlx_destroy_image(state->env->mlx, state->enemy->to_down);
+	mlx_destroy_image(state->env->mlx, state->enemy->to_left);
+	mlx_destroy_image(state->env->mlx, state->enemy->to_right);
 	mlx_destroy_image(state->env->mlx, state->env->canvas->img);
 }
 
