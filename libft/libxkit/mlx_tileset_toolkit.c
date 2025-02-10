@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:36:40 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/09 23:21:14 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/10 09:14:47 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	set_map(t_state *state)
 	if (!map->exit)
 		return (1);
 	if (init_hero(state) != 0)
+		return (1);
+	if (init_enemy(state) != 0)
 		return (1);
 	state->map->width = WIN_WIDTH;
 	state->map->height = WIN_HEIGHT;

@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 12:10:39 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/09 23:15:47 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/10 09:19:28 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	sl_memfree(t_state *state)
 		free(state->hero->pos);
 		free(state->hero);
 		free(state->cam);
+		free(state->enemy->pos);
+		free(state->enemy);
 		mlx_destroy_window(state->env->mlx, state->env->win);
 		mlx_destroy_display(state->env->mlx);
 		free(state->env->mlx);

@@ -6,13 +6,13 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 18:42:47 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/09 23:29:04 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/10 09:24:34 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libxkit.h"
 
-int     init_enemy(t_state *state)
+int	init_enemy(t_state *state)
 {
 	t_enemy	*enemy;
 	t_pos	*enemy_pos;
@@ -32,7 +32,7 @@ int     init_enemy(t_state *state)
 void	set_enemy_pos(t_state *state)
 {
 	int		row;
-        int		col;
+	int		col;
 
 	row = 0;
 	while (row < state->map->tm_rows)
@@ -51,4 +51,4 @@ void	set_enemy_pos(t_state *state)
 		row++;
 	}
 	return ;
-}                                                                
+} 
