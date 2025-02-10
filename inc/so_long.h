@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:30 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/09 15:23:08 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/10 10:22:08 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,16 @@ void	on_exit_tile(t_state *state);
 void	display_start_screen(void);
 void	display_victory_screen(void);
 void	display_defeat_screen(void);
+
+// Levels
+int		change_level(t_state *state);
+	// Ice
+int		upload_assets_ice_lvl(t_state *state);
+int		upload_hero_ice_lvl(t_state *state);
+int		upload_enemy_ice_lvl(t_state *state);
+	// Sand
+int		upload_assets_sand_lvl(t_state *state);
+int		upload_hero_sand_lvl(t_state *state);
+int		upload_enemy_sand_lvl(t_state *state);
 
 #endif
