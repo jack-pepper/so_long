@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:30 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/10 10:22:08 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/11 00:09:01 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,9 @@ int		upload_enemy_ice_lvl(t_state *state);
 int		upload_assets_sand_lvl(t_state *state);
 int		upload_hero_sand_lvl(t_state *state);
 int		upload_enemy_sand_lvl(t_state *state);
+	// Pacman
+int		upload_assets_pacman_lvl(t_state *state);
+int		upload_hero_pacman_lvl(t_state *state);
+int		upload_enemy_pacman_lvl(t_state *state);
 
 #endif
