@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/10 09:20:55 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/10 13:22:07 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,5 +140,6 @@ int	render(t_state *state)
 			on_exit_tile(state);
 		state->render_event = 0;
 	}
+	//mlx_do_sync(state->env->mlx);
 	return (0);
 }

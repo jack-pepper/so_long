@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 12:10:39 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/10 10:29:39 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/10 22:48:49 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	sl_destroy_imgs(t_state *state)
 	mlx_destroy_image(state->env->mlx, state->enemy->to_down);
 	mlx_destroy_image(state->env->mlx, state->enemy->to_left);
 	mlx_destroy_image(state->env->mlx, state->enemy->to_right);
-//	mlx_destroy_image(state->env->mlx, state->env->canvas->img);
 }
 
 void	sl_free_map(t_state *state)

@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 10:27:53 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/10 10:08:48 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/10 22:47:11 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
  * Upload assets to ice level in the game So Long.
  */
 
-int     upload_assets_ice_lvl(t_state *state)
+int	upload_assets_ice_lvl(t_state *state)
 {
 	int	width;
 	int	height;
@@ -36,9 +36,9 @@ int     upload_assets_ice_lvl(t_state *state)
 			EXIT_PATH_ICE, &width, &height);
 	if (!state->map->exit->img)
 		return (1);
-	if (upload_hero(state) != 0)
+	if (upload_hero_ice_lvl(state) != 0)
 		return (1);
-	if (upload_enemy(state) != 0)
+	if (upload_enemy_ice_lvl(state) != 0)
 		return (1);
 	return (0);
 }

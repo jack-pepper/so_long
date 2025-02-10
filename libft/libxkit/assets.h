@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 00:10:38 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/10 10:24:48 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/10 10:34:43 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 
 // Token (collectible)
 # define COLL_PATH_BASIC "./textures/basic_level/coll.xpm"
-# define COLL_PATH_SAND "./textures/sand_level/sand.xpm"
-# define COLL_PATH_ICE "./textures/ice_level/ice.xpm"
+# define COLL_PATH_SAND "./textures/sand_level/coll.xpm"
+# define COLL_PATH_ICE "./textures/ice_level/coll.xpm"
 # define COLL_WIDTH RES_PIX
 # define COLL_HEIGHT RES_PIX
 

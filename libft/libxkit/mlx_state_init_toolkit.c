@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:03:33 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/10 09:52:59 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/10 22:49:43 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,6 @@ int	set_hooks(t_state *state)
 	env = state->env;
 	mlx_hook(env->win, KeyPress, KeyPressMask, &on_keypress, state);
 	mlx_hook(env->win, DestroyNotify, StructureNotifyMask, &on_destroy, env);
-//	mlx_hook(env->win, ConfigureNotify, StructureNotifyMask, &on_resize, state);
-//      mlx_hook(env->win, 4, 0, mouse_handler, &env); // on mouse down event
-//      mlx_hook(env->win, 2, 1L << 0, key_handler, &env); // on key press
-//      mlx_hook(env->win, 17, 1L << 0, close_window, &env); // red cross
 	return (0);
 }
 

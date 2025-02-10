@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sl_sand_level.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmalie <mmalie@student.42nsand.fr>          +#+  +:+       +#+        */
+/*   By: mmalie <mmalie@student.42nsand.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 10:27:53 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/10 10:25:46 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/10 22:45:08 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
  * Upload assets to sand level in the game So Long.
  */
 
-int     upload_assets_sand_lvl(t_state *state)
+int	upload_assets_sand_lvl(t_state *state)
 {
 	int	width;
 	int	height;
@@ -36,9 +36,9 @@ int     upload_assets_sand_lvl(t_state *state)
 			EXIT_PATH_SAND, &width, &height);
 	if (!state->map->exit->img)
 		return (1);
-	if (upload_hero(state) != 0)
+	if (upload_hero_sand_lvl(state) != 0)
 		return (1);
-	if (upload_enemy(state) != 0)
+	if (upload_enemy_sand_lvl(state) != 0)
 		return (1);
 	return (0);
 }
