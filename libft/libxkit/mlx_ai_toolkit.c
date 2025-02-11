@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 18:42:47 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/10 22:50:26 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/11 08:57:06 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ int	init_enemy(t_state *state)
 	if (!enemy_pos)
 		return (1);
 	state->enemy->pos = enemy_pos;
-	set_enemy_pos(state);
+	//set_enemy_pos(state);
+	state->enemy->pos->x = 10; // DEBUG !!!
+	state->enemy->pos->y = 10; // DEBUG !!!
 	return (0);
 }
 

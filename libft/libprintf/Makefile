@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2025/02/09 17:32:11 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/11 09:12:29 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,8 +65,8 @@ all: $(NAME)
 	@echo "           L        I   B   B   P      R  R    I   N  NN    T    F                  "
 	@echo "           LLLLL   III  BBBBB   P      R   R  III  N   N    T    F                  "
 	@echo "===================================================================================="
-	@echo "                    L I B P R I N T F   C O M P I L E D!   🖨️ ✅                    "
-	@echo "                         Formatted output is available!  ✨                         "
+	@echo "                    L I B P R I N T F   C O M P I L E D! 🖨️  ✅                     "
+	@echo "                         Formatted output is available! ✨                          "
 	@echo "===================================================================================="
 
 ### Compile .c files into .o files

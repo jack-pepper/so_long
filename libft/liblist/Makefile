@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2025/02/09 17:28:18 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/11 09:11:38 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 	@echo
 	@echo "====================================================================================" 
-	@echo "                         📜 📄 📂 Compiling LIBLIST...                              "
+	@echo "                         📜 📋 📂 Compiling LIBLIST...                              "
 	@echo "===================================================================================="
 	@echo "                 L       III  BBBBB   L       III  SSSSS  TTTTT                     "
 	@echo "                 L        I   B   B   L        I   S        T                       "
@@ -67,8 +67,8 @@ all: $(NAME)
 	@echo "                 L        I   B   B   L        I       S    T                       "
 	@echo "                 LLLLL   III  BBBBB   LLLLL   III  SSSSS    T                       "
 	@echo "===================================================================================="
-	@echo "                      L I B L I S T   C O M P I L E D!   ➡️  ✅                      "
-	@echo "                        Linked lists ready for action!  🔗                          "
+	@echo "                      L I B L I S T   C O M P I L E D! ➡️  ✅                        "
+	@echo "                        Linked lists ready for action! 🔗                           "
 	@echo "===================================================================================="
 
 ### Compile .c files into .o files

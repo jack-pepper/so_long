@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2025/02/09 17:24:14 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/11 09:09:58 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,8 +73,8 @@ all: $(NAME)
 	@echo "              L        I   B   B   U   U    T     I   L           S                 "
 	@echo "              LLLLL   III  BBBBB    UUU     T    III  LLLLL   SSSSS                 "
 	@echo "===================================================================================="
-	@echo "                    L I B U T I L S   C O M P I L E D!   🛠️ ✅                      "
-	@echo "                         Utility functions ready!  🚀                               "
+	@echo "                    L I B U T I L S   C O M P I L E D! 🛠️  ✅                       "
+	@echo "                         Utility functions ready! 🚀                                "
 	@echo "===================================================================================="
 
 ### Compile .c files into .o files

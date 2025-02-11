@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2025/02/09 17:22:29 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/11 09:05:49 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ SRC = ${LIBCTYPE}
 all: $(NAME)
 	@echo
 	@echo "====================================================================================" 
-	@echo "                         🔡 🔢 🔣 Compiling LIBCTYPE...                             "
+	@echo "                         🔠 🔢 🔣 Compiling LIBCTYPE...                             "
 	@echo "===================================================================================="
 	@echo "               L       III  BBBBB   CCCC  TTTTT  Y   Y  PPPP   EEEEE                "
 	@echo "               L        I   B   B  C        T     Y Y   P   P  E                    "
@@ -66,7 +66,7 @@ all: $(NAME)
 	@echo "               L        I   B   B  C        T      Y    P      E                    "
 	@echo "               LLLLL   III  BBBBB   CCCC    T      Y    P      EEEEE                "
 	@echo "===================================================================================="
-	@echo "                     L I B C T Y P E   C O M P I L E D! ✍️  ✅                      "
+	@echo "                     L I B C T Y P E   C O M P I L E D! 🆗  ✅                      "
 	@echo "                            Ready to check types! 🔍                                "
 	@echo "===================================================================================="
 

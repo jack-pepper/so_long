@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2025/02/09 17:19:18 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/11 09:09:15 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ all: $(NAME)
 	@echo "            L       I   B   B      S    T    D   D  L       I   B   B               "
 	@echo "            LLLLL  III  BBBBB  SSSSS    T    DDDD   LLLLL  III  BBBBB               "
 	@echo "===================================================================================="
-	@echo "                   L I B S T D L I B   C O M P I L E D!   ♻️  ✅                     "
+	@echo "                   L I B S T D L I B   C O M P I L E D! ♻️  ✅                     "
 	@echo "                          Standard functions ready! ⚙️                               "
 	@echo "===================================================================================="
 

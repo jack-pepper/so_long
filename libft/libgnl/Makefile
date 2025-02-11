@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2025/02/09 17:36:26 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/11 09:13:02 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ all: $(NAME)
 	@echo "                      L        I   B   B  G   G  N  NN  L                           "
 	@echo "                      LLLLL   III  BBBBB   GGG   N   N  LLLLL                       "
 	@echo "===================================================================================="
-	@echo "                        L I B G N L   C O M P I L E D!   📚 ✅                      "
+	@echo "                        L I B G N L   C O M P I L E D! 📚 ✅                        "
 	@echo "                          Ready to read lines efficiently! 📑                       "
 	@echo "===================================================================================="
 

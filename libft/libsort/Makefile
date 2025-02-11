@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2025/02/09 18:30:47 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/11 09:16:48 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ all: $(NAME)
 	@echo "                   L        I   B   B      S  O   O  R  R     T                     "
 	@echo "                   LLLLL   III  BBBBB  SSSSS  OOOOO  R   R    T                     "
 	@echo "===================================================================================="
-	@echo "                        L I B S O R T   C O M P I L E D!   🧩 ✅                    "
+	@echo "                        L I B S O R T   C O M P I L E D! 🪆 ✅                      "
 	@echo "                            Sorting complete! 🎯                                    "	
 	@echo "===================================================================================="
 	@echo	

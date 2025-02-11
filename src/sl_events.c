@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 10:27:53 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 00:17:42 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/11 08:48:44 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,35 +59,24 @@ void	on_exit_tile(t_state *state)
 
 int	change_level(t_state *state)
 {
+	int	goal;
+
+	goal = state->data->to_be_collected;
 	sl_destroy_imgs(state);
-	if (state->data->collected == state->data->to_be_collected / 4)
+	if (state->data->collected == goal / 4)
 	{
 		if (upload_assets_ice_lvl(state) != 0)
 			return (1);
-//		if (upload_hero_ice_lvl(state) != 0)
-//			return (1);
-//		if (upload_enemy_ice_lvl(state) != 0)
-//			return (1);
 	}
-	else if ((state->data->collected)
-		== ((state->data->to_be_collected / 2)))
+	else if (state->data->collected == goal / 2)
 	{
 		if (upload_assets_sand_lvl(state) != 0)
 			return (1);
-//		if (upload_hero_sand_lvl(state) != 0)
-//			return (1);
-//		if (upload_enemy_sand_lvl(state) != 0)
-//			return (1);
 	}
-	else if ((state->data->collected)
-		== ((state->data->to_be_collected / 2) + state->data->to_be_collected / 4))
+	else if (state->data->collected == (goal / 2) + (goal / 4))
 	{
 		if (upload_assets_pacman_lvl(state) != 0)
 			return (1);
-//		if (upload_hero_pacman_lvl(state) != 0)
-//			return (1);
-//		if (upload_enemy_pacman_lvl(state) != 0)
-//			return (1);
 	}
 	return (0);
 }
