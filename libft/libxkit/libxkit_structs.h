@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 09:42:37 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/11 21:06:03 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ typedef struct s_pos
 	int		y;
 }		t_pos;
 
-	// To use mlx images
 typedef struct s_img
 {
 	void	*img;
 	char	*addr;
+	char	*path;
 	int		bpp;
 	int		l_len;
 	int		endian;
@@ -80,6 +80,7 @@ typedef struct s_env
 {
 	t_img		*canvas;
 	t_img		*bkgd_img;
+	char		*bkgd_path;
 	void		*mlx;
 	void		*win;
 	int			canvas_width;
@@ -104,6 +105,7 @@ typedef struct s_tile
 {
 	t_img		*img;
 	t_pos		*pos;
+	char		*path;
 	int			width;
 	int			height;
 }		t_tile;
@@ -151,6 +153,11 @@ typedef struct s_hero
 	t_img		*to_down;
 	t_img		*to_left;
 	t_img		*to_right;
+	char		*img_path;
+	char		*to_up_path;
+	char		*to_down_path;
+	char		*to_left_path;
+	char		*to_right_path;
 	t_pos		*pos;
 	int			frame;
 }		t_hero;
@@ -162,11 +169,11 @@ typedef struct s_state
 	t_map		*map;
 	t_cam		*cam;
 	t_hero		*hero;
-	t_enemy		*enemy;
+	//t_enemy		*enemy;
+	t_enemy		**enemies;
 	int			render_event;
 	int			error_code;
 	int			current_frame;
-	//t_mouse		*mouse;
 }		t_state;
 
 #endif

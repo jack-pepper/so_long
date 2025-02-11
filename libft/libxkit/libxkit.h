@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 09:42:04 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/11 21:29:46 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # define WIN_HEIGHT 780
 # define RES_PIX 64
 # define FRAME_RATE 60
+# define NB_ENEMIES 1
+
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
 # endif
@@ -40,8 +42,6 @@
 # include "./libxkit_structs.h"
 
 	/* mlx_ai_toolkit.c */
-int		init_enemy(t_state *state);
-void	set_enemy_pos(t_state *state);
 //void    ai_move_towards_target(t_hero *hero, t_pos target);
 //int     ai_decision_state(t_hero *hero);
 //void    ai_patrol_area(t_enemy *enemy, t_area *patrol_zone);
@@ -73,6 +73,9 @@ void	center_cam_on_hero(t_cam *cam, t_pos *hero_pos, t_env *env);
 void	update_cam_pos(t_cam *cam, int y_move, int x_move, t_env *env);
 
 	/* mlx_collisions_toolkit.c */
+int		check_collision_tile(t_pos *p1, t_pos *p2);
+int		check_collision_radius(t_pos *p1, t_pos *p2, int rad);
+int		check_collision_mult(t_pos *p1, t_enemy **enemies, int rad);
 
 	/* mlx_color_toolkit.c */
 int		set_color(t_mlx_color *color);
@@ -90,6 +93,15 @@ void	draw_bresenham_line(t_env *env, t_mlx_line *line, t_bres_data *img);
 void	draw_mlx_circle(t_env *env, t_mlx_circle *circle);
 void	draw_mlx_rect(t_env *env, t_mlx_rect *rect);
 void	map_mlx_rect(t_mlx_rect *rect, int sides[4][4]);
+
+	/* mlx_enemy_init_toolkit.c */
+void	set_enemy_pos(t_state *state);
+int		init_enemy(t_state *state, int nb_enemies);
+void	spawn_enemy(t_state *state);
+
+	/* mlx_enemy_render_toolkit.c */
+void	render_enemy(t_state *state);
+void	*move_enemy(t_state *state, t_enemy *enemy, void *enemy_sprite);
 
 	/* mlx_event_on_motion.c */
 void	on_motion_up(t_state *state);
@@ -147,7 +159,7 @@ void	sl_memfree(t_state *state);
 void	sl_destroy_imgs(t_state *state);
 void	sl_free_map(t_state *state);
 void	sl_free_all(char **arr);
-
+void	free_paths(t_state *state);
 	/* mlx_particles_toolkit.c */
 
 	/* mlx_physics_toolkit.c */
@@ -164,9 +176,9 @@ int		set_canvas(t_env *env);
 
 	/* mlx_tileset_toolkit.c */
 int		set_map(t_state *state);
-int		upload_assets(t_state *state);
+int		upload_assets(t_state *state, char *level);
 int		upload_hero(t_state *state);
-int		upload_enemy(t_state *state);
+int		upload_enemy(t_state *state, char *level, int nb_enemies);
 
 	/* mlx_ui_toolkit.c */
 void	display_steps_on_screen(t_state *state);
@@ -182,7 +194,7 @@ void	display_steps_on_screen(t_state *state);
 void	mlx_show(void *xvar, void *win, void *img, t_pos pos);
 void	mlx_draw_to_canvas(t_img *canvas, t_img *sprite, t_pos pos);
 int		ft_err(int return_val, char *error_msg);
-
+char	*join_path(char *level, char *file);
 /* If separated header files are prefered
 
 # include "./mlx_ai_toolkit.h"

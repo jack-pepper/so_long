@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 20:49:05 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/07 11:14:01 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/11 21:29:52 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,13 @@ int	ft_err(int return_val, char *error_msg)
 {
 	perror(error_msg);
 	return (return_val);
+}
+
+char	*join_path(char *level, char *file)
+{
+	char	*fullpath;
+
+	fullpath = ft_strjoin(level, file);
+	ft_printf("path: %s\n", fullpath);
+	return (fullpath);
 }

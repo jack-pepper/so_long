@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 10:27:53 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 09:52:57 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/11 17:28:37 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,14 @@ void	on_exit_tile(t_state *state)
 		ft_printf("Keep searching!\n");
 }
 
+void	on_enemy_tile(t_state *state)
+{
+	display_defeat_screen();
+	sl_memfree(state);
+	ft_printf("[on_enemy_tile] Be more careful next time! ☠️ \n");
+	exit(0);
+}
+
 int	change_level(t_state *state)
 {
 	int	goal;
@@ -66,17 +74,17 @@ int	change_level(t_state *state)
 	sl_destroy_imgs(state);
 	if (state->data->collected == goal / 4)
 	{
-		if (upload_assets_ice_lvl(state) != 0)
+		if (upload_assets(state, PATH_ICE) != 0)
 			return (1);
 	}
 	else if (state->data->collected == goal / 2)
 	{
-		if (upload_assets_sand_lvl(state) != 0)
+		if (upload_assets(state, PATH_SAND) != 0)
 			return (1);
 	}
 	else if (state->data->collected == (goal / 2) + (goal / 4))
 	{
-		if (upload_assets_pacman_lvl(state) != 0)
+		if (upload_assets(state, PATH_PACMAN) != 0)
 			return (1);
 	}
 	return (0);

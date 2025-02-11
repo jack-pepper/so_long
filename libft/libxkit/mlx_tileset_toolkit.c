@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:36:40 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/10 10:19:30 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/11 21:38:50 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	set_map(t_state *state)
 		return (1);
 	if (init_hero(state) != 0)
 		return (1);
-	if (init_enemy(state) != 0)
-		return (1);
+//	if (init_enemy(state, NB_ENEMIES) != 0)
+//		return (1);
 	state->map->width = WIN_WIDTH;
 	state->map->height = WIN_HEIGHT;
 	state->map->wall->width = WALL_WIDTH;
@@ -41,31 +41,50 @@ int	set_map(t_state *state)
 	return (0);
 }
 
-int	upload_assets(t_state *state)
+int	load_paths(t_state *state, char *level)
+{
+	state->env->bkgd_path = join_path(level, BKGD);
+	state->map->wall->path = join_path(level, WALL);
+	state->map->coll->path = join_path(level, COLL);
+	state->map->exit->path = join_path(level, EXIT);
+	if (!state->env->bkgd_path || !state->map->wall->path
+		|| !state->map->coll->path || !state->map->exit->path)
+		return (1);
+	state->hero->img_path = join_path(level, HERO);
+	state->hero->to_up_path = join_path(level, HERO_TO_UP);
+	state->hero->to_down_path = join_path(level, HERO_TO_DOWN);
+	state->hero->to_left_path = join_path(level, HERO_TO_LEFT);
+	state->hero->to_right_path = join_path(level, HERO_TO_RIGHT);
+	if (!state->hero->img_path || !state->hero->to_up_path
+		|| !state->hero->to_down_path || !state->hero->to_left_path
+		|| !state->hero->to_right_path)
+		return (1);
+	return (0);
+}
+
+int	upload_assets(t_state *state, char *level)
 {
 	int	width;
 	int	height;
 
+	if (load_paths(state, level) != 0)
+		return (1);
 	state->env->bkgd_img = mlx_xpm_file_to_image(state->env->mlx,
-			BKGD_PATH_BASIC, &width, &height);
-	if (!state->env->bkgd_img)
-		return (1);
+			state->env->bkgd_path, &width, &height);
 	state->map->wall->img = mlx_xpm_file_to_image(state->env->mlx,
-			WALL_PATH_BASIC, &width, &height);
-	if (!state->map->wall->img)
-		return (1);
+			state->map->wall->path, &width, &height);
 	state->map->coll->img = mlx_xpm_file_to_image(state->env->mlx,
-			COLL_PATH_BASIC, &width, &height);
-	if (!state->map->coll->img)
-		return (1);
+			state->map->coll->path, &width, &height);
 	state->map->exit->img = mlx_xpm_file_to_image(state->env->mlx,
-			EXIT_PATH_BASIC, &width, &height);
-	if (!state->map->exit->img)
+			state->map->exit->path, &width, &height);
+	if (!state->env->bkgd_img || !state->map->wall->img
+		|| !state->map->coll->img || !state->map->exit->img)
 		return (1);
 	if (upload_hero(state) != 0)
 		return (1);
-	if (upload_enemy(state) != 0)
-		return (1);
+	free_paths(state);
+//	if (upload_enemy(state, level, NB_ENEMIES) != 0)
+//		return (1);
 	return (0);
 }
 
@@ -75,52 +94,58 @@ int	upload_hero(t_state *state)
 	int	height;
 
 	state->hero->img = mlx_xpm_file_to_image(state->env->mlx,
-			HERO_PATH_BASIC, &width, &height);
+			state->hero->img_path, &width, &height);
 	if (!state->hero->img)
 		return (1);
 	state->hero->to_up = mlx_xpm_file_to_image(state->env->mlx,
-			HERO_TO_UP_PATH_BASIC, &width, &height);
+			state->hero->to_up_path, &width, &height);
 	if (!state->hero->to_up)
 		return (1);
 	state->hero->to_down = mlx_xpm_file_to_image(state->env->mlx,
-			HERO_TO_DOWN_PATH_BASIC, &width, &height);
+			state->hero->to_down_path, &width, &height);
 	if (!state->hero->to_down)
 		return (1);
 	state->hero->to_left = mlx_xpm_file_to_image(state->env->mlx,
-			HERO_TO_LEFT_PATH_BASIC, &width, &height);
+			state->hero->to_left_path, &width, &height);
 	if (!state->hero->to_left)
 		return (1);
 	state->hero->to_right = mlx_xpm_file_to_image(state->env->mlx,
-			HERO_TO_RIGHT_PATH_BASIC, &width, &height);
+			state->hero->to_right_path, &width, &height);
 	if (!state->hero->to_right)
 		return (1);
 	return (0);
 }
 
-int	upload_enemy(t_state *state)
+int	upload_enemy(t_state *state, char *level, int nb_enemies)
 {
 	int	width;
 	int	height;
+	int	i;
 
-	state->enemy->img = mlx_xpm_file_to_image(state->env->mlx,
-			ENEMY_PATH_BASIC, &width, &height);
-	if (!state->enemy->img)
-		return (1);
-	state->enemy->to_up = mlx_xpm_file_to_image(state->env->mlx,
-			ENEMY_TO_UP_PATH_BASIC, &width, &height);
-	if (!state->enemy->to_up)
-		return (1);
-	state->enemy->to_down = mlx_xpm_file_to_image(state->env->mlx,
-			ENEMY_TO_DOWN_PATH_BASIC, &width, &height);
-	if (!state->enemy->to_down)
-		return (1);
-	state->enemy->to_left = mlx_xpm_file_to_image(state->env->mlx,
-			ENEMY_TO_LEFT_PATH_BASIC, &width, &height);
-	if (!state->enemy->to_left)
-		return (1);
-	state->enemy->to_right = mlx_xpm_file_to_image(state->env->mlx,
-			ENEMY_TO_RIGHT_PATH_BASIC, &width, &height);
-	if (!state->enemy->to_right)
-		return (1);
+	i = 0;
+	while (i < nb_enemies)
+	{
+		//state->enemies[i]->img = mlx_xpm_file_to_image(state->env->mlx,
+		//		join_path(level, ENEMY), &width, &height);
+		//if (!state->enemies[i]->img)
+		//	return (1);
+		state->enemies[i]->to_up = mlx_xpm_file_to_image(state->env->mlx,
+				join_path(level, ENEMY_TO_UP), &width, &height);
+		if (!state->enemies[i]->to_up)
+			return (1);
+		state->enemies[i]->to_down = mlx_xpm_file_to_image(state->env->mlx,
+				join_path(level, ENEMY_TO_DOWN), &width, &height);
+		if (!state->enemies[i]->to_down)
+			return (1);
+		state->enemies[i]->to_left = mlx_xpm_file_to_image(state->env->mlx,
+				join_path(level, ENEMY_TO_LEFT), &width, &height);
+		if (!state->enemies[i]->to_left)
+			return (1);
+		state->enemies[i]->to_right = mlx_xpm_file_to_image(state->env->mlx,
+				join_path(level, ENEMY_TO_RIGHT), &width, &height);
+		if (!state->enemies[i]->to_right)
+			return (1);
+		i++;
+	}
 	return (0);
 }

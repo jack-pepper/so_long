@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:30 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 09:51:39 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/11 17:30:05 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	set_counter_req(t_count_req *counter);
 // Events
 int		on_coll_tile(t_state *state, t_pos *pos);
 void	on_exit_tile(t_state *state);
+void	on_enemy_tile(t_state *state);
 
 // Screens
 void	display_start_screen(void);
@@ -50,6 +51,8 @@ void	display_defeat_screen(void);
 
 // Levels
 int		change_level(t_state *state);
+
+/*
 	// Ice
 int		upload_assets_ice_lvl(t_state *state);
 int		upload_hero_ice_lvl(t_state *state);
@@ -62,5 +65,6 @@ int		upload_enemy_sand_lvl(t_state *state);
 int		upload_assets_pacman_lvl(t_state *state);
 int		upload_hero_pacman_lvl(t_state *state);
 int		upload_enemy_pacman_lvl(t_state *state);
+*/
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:03:33 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 10:21:41 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/11 17:27:13 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	set_state(t_state *state)
 	if (set_map(state) != 0)
 		return (ft_err(1, "Error\nset_map FAIL 💀\n"));
 	ft_printf("🗺️  [5] game map: ✅ LOADED!\n");
-	if (upload_assets(state) != 0)
+	if (upload_assets(state, PATH_BASIC) != 0)
 		return (ft_err(1, "Error\nupload_assets FAIL 💀\n"));
 	ft_printf("📦 [6] sprites: ✅ TEXTURED!\n");
 	if (set_cam(state) != 0)
