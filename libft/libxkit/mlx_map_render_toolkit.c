@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 19:47:31 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/07 15:57:21 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/11 09:38:19 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	rm_put_tiles(t_state *state, int row, int col, int cell_size)
 
 	if (!state->map)
 	{
-		ft_printf("Error: NULL map or tilemap in rm_put_tiles()\n");
+		ft_printf("Error: NULL map or tilemap in rm_put_tiles ❌\n");
 		return ;
 	}
 	p.x = ((col) * cell_size) - state->cam->pos.x;

@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:30 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 00:09:01 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/11 09:51:39 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	on_events(t_state *state);
 void	set_counter_req(t_count_req *counter);
 
 // Events
-void	on_coll_tile(t_state *state, t_pos *pos);
+int		on_coll_tile(t_state *state, t_pos *pos);
 void	on_exit_tile(t_state *state);
 
 // Screens

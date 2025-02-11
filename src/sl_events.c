@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 10:27:53 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 08:48:44 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/11 09:52:57 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@
  * - erase the collectible
  * - update the tile count
  */
-void	on_coll_tile(t_state *state, t_pos *pos)
+int	on_coll_tile(t_state *state, t_pos *pos)
 {
 	int	*score;
 	int	*goal;
 
 	score = &(state->data->collected);
 	goal = &(state->data->to_be_collected);
-	ft_printf("Found collectible!\n");
+	ft_printf("Found collectible! 🪙\n");
 	(*score)++;
 	state->map->tilemap[pos->y][pos->x] = '0';
 	(state->map->tile_count[2])++;
@@ -36,8 +36,9 @@ void	on_coll_tile(t_state *state, t_pos *pos)
 		|| *score == (*goal / 4) + (*goal / 2))
 	{
 		if (change_level(state) != 0)
-			return ; // Need to change coll_tile() to int
+			return (1);
 	}
+	return (0);
 }
 
 /* On exit position:

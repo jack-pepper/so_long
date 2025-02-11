@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 18:37:27 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/07 10:53:38 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/11 09:30:52 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	set_cam(t_state *state)
 {
 	state->cam = malloc(sizeof(t_cam));
 	if (!state->cam)
-		return (ft_err(1, "Error\nmalloc cam fail\n"));
+		return (ft_err(1, "Error\nmalloc cam fail ❌\n"));
 	state->cam->pos.y = 0;
 	state->cam->pos.x = 0;
 	state->cam->max.y = (state->map->tm_rows * RES_PIX) - WIN_HEIGHT;

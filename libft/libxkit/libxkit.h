@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/10 09:22:22 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/11 09:42:04 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define WIN_WIDTH 1620
 # define WIN_HEIGHT 780
 # define RES_PIX 64
+# define FRAME_RATE 60
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
 # endif

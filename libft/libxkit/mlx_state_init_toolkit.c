@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:03:33 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/10 22:49:43 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/11 10:21:41 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ int	init_state(t_state **state)
 {
 	*state = malloc(sizeof(t_state));
 	if (!*state)
-		return (ft_err(1, "Error\n[init_state] malloc state fail\n"));
+		return (ft_err(1, "Error\n[init_state] state fail ❌\n"));
 	ft_memset(*state, 0, sizeof(t_state));
 	(*state)->env = malloc(sizeof(t_env));
 	if ((*state)->env == NULL)
 	{
 		free(*state);
-		return (ft_err(1, "Error\n[init_state] malloc env fail\n"));
+		return (ft_err(1, "Error\n[init_state] env fail ❌\n"));
 	}
 	ft_memset((*state)->env, 0, sizeof(t_env));
 	(*state)->env->canvas = malloc(sizeof(t_img));
@@ -30,7 +30,7 @@ int	init_state(t_state **state)
 	{
 		free((*state)->env);
 		free(*state);
-		return (ft_err(1, "Error\n[init_state] malloc canvas failed\n"));
+		return (ft_err(1, "Error\n[init_state] canvas fail ❌\n"));
 	}
 	ft_memset((*state)->env->canvas, 0, sizeof(t_img));
 	(*state)->env->canvas_width = WIN_WIDTH;
@@ -75,7 +75,7 @@ int	set_window(t_state *state)
 
 	win = mlx_new_window(state->env->mlx, WIN_WIDTH, WIN_HEIGHT, "So Long");
 	if (!win)
-		return (ft_err(1, "Error\nmlx_new_window failed\n"));
+		return (ft_err(1, "Error\nmlx_new_window fail ❌\n"));
 	state->env->win = win;
 	return (0);
 }
@@ -86,7 +86,7 @@ int	set_hooks(t_state *state)
 
 	env = state->env;
 	mlx_hook(env->win, KeyPress, KeyPressMask, &on_keypress, state);
-	mlx_hook(env->win, DestroyNotify, StructureNotifyMask, &on_destroy, env);
+	mlx_hook(env->win, DestroyNotify, StructureNotifyMask, &on_destroy, state);
 	return (0);
 }
 
@@ -97,13 +97,13 @@ int	set_canvas(t_env *env)
 
 	c = env->canvas;
 	if (!c)
-		return (ft_err(1, "Error\ncanvas uninitialized\n"));
+		return (ft_err(1, "Error\ncanvas uninitialized ❌\n"));
 	c->img = mlx_new_image(env->mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (!c->img)
-		return (ft_err(1, "Error\nmlx_new_image failed\n"));
+		return (ft_err(1, "Error\nmlx_new_image fail ❌\n"));
 	c->addr = mlx_get_data_addr(c->img, &c->bpp, &c->l_len, &endian);
 	if (!c->addr)
-		return (ft_err(1, "Error\nmlx_get_data_addr failed\n"));
+		return (ft_err(1, "Error\nmlx_get_data_addr failed ❌\n"));
 	c->width = WIN_WIDTH;
 	c->height = WIN_WIDTH;
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/10 13:22:07 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/11 09:53:21 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	char	fpath[256];
 
 	if (argc != 2)
-		return (ft_err(1, "Error\nWrong number of args (req: 1)\n"));
+		return (ft_err(1, "Error\nWrong number of args! ❌\n"));
 	if (init_state(&state) != 0)
 		return (1);
 	ft_strlcpy(fpath, argv[1], ft_strlen(argv[1]) + 1);
@@ -52,6 +52,7 @@ int	init_data(t_state *state, t_data *data)
 	data->collected = 0;
 	data->nb_steps = 0;
 	state->data = data;
+	state->current_frame = 0;
 	return (0);
 }
 
@@ -114,7 +115,33 @@ void	set_counter_req(t_count_req *counter)
 	return ;
 }
 
+int	render(t_state *state)
+{
+	t_pos	*pos;
+
+	if (state->current_frame == FRAME_RATE)
+	{
+		pos = state->hero->pos;
+		render_background(state);
+		render_map(state);
+		render_hero(state);
+		display_steps_on_screen(state);
+		if (state->map->tilemap[pos->y][pos->x] == 'C')
+		{
+			if (on_coll_tile(state, pos))
+				return (1);
+		}
+		else if (state->map->tilemap[pos->y][pos->x] == 'E')
+			on_exit_tile(state);
+		state->render_event = 0;
+	}
+	else
+		state->current_frame++;
+	return (0);
+}
+
 // Render events: [1] = bkgd - [2] = map - [3] = hero
+/*
 int	render(t_state *state)
 {
 	t_pos	*pos;
@@ -135,11 +162,13 @@ int	render(t_state *state)
 		render_hero(state);
 		display_steps_on_screen(state);
 		if (state->map->tilemap[pos->y][pos->x] == 'C')
-			on_coll_tile(state, pos);
+		{
+			if (on_coll_tile(state, pos))
+				return (1);
+		}
 		else if (state->map->tilemap[pos->y][pos->x] == 'E')
 			on_exit_tile(state);
 		state->render_event = 0;
 	}
-	//mlx_do_sync(state->env->mlx);
 	return (0);
-}
+}*/

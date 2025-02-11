@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/09 23:17:44 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/11 09:42:37 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,7 @@ typedef struct s_state
 	t_enemy		*enemy;
 	int			render_event;
 	int			error_code;
+	int			current_frame;
 	//t_mouse		*mouse;
 }		t_state;
 

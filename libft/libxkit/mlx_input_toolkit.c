@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 23:05:51 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/07 20:35:14 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/11 10:12:25 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	on_keypress(int keysym, t_state *state)
 {
 	if (keysym == XK_Escape)
 	{
+		ft_printf("🐟 [ESC] Leaving already? So long! 👋\n");	
 		sl_memfree(state);
-		ft_printf("[on_keypress] Free all! \n");
 		exit(0);
 	}
 	else if ((keysym == XK_w || keysym == XK_Up)
@@ -64,9 +64,9 @@ void	kp_motion(int keysym, t_state *state)
 }
 
 int	on_destroy(t_state *state)
-{
+{	
+	ft_printf("🧹 [on_destroy] Free all! \n");
 	sl_memfree(state);
-	ft_printf("[on_destroy] So long, and thank you for the fish!\n");
 	exit(0);
 	return (0);
 }
