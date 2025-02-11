@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 18:42:47 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 17:52:37 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/11 22:46:18 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	set_enemy_pos(t_state *state)
 {
-	state->map->tilemap[6][11] = 'M';
+	state->map->tilemap[6][9] = 'M';
 //	state->map->tilemap[8][12] = 'M';
 //	state->map->tilemap[10][4] = 'M';
 //	state->map->tilemap[12][10] = 'M';

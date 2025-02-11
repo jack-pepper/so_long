@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:30 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 17:30:05 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/11 22:03:21 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 
 int		map_parser(t_state *state);
 int		init_state(t_state **state);
-int		init_data(t_state *state, t_data *data);
+int		init_data(t_state *state, t_data *data, int step);
 int		render(t_state *state);
 //void	update_render(t_state *state);
 void	on_events(t_state *state);
@@ -51,20 +51,5 @@ void	display_defeat_screen(void);
 
 // Levels
 int		change_level(t_state *state);
-
-/*
-	// Ice
-int		upload_assets_ice_lvl(t_state *state);
-int		upload_hero_ice_lvl(t_state *state);
-int		upload_enemy_ice_lvl(t_state *state);
-	// Sand
-int		upload_assets_sand_lvl(t_state *state);
-int		upload_hero_sand_lvl(t_state *state);
-int		upload_enemy_sand_lvl(t_state *state);
-	// Pacman
-int		upload_assets_pacman_lvl(t_state *state);
-int		upload_hero_pacman_lvl(t_state *state);
-int		upload_enemy_pacman_lvl(t_state *state);
-*/
 
 #endif

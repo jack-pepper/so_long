@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:36:40 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 21:38:50 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/11 22:35:47 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,20 @@ int	set_map(t_state *state)
 		return (1);
 	if (init_hero(state) != 0)
 		return (1);
-//	if (init_enemy(state, NB_ENEMIES) != 0)
+	if (NB_ENEMIES > 0)
+	{
+		if (init_enemy(state, NB_ENEMIES) != 0)
+			return (1);
+	}
 //		return (1);
-	state->map->width = WIN_WIDTH;
+/*	state->map->width = WIN_WIDTH;
 	state->map->height = WIN_HEIGHT;
 	state->map->wall->width = WALL_WIDTH;
 	state->map->wall->height = WALL_HEIGHT;
 	state->map->coll->width = COLL_WIDTH;
 	state->map->coll->height = COLL_HEIGHT;
 	state->map->exit->width = EXIT_WIDTH;
-	state->map->exit->height = EXIT_HEIGHT;
+	state->map->exit->height = EXIT_HEIGHT; */
 	return (0);
 }
 
@@ -59,6 +63,25 @@ int	load_paths(t_state *state, char *level)
 		|| !state->hero->to_down_path || !state->hero->to_left_path
 		|| !state->hero->to_right_path)
 		return (1);
+	
+	int	i;
+
+	i = 0;
+	if (NB_ENEMIES > 0)
+	{	
+		while (i < NB_ENEMIES)
+		{
+			state->enemies[i]->to_up_path = join_path(level, ENEMY_TO_UP);
+			state->enemies[i]->to_down_path = join_path(level, ENEMY_TO_DOWN);
+			state->enemies[i]->to_left_path = join_path(level, ENEMY_TO_LEFT);
+			state->enemies[i]->to_right_path = join_path(level, ENEMY_TO_RIGHT);
+			if (!state->enemies[i]->to_up_path || !state->enemies[i]->to_down_path
+				|| !state->enemies[i]->to_left_path
+				|| !state->enemies[i]->to_right_path)	
+			return (1);
+			i++;
+		}
+	}
 	return (0);
 }
 
@@ -82,9 +105,12 @@ int	upload_assets(t_state *state, char *level)
 		return (1);
 	if (upload_hero(state) != 0)
 		return (1);
+	if (NB_ENEMIES > 0)
+	{
+		if (upload_enemy(state, NB_ENEMIES) != 0)
+			return (1);
+	}
 	free_paths(state);
-//	if (upload_enemy(state, level, NB_ENEMIES) != 0)
-//		return (1);
 	return (0);
 }
 
@@ -116,7 +142,7 @@ int	upload_hero(t_state *state)
 	return (0);
 }
 
-int	upload_enemy(t_state *state, char *level, int nb_enemies)
+int	upload_enemy(t_state *state, int nb_enemies)
 {
 	int	width;
 	int	height;
@@ -125,24 +151,20 @@ int	upload_enemy(t_state *state, char *level, int nb_enemies)
 	i = 0;
 	while (i < nb_enemies)
 	{
-		//state->enemies[i]->img = mlx_xpm_file_to_image(state->env->mlx,
-		//		join_path(level, ENEMY), &width, &height);
-		//if (!state->enemies[i]->img)
-		//	return (1);
 		state->enemies[i]->to_up = mlx_xpm_file_to_image(state->env->mlx,
-				join_path(level, ENEMY_TO_UP), &width, &height);
+				state->enemies[i]->to_up_path, &width, &height);
 		if (!state->enemies[i]->to_up)
 			return (1);
 		state->enemies[i]->to_down = mlx_xpm_file_to_image(state->env->mlx,
-				join_path(level, ENEMY_TO_DOWN), &width, &height);
+				state->enemies[i]->to_down_path, &width, &height);
 		if (!state->enemies[i]->to_down)
 			return (1);
 		state->enemies[i]->to_left = mlx_xpm_file_to_image(state->env->mlx,
-				join_path(level, ENEMY_TO_LEFT), &width, &height);
+				state->enemies[i]->to_left_path, &width, &height);
 		if (!state->enemies[i]->to_left)
 			return (1);
 		state->enemies[i]->to_right = mlx_xpm_file_to_image(state->env->mlx,
-				join_path(level, ENEMY_TO_RIGHT), &width, &height);
+				state->enemies[i]->to_right_path, &width, &height);
 		if (!state->enemies[i]->to_right)
 			return (1);
 		i++;

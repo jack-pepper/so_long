@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 17:57:34 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/11 23:26:09 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv)
 	if (init_state(&state) != 0)
 		return (1);
 	ft_strlcpy(fpath, argv[1], ft_strlen(argv[1]) + 1);
-	init_data(state, &data);
+	init_data(state, &data, 1);
 	if ((init_map(state, fpath, ".ber") != 0) || (map_parser(state) != 0)
 		|| (map_validator(state) != 0) || (set_state(state) != 0))
 	{
@@ -41,25 +41,33 @@ int	main(int argc, char **argv)
 		sl_memfree(state);
 		return (1);
 	}
-	state->error_code = 5;
 	display_start_screen();
-	state->hero->frame = 0;
-	//state->enemy->frame = 0;
-	//set_enemy_pos(state);
-	//spawn_enemy(state);
-	state->enemies = NULL;// DEBUG
-	state->render_event = 3;
+	init_data(state, state->data, 2);
+	if (NB_ENEMIES > 0)
+		spawn_enemy(state);
+	//state->enemies = NULL;// DEBUG
 	mlx_loop_hook(state->env->mlx, &render, state);
 	mlx_loop(state->env->mlx);
 	return (0);
 }
 
-int	init_data(t_state *state, t_data *data)
+int	init_data(t_state *state, t_data *data, int step)
 {
-	data->collected = 0;
-	data->nb_steps = 0;
-	state->data = data;
-	state->current_frame = 0;
+	if (step == 1)
+	{
+		data->collected = 0;
+		data->nb_steps = 0;
+		state->data = data;
+		state->current_frame = 0;
+	}
+	else if (step == 2)
+	{
+		state->error_code = 5;
+		state->hero->frame = 0;
+		if (NB_ENEMIES > 0)
+			set_enemy_pos(state);
+		state->render_event = 3;
+	}
 	return (0);
 }
 
@@ -132,7 +140,8 @@ int	render(t_state *state)
 		render_background(state);
 		render_map(state);
 		render_hero(state);
-	//	render_enemy(state);
+		if (NB_ENEMIES > 0)
+			render_enemy(state);
 		display_steps_on_screen(state);
 		if (state->map->tilemap[pos->y][pos->x] == 'C')
 		{
@@ -149,36 +158,3 @@ int	render(t_state *state)
 		(state->current_frame)++;
 	return (0);
 }
-
-// Render events: [1] = bkgd - [2] = map - [3] = hero
-/*
-int	render(t_state *state)
-{
-	t_pos	*pos;
-
-	if (state->render_event >= 1)
-	{
-		render_background(state);
-		state->render_event = 2;
-	}
-	if (state->render_event >= 2)
-	{
-		render_map(state);
-		state->render_event = 3;
-	}
-	if (state->render_event >= 3)
-	{
-		pos = state->hero->pos;
-		render_hero(state);
-		display_steps_on_screen(state);
-		if (state->map->tilemap[pos->y][pos->x] == 'C')
-		{
-			if (on_coll_tile(state, pos))
-				return (1);
-		}
-		else if (state->map->tilemap[pos->y][pos->x] == 'E')
-			on_exit_tile(state);
-		state->render_event = 0;
-	}
-	return (0);
-}*/

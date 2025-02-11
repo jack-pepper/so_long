@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 21:06:03 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/11 22:32:03 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,11 +137,15 @@ typedef struct s_count_req
 typedef struct s_enemy
 {
 	t_img		*img;
-	t_img		**frames;	
+//	t_img		**frames;	
 	t_img		*to_up;
 	t_img		*to_down;
 	t_img		*to_left;
 	t_img		*to_right;
+	char		*to_up_path;
+	char		*to_down_path;
+	char		*to_left_path;
+	char		*to_right_path;
 	t_pos		*pos;
 	int			frame;
 }		t_enemy;

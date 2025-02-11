@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 21:29:46 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/11 23:23:45 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define WIN_HEIGHT 780
 # define RES_PIX 64
 # define FRAME_RATE 60
-# define NB_ENEMIES 1
+# define NB_ENEMIES 0
 
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
@@ -178,7 +178,7 @@ int		set_canvas(t_env *env);
 int		set_map(t_state *state);
 int		upload_assets(t_state *state, char *level);
 int		upload_hero(t_state *state);
-int		upload_enemy(t_state *state, char *level, int nb_enemies);
+int		upload_enemy(t_state *state, int nb_enemies);
 
 	/* mlx_ui_toolkit.c */
 void	display_steps_on_screen(t_state *state);
