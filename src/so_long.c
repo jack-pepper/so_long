@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/12 11:11:17 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/12 22:46:12 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,11 +133,7 @@ int	render(t_state *state)
 	if (state->current_frame == FRAME_RATE)
 	{
 		pos = state->hero->pos;
-		render_background(state);
-		render_map(state);
-		render_hero(state);
-		if (NB_ENEMIES > 0)
-			render_enemy(state);
+		update_render(state);
 		display_steps_on_screen(state);
 		if (state->map->tilemap[pos->y][pos->x] == 'C')
 		{
@@ -149,7 +145,8 @@ int	render(t_state *state)
 		else if ((NB_ENEMIES > 0)
 			&& (check_coll_mult(pos, state->enemies, 0)))
 			on_enemy_tile(state);
-		state->render_event = 0; // Comment out?
+		state->render_event = 0;
+		state->current_frame = 0;
 	}
 	else
 		(state->current_frame)++;

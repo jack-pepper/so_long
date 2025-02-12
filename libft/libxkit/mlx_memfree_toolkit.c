@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 12:10:39 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/12 09:27:18 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/12 23:07:01 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@
  */
 void	sl_memfree(t_state *state)
 {
-	int	i;
-
-	i = 0;
 	if (state->error_code > 4)
 	{
 		sl_destroy_imgs(state);
@@ -28,15 +25,7 @@ void	sl_memfree(t_state *state)
 		free(state->hero);
 		free(state->cam);
 		if (NB_ENEMIES > 0)
-		{
-			while (i < NB_ENEMIES)
-			{
-				free(state->enemies[i]->pos);
-				free(state->enemies[i]);
-				i++;
-			}
-			free(state->enemies);
-		}
+			sl_free_enemies(state);
 		mlx_destroy_window(state->env->mlx, state->env->win);
 		mlx_destroy_display(state->env->mlx);
 		free(state->env->mlx);
@@ -49,6 +38,20 @@ void	sl_memfree(t_state *state)
 		free(state->env);
 		free(state);
 	}
+}
+
+void	sl_free_enemies(t_state *state)
+{
+	int	i;
+
+	i = 0;
+	while (i < NB_ENEMIES)
+	{
+		free(state->enemies[i]->pos);
+		free(state->enemies[i]);
+		i++;
+	}
+	free(state->enemies);
 }
 
 void	sl_destroy_imgs(t_state *state)
@@ -111,31 +114,4 @@ void	sl_free_all(char **arr)
 	}
 	free(arr);
 	return ;
-}
-
-void	free_paths(t_state *state)
-{
-	int	i;
-
-	i = 0;
-	free(state->env->bkgd_path);
-	free(state->map->wall->path);
-	free(state->map->coll->path);
-	free(state->map->exit->path);
-	free(state->hero->img_path);
-	free(state->hero->to_up_path);
-	free(state->hero->to_down_path);
-	free(state->hero->to_left_path);
-	free(state->hero->to_right_path);
-	if (NB_ENEMIES > 0)
-	{
-		while (i < NB_ENEMIES)
-		{
-			free(state->enemies[i]->to_up_path);
-			free(state->enemies[i]->to_down_path);
-			free(state->enemies[i]->to_left_path);
-			free(state->enemies[i]->to_right_path);
-			i++;
-		}
-	}
 }

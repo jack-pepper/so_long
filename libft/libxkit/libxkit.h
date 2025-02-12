@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/12 22:00:18 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/12 23:07:58 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ int		on_destroy(t_state *state);
 int		on_resize(int width, int height, t_state *state);
 
 	/* mlx_loop_toolkit.c */
+void	update_render(t_state *state);
 
 	/* mlx_map_init_toolkit.c */
 int		init_map(t_state *state, char *fpath, char *ext);
@@ -164,16 +165,18 @@ void	flood_count_right(char **tab, t_pos size, t_pos begin, int reached[2]);
 
 	/* mlx_memfree_toolkit.c */
 void	sl_memfree(t_state *state);
+void	sl_free_enemies(t_state *state);
 void	sl_destroy_imgs(t_state *state);
 void	sl_free_map(t_state *state);
 void	sl_free_all(char **arr);
-void	free_paths(t_state *state);
+
 	/* mlx_particles_toolkit.c */
 	/* mlx_paths_to_assets_toolkit.c */
 int		load_paths_tiles(t_state *state, char *level);
 int		load_paths_hero(t_state *state, char *level);
 int		load_paths_enemy(t_state *state, char *level);
 int		load_paths(t_state *state, char *level);
+void	free_paths(t_state *state);
 
 	/* mlx_physics_toolkit.c */
 

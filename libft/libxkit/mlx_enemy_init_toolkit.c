@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 18:42:47 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/12 22:11:42 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/12 22:54:20 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,19 +113,14 @@ int	upload_enemy(t_state *state, int nb_enemies)
 	{
 		state->enemies[i]->to_up = mlx_xpm_file_to_image(state->env->mlx,
 				state->enemies[i]->to_up_path, &width, &height);
-		if (!state->enemies[i]->to_up)
-			return (1);
 		state->enemies[i]->to_down = mlx_xpm_file_to_image(state->env->mlx,
 				state->enemies[i]->to_down_path, &width, &height);
-		if (!state->enemies[i]->to_down)
-			return (1);
 		state->enemies[i]->to_left = mlx_xpm_file_to_image(state->env->mlx,
 				state->enemies[i]->to_left_path, &width, &height);
-		if (!state->enemies[i]->to_left)
-			return (1);
 		state->enemies[i]->to_right = mlx_xpm_file_to_image(state->env->mlx,
 				state->enemies[i]->to_right_path, &width, &height);
-		if (!state->enemies[i]->to_right)
+		if (!state->enemies[i]->to_up || !state->enemies[i]->to_down
+			|| !state->enemies[i]->to_left || !state->enemies[i]->to_right)
 			return (1);
 		i++;
 	}

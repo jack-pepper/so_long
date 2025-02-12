@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/12 21:36:17 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/12 22:50:49 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,12 @@ typedef struct s_pos
 	int		x;
 	int		y;
 }		t_pos;
+
+typedef struct s_size
+{
+	int		width;
+	int		height;
+}		t_size;
 
 typedef struct s_img
 {
