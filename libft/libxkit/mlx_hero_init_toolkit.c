@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 08:52:17 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/05 21:23:13 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/12 11:31:45 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,32 @@ void	set_hero_pos(t_state *state)
 		row++;
 	}
 	return ;
+}
+
+int	upload_hero(t_state *state)
+{
+	int	width;
+	int	height;
+
+	state->hero->img = mlx_xpm_file_to_image(state->env->mlx,
+			state->hero->img_path, &width, &height);
+	if (!state->hero->img)
+		return (1);
+	state->hero->to_up = mlx_xpm_file_to_image(state->env->mlx,
+			state->hero->to_up_path, &width, &height);
+	if (!state->hero->to_up)
+		return (1);
+	state->hero->to_down = mlx_xpm_file_to_image(state->env->mlx,
+			state->hero->to_down_path, &width, &height);
+	if (!state->hero->to_down)
+		return (1);
+	state->hero->to_left = mlx_xpm_file_to_image(state->env->mlx,
+			state->hero->to_left_path, &width, &height);
+	if (!state->hero->to_left)
+		return (1);
+	state->hero->to_right = mlx_xpm_file_to_image(state->env->mlx,
+			state->hero->to_right_path, &width, &height);
+	if (!state->hero->to_right)
+		return (1);
+	return (0);
 }

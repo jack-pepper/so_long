@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 21:03:38 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/12 10:06:51 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/12 21:26:09 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,29 +18,24 @@
 
 void	*move_enemy(t_state *state, t_enemy *enemy, void *enemy_sprite)
 {
-	if (enemy->frame == 1)
+	if (state->current_frame == FRAME_RATE)
 	{
-		enemy_sprite = enemy->to_up;
-		enemy->pos->y -= 1;
-		enemy->frame = 2;
-	}
-	else if (state->current_frame == FRAME_RATE && enemy->frame == 2)
-	{
-		enemy_sprite = enemy->to_down;
-		enemy->pos->y += 1;
-		enemy->frame = 1;
-	}
-	else if (state->current_frame == FRAME_RATE && enemy->frame == 3)
-	{
-		enemy_sprite = enemy->to_left;
-		enemy->pos->x -= 1;
-		enemy->frame = 4;
-	}
-	else if (state->current_frame == FRAME_RATE && enemy->frame == 4)
-	{
-		enemy_sprite = enemy->to_right;
-		enemy->pos->x += 1;
-		enemy->frame = 1;
+		if (enemy->direction == 'u')
+		{
+			move_to_up(state, enemy, enemy_sprite);
+		}
+		else if (enemy->direction == 'd')
+		{
+			move_to_down(state, enemy, enemy_sprite);
+		}
+		else if (enemy->direction == 'l')
+		{
+			move_to_left(state, enemy, enemy_sprite);
+		}
+		else if (enemy->direction == 'r')
+		{
+			move_to_right(state, enemy, enemy_sprite);
+		}
 	}
 	return (enemy_sprite);
 }
@@ -54,10 +49,8 @@ void	render_enemy(t_state *state)
 
 	env = state->env;
 	i = 0;
-	while (state->enemies[i] != NULL)
+	while (i < NB_ENEMIES)
 	{
-	//	ft_printf("enemy 0 pos x: %d | pos y: %d | frame: %d\n",
-	//		state->enemies[0]->pos->x, state->enemies[0]->pos->y, state->enemies[0]->frame);
 		enemy_sprite = state->enemies[i]->to_down;
 		if (state->enemies[i]->frame == 0)
 			state->enemies[i]->frame = 1;
@@ -71,9 +64,7 @@ void	render_enemy(t_state *state)
 			enemy_pos.x += (WIN_WIDTH - (state->map->tm_cols * RES_PIX)) / 2;
 		if (state->map->tm_rows * RES_PIX <= WIN_HEIGHT)
 			enemy_pos.y += (WIN_HEIGHT - (state->map->tm_rows * RES_PIX)) / 2;
-		//mlx_show(env->mlx, env->win, enemy_sprite, enemy_pos);
-		mlx_put_image_to_window(env->mlx, env->win,
-                        enemy_sprite, enemy_pos.x, enemy_pos.y);
-		i++;	
+		mlx_show(env->mlx, env->win, enemy_sprite, enemy_pos);
+		i++;
 	}
 }

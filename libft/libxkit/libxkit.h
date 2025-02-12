@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/12 10:08:11 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/12 22:00:18 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define WIN_HEIGHT 780
 # define RES_PIX 64
 # define FRAME_RATE 60
-# define NB_ENEMIES 2
+# define NB_ENEMIES 5
 
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
@@ -75,7 +75,7 @@ void	update_cam_pos(t_cam *cam, int y_move, int x_move, t_env *env);
 	/* mlx_collisions_toolkit.c */
 int		check_collision_tile(t_pos *p1, t_pos *p2);
 int		check_collision_radius(t_pos *p1, t_pos *p2, int rad);
-int		check_collision_mult(t_pos *p1, t_enemy **enemies, int rad);
+int		check_coll_mult(t_pos *p1, t_enemy **enemies, int rad);
 
 	/* mlx_color_toolkit.c */
 int		set_color(t_mlx_color *color);
@@ -98,6 +98,13 @@ void	map_mlx_rect(t_mlx_rect *rect, int sides[4][4]);
 void	set_enemy_pos(t_state *state);
 int		init_enemy(t_state *state, int nb_enemies);
 void	spawn_enemy(t_state *state);
+int		upload_enemy(t_state *state, int nb_enemies);
+
+	/* mlx_enemy_movement_toolkit.c */
+void	*move_to_left(t_state *state, t_enemy *enemy, void *enemy_sprite);
+void	*move_to_right(t_state *state, t_enemy *enemy, void *enemy_sprite);
+void	*move_to_down(t_state *state, t_enemy *enemy, void *enemy_sprite);
+void	*move_to_up(t_state *state, t_enemy *enemy, void *enemy_sprite);
 
 	/* mlx_enemy_render_toolkit.c */
 void	render_enemy(t_state *state);
@@ -112,6 +119,7 @@ void	on_motion_right(t_state *state);
 	/* mlx_hero_init_toolkit.c */
 int		init_hero(t_state *state);
 void	set_hero_pos(t_state *state);
+int		upload_hero(t_state *state);
 
 	/* mlx_hero_render_toolkit.c */
 void	render_hero(t_state *state);
@@ -161,6 +169,11 @@ void	sl_free_map(t_state *state);
 void	sl_free_all(char **arr);
 void	free_paths(t_state *state);
 	/* mlx_particles_toolkit.c */
+	/* mlx_paths_to_assets_toolkit.c */
+int		load_paths_tiles(t_state *state, char *level);
+int		load_paths_hero(t_state *state, char *level);
+int		load_paths_enemy(t_state *state, char *level);
+int		load_paths(t_state *state, char *level);
 
 	/* mlx_physics_toolkit.c */
 
@@ -177,8 +190,6 @@ int		set_canvas(t_env *env);
 	/* mlx_tileset_toolkit.c */
 int		set_map(t_state *state);
 int		upload_assets(t_state *state, char *level);
-int		upload_hero(t_state *state);
-int		upload_enemy(t_state *state, int nb_enemies);
 
 	/* mlx_ui_toolkit.c */
 void	display_steps_on_screen(t_state *state);

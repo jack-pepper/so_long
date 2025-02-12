@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 20:52:59 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 21:35:38 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/12 15:38:13 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ int	check_collision_radius(t_pos *p1, t_pos *p2, int rad)
 	return (0);
 }
 
-int	check_collision_mult(t_pos *p1, t_enemy **enemies, int rad)
+int	check_coll_mult(t_pos *p1, t_enemy **enemies, int rad)
 {
 	int	i;
 
 	i = 0;
-	while (enemies[i] != NULL)
+	while (i < NB_ENEMIES)
 	{
 		if (check_collision_radius(p1, enemies[i]->pos, rad) == 1)
 			return (1);

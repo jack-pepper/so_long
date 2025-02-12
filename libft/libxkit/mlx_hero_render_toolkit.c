@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 21:03:38 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/09 21:02:30 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/12 21:27:04 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ void	render_hero(t_state *state)
 		hero_pos.x += (WIN_WIDTH - (state->map->tm_cols * RES_PIX)) / 2;
 	if (state->map->tm_rows * RES_PIX <= WIN_HEIGHT)
 		hero_pos.y += (WIN_HEIGHT - (state->map->tm_rows * RES_PIX)) / 2;
-	mlx_show(env->mlx, env->win, hero_sprite, hero_pos);
+	mlx_put_image_to_window(env->mlx, env->win,
+		hero_sprite, hero_pos.x, hero_pos.y);
 }

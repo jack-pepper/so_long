@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 18:42:47 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/12 09:45:23 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/12 22:11:42 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,38 @@
 void	set_enemy_pos(t_state *state)
 {
 	if (NB_ENEMIES >= 1)
-		state->map->tilemap[6][9] = 'M';
+		state->map->tilemap[6][13] = 'M';
 	if (NB_ENEMIES >= 2)
-		state->map->tilemap[8][11] = 'M';
+		state->map->tilemap[12][24] = 'M';
 	if (NB_ENEMIES >= 3)
-		state->map->tilemap[10][13] = 'M';
+		state->map->tilemap[9][42] = 'M';
 	if (NB_ENEMIES >= 4)
-		state->map->tilemap[4][5] = 'M';
+		state->map->tilemap[17][42] = 'M';
 	if (NB_ENEMIES == 5)
-		state->map->tilemap[7][3] = 'M';
+		state->map->tilemap[20][20] = 'M';
+}
+
+void	set_enemy_data(t_enemy *enemy)
+{
+	static int	i = 0;
+
+	enemy->frame = 1;
+	if (i % 2 == 0)
+	{
+		if (i % 3 == 0)
+			enemy->direction = 'r';
+		else
+			enemy->direction = 'l';
+	}
+	else
+	{
+		if (i % 3 == 0)
+			enemy->direction = 'd';
+		else
+			enemy->direction = 'u';
+	}
+	enemy->amplitude = 10;
+	i++;
 }
 
 // Enemy hardcoded here to use only allowed functions
@@ -33,7 +56,7 @@ int	init_enemy(t_state *state, int nb_enemies)
 	t_pos	*enemy_pos;
 	int		i;
 
-	state->enemies = malloc(sizeof(t_enemy) * (nb_enemies + 1));
+	state->enemies = malloc(sizeof(t_enemy) * (nb_enemies));
 	if (!state->enemies)
 		return (1);
 	i = 0;
@@ -47,7 +70,7 @@ int	init_enemy(t_state *state, int nb_enemies)
 		if (!enemy_pos)
 			return (1);
 		state->enemies[i]->pos = enemy_pos;
-		state->enemies[i]->frame = 0;
+		set_enemy_data(state->enemies[i]);
 		i++;
 	}
 	return (0);
@@ -77,4 +100,34 @@ void	spawn_enemy(t_state *state)
 		row++;
 	}
 	return ;
+}
+
+int	upload_enemy(t_state *state, int nb_enemies)
+{
+	int	width;
+	int	height;
+	int	i;
+
+	i = 0;
+	while (i < nb_enemies)
+	{
+		state->enemies[i]->to_up = mlx_xpm_file_to_image(state->env->mlx,
+				state->enemies[i]->to_up_path, &width, &height);
+		if (!state->enemies[i]->to_up)
+			return (1);
+		state->enemies[i]->to_down = mlx_xpm_file_to_image(state->env->mlx,
+				state->enemies[i]->to_down_path, &width, &height);
+		if (!state->enemies[i]->to_down)
+			return (1);
+		state->enemies[i]->to_left = mlx_xpm_file_to_image(state->env->mlx,
+				state->enemies[i]->to_left_path, &width, &height);
+		if (!state->enemies[i]->to_left)
+			return (1);
+		state->enemies[i]->to_right = mlx_xpm_file_to_image(state->env->mlx,
+				state->enemies[i]->to_right_path, &width, &height);
+		if (!state->enemies[i]->to_right)
+			return (1);
+		i++;
+	}
+	return (0);
 }

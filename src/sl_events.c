@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 10:27:53 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 17:28:37 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/12 11:10:00 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,21 @@ int	change_level(t_state *state)
 	{
 		if (upload_assets(state, PATH_PACMAN) != 0)
 			return (1);
+	}
+	return (0);
+}
+
+int	ls_bonus_check(char **argv)
+{
+	if ((ft_strncmp(argv[1], "maps/valid_map_so_long_bonus.ber",
+				ft_strlen(argv[1])) != 0)
+		&& (argv[1] && NB_ENEMIES != 0))
+	{
+		return (1);
+	}
+	if (NB_ENEMIES > 5)
+	{
+		return (1);
 	}
 	return (0);
 }

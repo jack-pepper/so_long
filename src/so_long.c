@@ -6,14 +6,11 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/12 10:04:45 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/12 11:11:17 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// TODO: Replace init_ints with a non-variadic version? (norm issue?)
-// Bonus : 	so_long.c: added authorized char M and add 1 to counters 
-//		mlx_map_render_toolkit: added M
-// ADD FREEING EVENT FOR CTRL+C ???
+// TODO: ADD FREEING EVENT FOR CTRL+C ???
 
 #include "../inc/so_long.h"
 /*
@@ -21,20 +18,6 @@
  * At the moment (01/2025) this engine handles 2D collecting top-view games.
  * LIBXKIT, though, can be used for various types of projects.
  */
-
-int	ls_bonus_check(char **argv)
-{
-	if ((ft_strncmp(argv[1], "maps/valid_map_so_long_bonus.ber", ft_strlen(argv[1])) != 0)
-		&& (argv[1] && NB_ENEMIES != 0))
-	{
-		return (1);
-	}
-	if (NB_ENEMIES > 5)
-	{
-		return (1);
-	}
-	return (0);
-}
 
 int	main(int argc, char **argv)
 {
@@ -44,7 +27,6 @@ int	main(int argc, char **argv)
 
 	if (argc != 2 || ls_bonus_check(argv))
 		return (ft_err(1, "Error\n[main] Invalid input! ❌\n"));
-	if (NB_ENEMIES != 0 || NB_ENEMIES > 5)
 	if (init_state(&state) != 0)
 		return (1);
 	ft_strlcpy(fpath, argv[1], ft_strlen(argv[1]) + 1);
@@ -164,9 +146,10 @@ int	render(t_state *state)
 		}
 		else if (state->map->tilemap[pos->y][pos->x] == 'E')
 			on_exit_tile(state);
-//		else if (check_collision_mult(state->hero->pos, state->enemies, 0) == 1)// Added for bonus
-//			on_enemy_tile(state); // Added for bonus
-		state->render_event = 0;
+		else if ((NB_ENEMIES > 0)
+			&& (check_coll_mult(pos, state->enemies, 0)))
+			on_enemy_tile(state);
+		state->render_event = 0; // Comment out?
 	}
 	else
 		(state->current_frame)++;

@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 22:32:03 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/12 21:36:17 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,11 @@ typedef struct s_img
 
 typedef struct s_env
 {
+	void		*mlx;
+	void		*win;
 	t_img		*canvas;
 	t_img		*bkgd_img;
 	char		*bkgd_path;
-	void		*mlx;
-	void		*win;
 	int			canvas_width;
 	int			canvas_height;
 }		t_env;
@@ -137,7 +137,6 @@ typedef struct s_count_req
 typedef struct s_enemy
 {
 	t_img		*img;
-//	t_img		**frames;	
 	t_img		*to_up;
 	t_img		*to_down;
 	t_img		*to_left;
@@ -148,6 +147,9 @@ typedef struct s_enemy
 	char		*to_right_path;
 	t_pos		*pos;
 	int			frame;
+	int			amplitude;
+	char		direction;
+	char		padding[7];
 }		t_enemy;
 
 typedef struct s_hero
@@ -164,6 +166,7 @@ typedef struct s_hero
 	char		*to_right_path;
 	t_pos		*pos;
 	int			frame;
+	char		padding[4];
 }		t_hero;
 
 typedef struct s_state
@@ -173,11 +176,11 @@ typedef struct s_state
 	t_map		*map;
 	t_cam		*cam;
 	t_hero		*hero;
-	//t_enemy		*enemy;
 	t_enemy		**enemies;
 	int			render_event;
 	int			error_code;
 	int			current_frame;
+	char		padding[4];
 }		t_state;
 
 #endif
