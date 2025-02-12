@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 23:26:09 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/12 10:04:45 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,29 @@
  * LIBXKIT, though, can be used for various types of projects.
  */
 
+int	ls_bonus_check(char **argv)
+{
+	if ((ft_strncmp(argv[1], "maps/valid_map_so_long_bonus.ber", ft_strlen(argv[1])) != 0)
+		&& (argv[1] && NB_ENEMIES != 0))
+	{
+		return (1);
+	}
+	if (NB_ENEMIES > 5)
+	{
+		return (1);
+	}
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_state	*state;
 	t_data	data;
 	char	fpath[256];
 
-	if (argc != 2)
-		return (ft_err(1, "Error\n[main] Wrong number of args! ❌\n"));
+	if (argc != 2 || ls_bonus_check(argv))
+		return (ft_err(1, "Error\n[main] Invalid input! ❌\n"));
+	if (NB_ENEMIES != 0 || NB_ENEMIES > 5)
 	if (init_state(&state) != 0)
 		return (1);
 	ft_strlcpy(fpath, argv[1], ft_strlen(argv[1]) + 1);
@@ -45,7 +60,6 @@ int	main(int argc, char **argv)
 	init_data(state, state->data, 2);
 	if (NB_ENEMIES > 0)
 		spawn_enemy(state);
-	//state->enemies = NULL;// DEBUG
 	mlx_loop_hook(state->env->mlx, &render, state);
 	mlx_loop(state->env->mlx);
 	return (0);

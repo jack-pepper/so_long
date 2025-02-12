@@ -96,6 +96,8 @@ To use this project locally:
 - ft_read_line - Reads a line from a file descriptor. Saves some lines.
 - ft_abs_int - Returns the absolute value of a negative int.
 - ft_init_ints - Variadic function. Allows to initialize in one line several variables to the same value (probably 0).
+- ft_init_two_ints - Same as ft_init_ints for two ints (not variadic).
+- ft_init_three_ints - Same as ft_init_ints for three ints (not variadic).
 
 ### LIBLIST (Linked lists handling Functions)
 - [42] ft_lstnew - Creates a new linked list node with a given content.

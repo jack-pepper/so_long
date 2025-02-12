@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 21:03:38 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/12 08:59:33 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/12 10:06:51 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	render_enemy(t_state *state)
 	i = 0;
 	while (state->enemies[i] != NULL)
 	{
-		ft_printf("enemy 0 pos x: %d | pos y: %d | frame: %d\n",
-			state->enemies[0]->pos->x, state->enemies[0]->pos->y, state->enemies[0]->frame);
+	//	ft_printf("enemy 0 pos x: %d | pos y: %d | frame: %d\n",
+	//		state->enemies[0]->pos->x, state->enemies[0]->pos->y, state->enemies[0]->frame);
 		enemy_sprite = state->enemies[i]->to_down;
 		if (state->enemies[i]->frame == 0)
 			state->enemies[i]->frame = 1;

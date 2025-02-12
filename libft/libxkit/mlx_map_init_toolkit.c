@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 13:16:14 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 09:58:20 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/12 10:21:17 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	set_map_data(t_map *map, char *fpath)
 	int		line_len;
 	int		nb_lines;
 
-	ft_init_ints(0, 2, &line_len, &nb_lines);
+	ft_init_two_ints(0, &line_len, &nb_lines);
 	map->fpath = fpath;
 	if (get_map_size(map, &line_len, &nb_lines) != 0)
 		return (1);

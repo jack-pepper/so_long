@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 13:16:14 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 09:37:24 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/12 10:21:42 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	check_count(char **arr, int nb_lines, char *set, t_count_req *c)
 	int	i;
 	int	j;
 
-	ft_init_ints(0, 2, &i, &j);
+	ft_init_two_ints(0, &i, &j);
 	while (i < nb_lines)
 	{
 		count_chars(arr[i], set, c->count);

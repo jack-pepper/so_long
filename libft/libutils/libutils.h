@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:25:28 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/05 11:30:02 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/12 10:18:38 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,7 @@ int		ft_open_file(char *fpath, char *access_mode, char *error_msg);
 int		ft_read_line(int fd, char **line, char *error_msg);
 int		ft_abs_int(int nb);
 void	ft_init_ints(int init_value, int count, ...);
+void	ft_init_two_ints(int init_value, int *int_1, int *int_2);
+void	ft_init_three_ints(int init_value, int *int_1, int *int_2, int *int_3);
 
 #endif
