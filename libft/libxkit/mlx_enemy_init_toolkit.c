@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 18:42:47 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 22:46:18 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/12 09:21:49 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	init_enemy(t_state *state, int nb_enemies)
 		state->enemies[i]->frame = 0;
 		i++;
 	}
-	state->enemies[i] = NULL;
 	return (0);
 }
 
@@ -55,7 +54,7 @@ void	spawn_enemy(t_state *state)
 	int		i;
 
 	i = 0;
-	set_enemy_pos(state);
+//	set_enemy_pos(state);
 	row = 0;
 	while (row < state->map->tm_rows)
 	{

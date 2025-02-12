@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 12:10:39 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 21:25:12 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/12 09:27:18 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
  */
 void	sl_memfree(t_state *state)
 {
-	//int	i;
+	int	i;
 
-	//i = 0;
+	i = 0;
 	if (state->error_code > 4)
 	{
 		sl_destroy_imgs(state);
@@ -27,12 +27,16 @@ void	sl_memfree(t_state *state)
 		free(state->hero->pos);
 		free(state->hero);
 		free(state->cam);
-		//while (state->enemies[i] != NULL)
-		//{
-		//	free(state->enemies[i]->pos);
-		//	free(state->enemies[i]);
-		//	i++;
-		//}
+		if (NB_ENEMIES > 0)
+		{
+			while (i < NB_ENEMIES)
+			{
+				free(state->enemies[i]->pos);
+				free(state->enemies[i]);
+				i++;
+			}
+			free(state->enemies);
+		}
 		mlx_destroy_window(state->env->mlx, state->env->win);
 		mlx_destroy_display(state->env->mlx);
 		free(state->env->mlx);
@@ -49,9 +53,9 @@ void	sl_memfree(t_state *state)
 
 void	sl_destroy_imgs(t_state *state)
 {
-//	int	i;
+	int	i;
 
-//	i = 0;
+	i = 0;
 	mlx_destroy_image(state->env->mlx, state->env->bkgd_img);
 	mlx_destroy_image(state->env->mlx, state->map->wall->img);
 	mlx_destroy_image(state->env->mlx, state->map->coll->img);
@@ -61,15 +65,17 @@ void	sl_destroy_imgs(t_state *state)
 	mlx_destroy_image(state->env->mlx, state->hero->to_down);
 	mlx_destroy_image(state->env->mlx, state->hero->to_left);
 	mlx_destroy_image(state->env->mlx, state->hero->to_right);
-	//while (state->enemies[i] != NULL)
-	//{
-	//	mlx_destroy_image(state->env->mlx, state->enemies[i]->img);
-	//	mlx_destroy_image(state->env->mlx, state->enemies[i]->to_up);
-	//	mlx_destroy_image(state->env->mlx, state->enemies[i]->to_down);
-	//	mlx_destroy_image(state->env->mlx, state->enemies[i]->to_left);
-	//	mlx_destroy_image(state->env->mlx, state->enemies[i]->to_right);
-	//	i++;
-	//}
+	if (NB_ENEMIES > 0)
+	{
+		while (i < NB_ENEMIES)
+		{
+			mlx_destroy_image(state->env->mlx, state->enemies[i]->to_up);
+			mlx_destroy_image(state->env->mlx, state->enemies[i]->to_down);
+			mlx_destroy_image(state->env->mlx, state->enemies[i]->to_left);
+			mlx_destroy_image(state->env->mlx, state->enemies[i]->to_right);
+			i++;
+		}
+	}
 }
 
 void	sl_free_map(t_state *state)
@@ -109,6 +115,9 @@ void	sl_free_all(char **arr)
 
 void	free_paths(t_state *state)
 {
+	int	i;
+
+	i = 0;
 	free(state->env->bkgd_path);
 	free(state->map->wall->path);
 	free(state->map->coll->path);
@@ -118,4 +127,15 @@ void	free_paths(t_state *state)
 	free(state->hero->to_down_path);
 	free(state->hero->to_left_path);
 	free(state->hero->to_right_path);
+	if (NB_ENEMIES > 0)
+	{
+		while (i < NB_ENEMIES)
+		{
+			free(state->enemies[i]->to_up_path);
+			free(state->enemies[i]->to_down_path);
+			free(state->enemies[i]->to_left_path);
+			free(state->enemies[i]->to_right_path);
+			i++;
+		}
+	}
 }

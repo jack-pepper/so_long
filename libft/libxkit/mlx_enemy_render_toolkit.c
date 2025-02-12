@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 21:03:38 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 21:36:31 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/12 08:59:33 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ void	render_enemy(t_state *state)
 	i = 0;
 	while (state->enemies[i] != NULL)
 	{
-		enemy_sprite = state->enemies[i]->img;
+		ft_printf("enemy 0 pos x: %d | pos y: %d | frame: %d\n",
+			state->enemies[0]->pos->x, state->enemies[0]->pos->y, state->enemies[0]->frame);
+		enemy_sprite = state->enemies[i]->to_down;
 		if (state->enemies[i]->frame == 0)
 			state->enemies[i]->frame = 1;
 		if (state->render_event == 3)
@@ -69,6 +71,9 @@ void	render_enemy(t_state *state)
 			enemy_pos.x += (WIN_WIDTH - (state->map->tm_cols * RES_PIX)) / 2;
 		if (state->map->tm_rows * RES_PIX <= WIN_HEIGHT)
 			enemy_pos.y += (WIN_HEIGHT - (state->map->tm_rows * RES_PIX)) / 2;
-		mlx_show(env->mlx, env->win, enemy_sprite, enemy_pos);
+		//mlx_show(env->mlx, env->win, enemy_sprite, enemy_pos);
+		mlx_put_image_to_window(env->mlx, env->win,
+                        enemy_sprite, enemy_pos.x, enemy_pos.y);
+		i++;	
 	}
 }
