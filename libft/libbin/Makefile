@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2025/02/11 09:13:50 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/13 00:40:17 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,7 +90,6 @@ all: $(NAME)
 	@echo "                          L I B B I N   C O M P I L E D! 💡 ✅                      "
 	@echo "                         Bits toggled, shifting complete! 🔄                        "
 	@echo "===================================================================================="
-	@echo
 
 ### Compile .c files into .o files
 %.o: %.c

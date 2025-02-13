@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/12 23:07:58 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/13 02:18:45 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,14 +101,14 @@ void	spawn_enemy(t_state *state);
 int		upload_enemy(t_state *state, int nb_enemies);
 
 	/* mlx_enemy_movement_toolkit.c */
-void	*move_to_left(t_state *state, t_enemy *enemy, void *enemy_sprite);
-void	*move_to_right(t_state *state, t_enemy *enemy, void *enemy_sprite);
-void	*move_to_down(t_state *state, t_enemy *enemy, void *enemy_sprite);
-void	*move_to_up(t_state *state, t_enemy *enemy, void *enemy_sprite);
+void	move_to_left(t_state *state, t_enemy *enemy);
+void	move_to_right(t_state *state, t_enemy *enemy);
+void	move_to_down(t_state *state, t_enemy *enemy);
+void	move_to_up(t_state *state, t_enemy *enemy);
 
 	/* mlx_enemy_render_toolkit.c */
 void	render_enemy(t_state *state);
-void	*move_enemy(t_state *state, t_enemy *enemy, void *enemy_sprite);
+void	move_enemy(t_state *state, t_enemy *enemy);
 
 	/* mlx_event_on_motion.c */
 void	on_motion_up(t_state *state);

@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 21:03:38 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/12 21:21:29 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/13 02:19:56 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
  * Else, reverse direction.
  */
 
-void	*move_to_left(t_state *state, t_enemy *enemy, void *enemy_sprite)
+void	move_to_left(t_state *state, t_enemy *enemy)
 {
 	if (state->map->tilemap[enemy->pos->y][enemy->pos->x - 1] != '1')
 	{
-		enemy_sprite = enemy->to_left;
+		enemy->current_sprite = enemy->to_left;
 		enemy->pos->x -= 1;
 		enemy->frame = 3;
 	}
@@ -28,14 +28,13 @@ void	*move_to_left(t_state *state, t_enemy *enemy, void *enemy_sprite)
 	{
 		enemy->direction = 'r';
 	}
-	return (enemy_sprite);
 }
 
-void	*move_to_right(t_state *state, t_enemy *enemy, void *enemy_sprite)
+void	move_to_right(t_state *state, t_enemy *enemy)
 {
 	if (state->map->tilemap[enemy->pos->y][enemy->pos->x + 1] != '1')
 	{
-		enemy_sprite = enemy->to_right;
+		enemy->current_sprite = enemy->to_right;
 		enemy->pos->x += 1;
 		enemy->frame = 4;
 	}
@@ -43,14 +42,13 @@ void	*move_to_right(t_state *state, t_enemy *enemy, void *enemy_sprite)
 	{
 		enemy->direction = 'l';
 	}
-	return (enemy_sprite);
 }
 
-void	*move_to_up(t_state *state, t_enemy *enemy, void *enemy_sprite)
+void	move_to_up(t_state *state, t_enemy *enemy)
 {
 	if (state->map->tilemap[enemy->pos->y - 1][enemy->pos->x] != '1')
 	{
-		enemy_sprite = enemy->to_up;
+		enemy->current_sprite = enemy->to_up;
 		enemy->pos->y -= 1;
 		enemy->frame = 2;
 	}
@@ -58,14 +56,13 @@ void	*move_to_up(t_state *state, t_enemy *enemy, void *enemy_sprite)
 	{
 		enemy->direction = 'd';
 	}
-	return (enemy_sprite);
 }
 
-void	*move_to_down(t_state *state, t_enemy *enemy, void *enemy_sprite)
+void	move_to_down(t_state *state, t_enemy *enemy)
 {
 	if (state->map->tilemap[enemy->pos->y + 1][enemy->pos->x] != '1')
 	{
-		enemy_sprite = enemy->to_down;
+		enemy->current_sprite = enemy->to_down;
 		enemy->pos->y += 1;
 		enemy->frame = 1;
 	}
@@ -73,5 +70,4 @@ void	*move_to_down(t_state *state, t_enemy *enemy, void *enemy_sprite)
 	{
 		enemy->direction = 'u';
 	}
-	return (enemy_sprite);
 }

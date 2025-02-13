@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 18:42:47 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/12 22:54:20 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/13 02:33:06 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	spawn_enemy(t_state *state)
 			{
 				state->enemies[i]->pos->x = col;
 				state->enemies[i]->pos->y = row;
+				state->enemies[i]->current_sprite = state->enemies[i]->to_down;
 				i++;
 			}
 			col++;
@@ -122,6 +123,7 @@ int	upload_enemy(t_state *state, int nb_enemies)
 		if (!state->enemies[i]->to_up || !state->enemies[i]->to_down
 			|| !state->enemies[i]->to_left || !state->enemies[i]->to_right)
 			return (1);
+		state->enemies[i]->current_sprite = state->enemies[i]->to_down;
 		i++;
 	}
 	return (0);
