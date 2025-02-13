@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/12 22:46:12 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/13 13:39:36 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ int	render(t_state *state)
 	if (state->current_frame == FRAME_RATE)
 	{
 		pos = state->hero->pos;
+		mlx_clear_window(state->env->mlx, state->env->win);
 		update_render(state);
 		display_steps_on_screen(state);
 		if (state->map->tilemap[pos->y][pos->x] == 'C')
