@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 00:10:38 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 21:30:56 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/13 10:25:06 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define PATH_ICE "./textures/ice_level/"
 # define PATH_SAND "./textures/sand_level/"
 # define PATH_PACMAN "./textures/pacman_level/"
+# define PATH_MARIO "./textures/mario_level/"
 
 # define BKGD "background.xpm"
 # define WALL "wall.xpm"

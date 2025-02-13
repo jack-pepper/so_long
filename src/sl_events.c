@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 10:27:53 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/12 11:10:00 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/13 10:45:44 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,25 +68,24 @@ void	on_enemy_tile(t_state *state)
 
 int	change_level(t_state *state)
 {
-	int	goal;
+	int	collected;
+	int	step;
+	int	res;
 
-	goal = state->data->to_be_collected;
+	collected = state->data->collected;
+	step = state->data->to_be_collected / 5;
 	sl_destroy_imgs(state);
-	if (state->data->collected == goal / 4)
-	{
-		if (upload_assets(state, PATH_ICE) != 0)
-			return (1);
-	}
-	else if (state->data->collected == goal / 2)
-	{
-		if (upload_assets(state, PATH_SAND) != 0)
-			return (1);
-	}
-	else if (state->data->collected == (goal / 2) + (goal / 4))
-	{
-		if (upload_assets(state, PATH_PACMAN) != 0)
-			return (1);
-	}
+	res = 0;
+	if (collected >= step * 1 && collected < step * 2)
+		res = upload_assets(state, PATH_ICE);
+	else if (collected >= step * 2 && collected < step * 3)
+		res = upload_assets(state, PATH_SAND);
+	else if (collected >= step * 3 && collected < step * 4)
+		res = upload_assets(state, PATH_PACMAN);
+	else if (collected >= step * 4 && collected < step * 5)
+		res = upload_assets(state, PATH_MARIO);
+	if (res == 0)
+		return (1);
 	return (0);
 }
 
