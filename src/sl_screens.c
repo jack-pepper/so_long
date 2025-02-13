@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 10:02:51 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 21:47:30 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/14 00:01:59 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 void	display_start_screen(void)
 {
-	ft_printf("\033[1;32m");
+	ft_printf("\033[1;92m");
 	ft_printf("         ___     ___     _       ___    _  _    ___     \n");
 	ft_printf("  o O O / __|   / _ \\   | |     / _ \\  | \\| |  / __| \n");
 	ft_printf(" o      \\_  \\  | (_) |  | |__  | (_) | | .` | | (_ |  \n");
@@ -40,35 +40,43 @@ void	display_start_screen(void)
 	ft_printf("\033[1;32m👾 Developed by: mmalie 42\033[0m\n");
 }
 
+void	display_rainbow_congratulations(void)
+{
+	ft_printf("        ✨🏆 \033[1;92mC\033[1;94mO\033[1;95mN\033[1;96mG");
+	ft_printf("\033[1;91mR\033[1;93mA\033[1;92mT\033[1;94mU\033[1;95mL");
+	ft_printf("\033[1;96mA\033[1;91mT\033[1;93mI\033[1;92mO\033[1;94mN");
+	ft_printf("\033[1;95mS\033[1;96m! \033[1;91m🏆\033[1;93m✨\n\033[0m");
+}
+
 void	display_victory_screen(void)
 {
-	ft_printf("\033[1;34m");
+	ft_printf("\033[1;93m");
 	ft_printf("\n");
-	ft_printf("  🎉  🚂 CHAMPION EXPRESS ARRIVES! 🚂  🎉  \n");
+	ft_printf("    🎉  🚂 CHAMPION EXPRESS ARRIVES! 🚂  🎉  \n");
 	ft_printf("\n");
-	ft_printf("           __   __   ___    _   _       \n");
-	ft_printf("   o O O   \\ \\ / /  / _ \\  | | | |   \n");
-	ft_printf("  o         \\ V /  | (_) | | |_| |     \n");
-	ft_printf(" TS__[O]     |_|    \\___/   \\___/     \n");
-	ft_printf("{======|___|'''''|_|'''''|_|'''''|=|    \n");
-	ft_printf("./o--000' \"`-0-0-'\"`-0-0-'\"`-0-0-'   \n");
-	ft_printf("         __      __  ___    _  _        \n");
-	ft_printf("   o O O \\ \\    / / |_ _|  | \\| |    \n");
-	ft_printf("  o       \\ \\/\\/ /   | |   |    |    \n");
-	ft_printf(" TS__[O]   \\_/\\_/   |___|  |_|\\_|    \n");
-	ft_printf("{======|___|'''''|_|'''''|_|''''|=|     \n");
-	ft_printf("./o--000'   -0-0-   -0-0-   -0-0-'    \n");
+	ft_printf("                 __   __   ___    _   _       \n");
+	ft_printf("         o O O   \\ \\ / /  / _ \\  | | | |   \n");
+	ft_printf("        o         \\ V /  | (_) | | |_| |     \n");
+	ft_printf("       TS__[O]     |_|    \\___/   \\___/     \n");
+	ft_printf("      {======|___|'''''|_|'''''|_|'''''|=|    \n");
+	ft_printf("      ./o--000' \"`-0-0-'\"`-0-0-'\"`-0-0-'   \n");
+	ft_printf("               __      __  ___    _  _        \n");
+	ft_printf("         o O O \\ \\    / / |_ _|  | \\| |    \n");
+	ft_printf("        o       \\ \\/\\/ /   | |   |    |    \n");
+	ft_printf("       TS__[O]   \\_/\\_/   |___|  |_|\\_|    \n");
+	ft_printf("      {======|___|'''''|_|'''''|_|''''|=|     \n");
+	ft_printf("      ./o--000'   -0-0-   -0-0-   -0-0-'    \n");
 	ft_printf("\n");
-	ft_printf("✨🏆 CONGRATULATIONS! 🏆✨\n");
+	display_rainbow_congratulations();
 	ft_printf("\n");
-	ft_printf("\033[1;32m🎉 YOU HAVE CONQUERED PIXEL LAND! 🎉\033[0m\n");
+	ft_printf("  \033[1;32m🎉 YOU HAVE CONQUERED PIXEL LAND! 🎉\033[0m\n");
 	ft_printf("\n");
 	ft_printf("\033[0m");
 }
 
 void	display_defeat_screen(void)
 {
-	ft_printf("\033[1;31m");
+	ft_printf("\033[1;91m");
 	ft_printf("             ___   ___   __  __   ___   \n");
 	ft_printf("   o O O    / __| /   \\ |  \\/  | | __|  \n");
 	ft_printf("  o        | (_ | | - | | |\\/| | | _|   \n");

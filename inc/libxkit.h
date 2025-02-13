@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libxkit_mandatory.h                                :+:      :+:    :+:   */
+/*   libxkit.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/13 18:52:31 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/13 23:35:31 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,12 @@
 # define WIN_HEIGHT 780
 # define RES_PIX 64
 # define FRAME_RATE 60
+
+// Up to 5 enemies
 # define NB_ENEMIES 0
+
+// Enemy collision radius
+# define DIFFICULTY 0
 
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846

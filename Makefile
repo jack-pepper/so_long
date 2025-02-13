@@ -6,9 +6,12 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2025/02/13 20:43:53 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/14 00:15:37 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+MAKEFLAGS += -s
+MAKEFLAGS += --no-print-directory
 
 ###################################################
 ### Name of the file obtained after compilation ###

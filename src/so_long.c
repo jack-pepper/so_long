@@ -6,16 +6,14 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/13 20:41:43 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/13 23:33:45 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// TODO: ADD FREEING EVENT FOR CTRL+C ???
 
 #include "../inc/so_long.h"
 /*
  * So_long uses my library LIBXKIT, based on the graphics library MiniLibX.
- * At the moment (01/2025) this engine handles 2D collecting top-view games.
+ * This small game engine handles 2D collecting top-view games.
  * LIBXKIT, though, can be used for various types of projects.
  */
 
@@ -145,7 +143,7 @@ int	render(t_state *state)
 		else if (state->map->tilemap[pos->y][pos->x] == 'E')
 			on_exit_tile(state);
 		else if ((NB_ENEMIES > 0)
-			&& (check_coll_mult(pos, state->enemies, 0)))
+			&& (check_coll_mult(pos, state->enemies, DIFFICULTY)))
 			on_enemy_tile(state);
 		state->render_event = 0;
 		state->current_frame = 0;
