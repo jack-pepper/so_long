@@ -58,8 +58,3 @@ int	check_coll_mult(t_pos *p1, t_enemy **enemies, int rad)
 	}
 	return (0);
 }
-
-/*
-int	check_collision_rect();
-int	check_collision_circ();
-*/

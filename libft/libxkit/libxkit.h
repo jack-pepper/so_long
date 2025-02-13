@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/13 13:15:48 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/13 14:15:20 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,30 +41,8 @@
 # include "../libft.h"
 # include "./libxkit_structs.h"
 
-	/* mlx_ai_toolkit.c */
-//void    ai_move_towards_target(t_hero *hero, t_pos target);
-//int     ai_decision_state(t_hero *hero);
-//void    ai_patrol_area(t_enemy *enemy, t_area *patrol_zone);
-//void    ai_follow_hero(t_enemy *enemy, t_hero *hero);
-
-	/* mlx_anim_toolkit.c */
-//void animate_sprite(t_sprite *sprite, int frame);
-//void start_animation(t_sprite *sprite, int start_frame, int end_frame, //
-//float speed);
-//void update_sprite_frame(t_sprite *sprite, float delta_time);
-//void reset_animation(t_sprite *sprite);
-
-	/* mlx_audio_toolkit.c */
-//void    play_sound(const char *sound_file);
-//void    stop_sound(void);
-//void    set_audio_volume(float volume);
-//void    pause_audio(void);
-//void    resume_audio(void);
-
 	/* mlx_background_render_toolkit.c */
 void	render_background(t_state *state);
-//void  set_parallax_background(t_img *background, float speed);
-//void  move_background(t_img *background, int delta_x, int delta_y);
 
 	/* mlx_camera_toolkit.c */
 int		set_cam(t_state *state);
@@ -81,11 +59,6 @@ int		check_coll_mult(t_pos *p1, t_enemy **enemies, int rad);
 int		set_color(t_mlx_color *color);
 int		get_color(t_mlx_color *color, char param);
 int		rev_color(t_mlx_color *color);
-// int  get_gradient_color(t_mlx_color *start, t_mlx color *end, float t);
-// int  blend_colors(t_mlx_color *color_1, t_mlx_color *color_2);
-	/* mlx_debug_toolkit.c */
-//void  draw_hitbox(t_env *env, t_pos pos, int width, int height, int color);
-//void  draw_fps(t_env *env, int fps, t_pos pos, int color);
 
 	/* mlx_draw_toolkit.c */
 void	draw_mlx_line(t_env *env, t_mlx_line *line);
@@ -95,10 +68,11 @@ void	draw_mlx_rect(t_env *env, t_mlx_rect *rect);
 void	map_mlx_rect(t_mlx_rect *rect, int sides[4][4]);
 
 	/* mlx_enemy_init_toolkit.c */
-void	set_enemy_pos(t_state *state);
 int		init_enemy(t_state *state, int nb_enemies);
-void	spawn_enemy(t_state *state);
 int		upload_enemy(t_state *state, int nb_enemies);
+void	set_enemy_data(t_enemy *enemy);
+void	set_enemy_pos(t_state *state);
+void	spawn_enemy(t_state *state);
 
 	/* mlx_enemy_movement_toolkit.c */
 void	move_to_left(t_state *state, t_enemy *enemy);
@@ -128,7 +102,6 @@ void	render_hero(t_state *state);
 int		on_keypress(int keysym, t_state *state);
 void	kp_motion(int keysym, t_state *state);
 int		on_destroy(t_state *state);
-int		on_resize(int width, int height, t_state *state);
 
 	/* mlx_loop_toolkit.c */
 void	update_render(t_state *state);
@@ -170,15 +143,12 @@ void	sl_destroy_imgs(t_state *state);
 void	sl_free_map(t_state *state);
 void	sl_free_all(char **arr);
 
-	/* mlx_particles_toolkit.c */
 	/* mlx_paths_to_assets_toolkit.c */
 int		load_paths_tiles(t_state *state, char *level);
 int		load_paths_hero(t_state *state, char *level);
 int		load_paths_enemy(t_state *state, char *level);
 int		load_paths(t_state *state, char *level);
 void	free_paths(t_state *state);
-
-	/* mlx_physics_toolkit.c */
 
 	/* mlx_pixel_toolkit.c */
 void	mlx_fast_pixel_put(t_img *img, int x, int y, int color);
@@ -196,48 +166,10 @@ int		upload_assets(t_state *state, char *level);
 
 	/* mlx_ui_toolkit.c */
 void	display_steps_on_screen(t_state *state);
-//void  draw_health_bar(t_env *env, t_pos pos, int width, int height,// 
-//float percent);
-//void  draw_score(t_env *env, t_pos pos, int score, int color);
-//void  draw_button(t_env *env, t_pos pos, int width, int height, char *text,//
-// int color);
-//int   is_button_clicked(int button_x, int button_y, int width, 
-//int height, int mouse_x, int mouse_y);
 
 	/* mlx_utils_toolkit.c */
 void	mlx_show(void *xvar, void *win, void *img, t_pos pos);
-void	mlx_draw_to_canvas(t_img *canvas, t_img *sprite, t_pos pos);
 int		ft_err(int return_val, char *error_msg);
 char	*join_path(char *level, char *file);
-/* If separated header files are prefered
-
-# include "./mlx_ai_toolkit.h"
-# include "./mlx_anim_toolkit.h"
-# include "./mlx_audio_toolkit.h"
-# include "./mlx_background_render_toolkit.h"
-# include "./mlx_camera_toolkit.h"
-# include "./mlx_collisions_toolkit.h"
-# include "./mlx_color_toolkit.h"
-# include "./mlx_debug_toolkit.h"
-# include "./mlx_draw_toolkit.h"
-# include "./mlx_event_on_motion.h"
-# include "./mlx_hero_init_toolkit.h"
-# include "./mlx_hero_render_toolkit.h"
-# include "./mlx_input_toolkit.h"
-# include "./mlx_loop_toolkit.h"
-# include "./mlx_map_init_toolkit.h"
-# include "./mlx_map_parser_toolkit.h"
-# include "./mlx_map_render_toolkit.h"
-# include "./mlx_map_validator_toolkit.h"
-# include "./mlx_map_validator_flood_count.h"
-# include "./mlx_memfree_toolkit.h"
-# include "./mlx_particles_toolkit.h"
-# include "./mlx_physics_toolkit.h"
-# include "./mlx_pixel_toolkit.h"
-# include "./mlx_state_init_toolkit.h"
-# include "./mlx_tileset_toolkit.h"
-# include "./mlx_ui_toolkit.h"
-# include "./mlx_utils_toolkit.h"
-*/
 
 #endif

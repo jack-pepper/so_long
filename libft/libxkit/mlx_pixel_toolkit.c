@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/07 10:39:43 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/13 14:08:46 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	mlx_fast_pixel_put(t_img *img, int x, int y, int color)
 	}
 }
 
+/* For testing purposes */
 /*
         // Draw a pixel
         //mlx_pixel_put(env.mlx, env.win, WIN_X/2, WIN_Y/2, 0xFFFFFF);

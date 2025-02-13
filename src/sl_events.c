@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 10:27:53 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/13 12:59:58 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/13 14:29:50 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	on_coll_tile(t_state *state, t_pos *pos)
 
 	score = &state->data->collected;
 	step = state->data->to_be_collected / 5;
-	ft_printf("Found collectible! 🪙\n");
+	ft_printf("🪙 Found collectible!\n");
 	(*score)++;
 	state->map->tilemap[pos->y][pos->x] = '0';
 	(state->map->tile_count[2])++;

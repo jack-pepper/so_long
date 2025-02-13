@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:40:51 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/09 16:46:50 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/13 14:04:42 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,44 +93,6 @@ int	map_validator(t_state *state)
 	sl_free_all(map_copy);
 	return (1);
 }
-
-/*void	flood_count(char **tab, t_pos size, t_pos begin, int reached[2])
-{
-	t_pos	p;
-
-	if (begin.y > 0 && tab[begin.y - 1][begin.x] != '1')
-	{
-		p.y = begin.y - 1;
-		p.x = begin.x;
-		update_flood_count(tab[p.y][p.x], reached);
-		tab[p.y][p.x] = '1';
-		flood_count(tab, size, p, reached);
-	}
-	if (begin.y < (size.y - 1) && tab[begin.y + 1][begin.x] != '1')
-	{
-		p.y = begin.y + 1;
-		p.x = begin.x;
-		update_flood_count(tab[p.y][p.x], reached);
-		tab[p.y][p.x] = '1';
-		flood_count(tab, size, p, reached);
-	}
-	if (begin.x > 0 && tab[begin.y][begin.x - 1] != '1')
-	{
-		p.y = begin.y;
-		p.x = begin.x - 1;
-		update_flood_count(tab[p.y][p.x], reached);
-		tab[p.y][p.x] = '1';
-		flood_count(tab, size, p, reached);
-	}
-	if (begin.x < (size.x - 1) && tab[begin.y][begin.x + 1] != '1')
-	{
-		p.y = begin.y;
-		p.x = begin.x + 1;
-		update_flood_count(tab[p.y][p.x], reached);
-		tab[p.y][p.x] = '1';
-		flood_count(tab, size, p, reached);
-	}
-}*/
 
 void	update_flood_count(char tile, int reached[2])
 {

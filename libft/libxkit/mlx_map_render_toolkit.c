@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 19:47:31 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 12:09:26 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/13 14:03:15 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,3 @@ void	rm_put_tiles(t_state *state, int row, int col, int cell_size)
 		mlx_put_image_to_window(state->env->mlx, state->env->win,
 			state->map->exit->img, p.x, p.y);
 }
-
-//void    scroll_map(t_pos *cam_pos, t_pos *hero_pos, int win_width, 
-	//int win_height)

@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 13:16:14 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/12 10:21:17 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/13 14:01:39 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,35 +123,6 @@ int	get_map_size(t_map *map, int *line_len, int *nb_lines)
 		return (ft_err(1, "Error\nmap not rectangular\n"));
 	return (0);
 }
-
-// Kept for future improving
-/*int	get_map_size(t_map *map, int *line_len, int *nb_lines)
-{
-	char	*line;
-	char	*fpath;
-	int		file;
-
-	line = NULL;
-	fpath = map->fpath;
-	file = ft_open_file(fpath, "O_RDONLY", "Error\nError opening file\n");
-	if (file == -1)
-		return (1);
-	while (ft_read_line(file, &line, "no") != 1)
-	{
-		if (*nb_lines == 0)
-			*line_len = ft_strlen(line);
-		if (ft_strlen(line) != (size_t)(*line_len))
-		{
-			free(line);
-			close(file);
-			return (ft_err(1, "Error\nmap not rectangular\n"));
-		}
-		(*nb_lines)++;
-		free(line);
-	}
-	close(file);
-	return (0);
-}*/
 
 // Copy .ber file to tilemap array.
 int	fconv_arr_chr(char **arr, char *fpath, int nb_lines)

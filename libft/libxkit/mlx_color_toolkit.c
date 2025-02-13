@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:05:10 by mmalie            #+#    #+#             */
-/*   Updated: 2025/01/13 12:09:37 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/13 13:53:51 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,3 @@ int	rev_color(t_mlx_color *color)
 	color->b = ~(color->b);
 	return (color->t << 24 | color->r << 16 | color->g << 8 | color->b);
 }
-
-/*
-int	add_shade(t_mlx_color *color, double dist)
-{
-	// 0 = no shading added ; 1 = completely dark
-	// 0.5 = halfway dim ; 0.25: quarter dim
-}
-*/
-
-// int  get_gradient_color(t_mlx_color *start, t_mlx color *end, float t);
-// int  blend_colors(t_mlx_color *color_1, t_mlx_color *color_2);

@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/05 10:55:56 by mmalie            #+#    #+#              #
-#    Updated: 2025/02/12 21:55:22 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/13 14:19:10 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,6 @@ ARFLAGS=-rcs
 ### MiniLibX repository ###
 ###########################
 
-### MLX_REPO = https://github.com/42Paris/minilibx-linux.git
 MLX_DIR = ./.minilibx
 MLX_LIB = $(MLX_DIR)/libmlx.a
 
@@ -41,33 +40,6 @@ MLX_LIB = $(MLX_DIR)/libmlx.a
 DEPS_LIBFT = ../libft.h \
 DEPS =	./libxkit.h \
 	./libxkit_structs.h \
-#	./mlx_ai_toolkit.h \
-#	./mlx_anim_toolkit.h \
-#	./mlx_audio_toolkit.h \
-#	./mlx_background_render_toolkit.h \
-#	./mlx_camera_toolkit.h \
-#	./mlx_collisions_toolkit.h \
-#	./mlx_color_toolkit.h \
-#	./mlx_debug_toolkit.h \
-#	./mlx_draw_toolkit.h \
-#	./mlx_event_on_motion.h \
-#	./mlx_hero_init.toolkit.h \
-#	./mlx_hero_render_toolkit.h \
-#	./mlx_input_toolkit.h \
-#	./mlx_loop_toolkit.h \
-#	./mlx_map_init_toolkit.h \
-#	./mlx_map_render_toolkit.h \
-#	./mlx_map_parser_toolkit.h \
-#	./mlx_map_validator_toolkit.h \
-#	./mlx_map_validator_flood_count.h \
-#	./mlx_memfree_toolkit.h \
-#	./mlx_particles_toolkit.h \
-#	./mlx_physics_toolkit.h \
-#	./mlx_pixel_toolkit.h \
-#	./mlx_state_init_toolkit.h \
-#	./mlx_tileset_toolkit.h \
-#	./mlx_ui_toolkit.h \
-#	./mlx_utils_toolkit.h \
 
 INCLUDES = -I $(MLX_DIR) -I ./includes
 
@@ -75,14 +47,10 @@ INCLUDES = -I $(MLX_DIR) -I ./includes
 ### Source files ###
 ####################
 
-LIBXKIT = ./mlx_ai_toolkit.c \
-	./mlx_anim_toolkit.c \
-	./mlx_audio_toolkit.c \
-	./mlx_background_render_toolkit.c \
+LIBXKIT = ./mlx_background_render_toolkit.c \
 	./mlx_camera_toolkit.c \
 	./mlx_collisions_toolkit.c \
 	./mlx_color_toolkit.c \
-	./mlx_debug_toolkit.c \
 	./mlx_draw_toolkit.c \
 	./mlx_enemy_init_toolkit.c \
 	./mlx_enemy_movement_toolkit.c \
@@ -98,9 +66,7 @@ LIBXKIT = ./mlx_ai_toolkit.c \
 	./mlx_map_validator_toolkit.c \
 	./mlx_map_validator_flood_count.c \
 	./mlx_memfree_toolkit.c \
-	./mlx_particles_toolkit.c \
 	./mlx_paths_to_assets_toolkit.c \
-	./mlx_physics_toolkit.c \
 	./mlx_pixel_toolkit.c \
 	./mlx_state_init_toolkit.c \
 	./mlx_tileset_toolkit.c \
@@ -138,10 +104,6 @@ all: $(NAME)
 ### Download and build MiniLibX if not already present
 $(MLX_LIB):
 	make -C $(MLX_DIR)
-###	if [ ! -d "$(MLX_DIR)" ]; then \
-###		git clone $(MLX_REPO) $(MLX_DIR); \
-###	fi
-###	make -C $(MLX_DIR)
 
 ###############################
 ### Create a static library ###
@@ -157,7 +119,6 @@ $(NAME): $(MLX_LIB) $(OBJ)
 
 clean:
 	rm -f $(OBJ)
-#	if [ -d "$(MLX_DIR)" ]; then rm -rf $(MLX_DIR); fi
 
 fclean: clean
 	rm -f $(NAME)

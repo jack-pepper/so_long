@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 21:03:38 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/13 02:38:14 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/13 13:58:04 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,6 @@
 /* If the map is smaller than the window, it will be centered.
  * The enemy position is set accordingly.
  */
-
-void	move_enemy(t_state *state, t_enemy *enemy)
-{
-	if (state->current_frame == FRAME_RATE)
-	{
-		if (enemy->direction == 'u')
-		{
-			move_to_up(state, enemy);
-		}
-		else if (enemy->direction == 'd')
-		{
-			move_to_down(state, enemy);
-		}
-		else if (enemy->direction == 'l')
-		{
-			move_to_left(state, enemy);
-		}
-		else if (enemy->direction == 'r')
-		{
-			move_to_right(state, enemy);
-		}
-	}
-}
 
 void	render_enemy(t_state *state)
 {
@@ -64,5 +41,28 @@ void	render_enemy(t_state *state)
 		mlx_put_image_to_window(env->mlx, env->win,
 			state->enemies[i]->current_sprite, enemy_pos.x, enemy_pos.y);
 		i++;
+	}
+}
+
+void	move_enemy(t_state *state, t_enemy *enemy)
+{
+	if (state->current_frame == FRAME_RATE)
+	{
+		if (enemy->direction == 'u')
+		{
+			move_to_up(state, enemy);
+		}
+		else if (enemy->direction == 'd')
+		{
+			move_to_down(state, enemy);
+		}
+		else if (enemy->direction == 'l')
+		{
+			move_to_left(state, enemy);
+		}
+		else if (enemy->direction == 'r')
+		{
+			move_to_right(state, enemy);
+		}
 	}
 }

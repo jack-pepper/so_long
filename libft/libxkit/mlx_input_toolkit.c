@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 23:05:51 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 21:23:18 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/13 14:00:23 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,3 @@ int	on_destroy(t_state *state)
 	exit(0);
 	return (0);
 }
-
-//int	on_keyrelease(int keysym, t_state *state)
-//int	on_mouseclick(int button, t_pos pos, t_state *state)
-//int	on_mousemove(t_pos pos, t_state *state)
-
-// Input mapping (create customizable key bindings)
-//void    map_key_to_action(int key, void (*action)(t_state * state));
