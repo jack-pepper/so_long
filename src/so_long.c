@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/13 13:39:36 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/13 20:41:43 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int	map_parser(t_state *state)
  * - if expected a minimal value: a negative int (-1 = at least 1)
  * - 0 is considered positive (0 = not even one).
  * The counter array should be initialised to 0 beforehand.
+ * The number of empty will be stored, but not taken into account.
  */
 void	set_counter_req(t_count_req *counter)
 {
@@ -109,7 +110,7 @@ void	set_counter_req(t_count_req *counter)
 	int	req_count[6];
 	int	i;
 
-	req_count[0] = -1;
+	req_count[0] = -0;
 	req_count[1] = -1;
 	req_count[2] = -1;
 	req_count[3] = 1;

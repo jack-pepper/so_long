@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2025/02/13 16:37:46 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/13 20:43:53 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,14 +50,13 @@ OBJ = $(SRC:.c=.o)
 ### Default rules (compile the executable) ###
 ##############################################
 
-all: $(LIBFT) $(NAME)
+all: check_clean_mandatory copy_header_mandatory $(LIBFT) $(NAME)
 
-$(LIBFT):
+bonus: check_clean_bonus copy_header_bonus $(LIBFT) $(NAME)
+
+$(LIBFT):	
+	@echo "📚 Compiling LIBFT... Shelving functions and indexing pointers..."
 	@cd libft && make
-
-##copy_textures:
-##	@mkdir -p $(TEXTURES_DEST)
-##	@cp -r $(TEXTURES_SRC)/* $(TEXTURES_DEST)
 
 $(NAME): $(OBJ) $(LIBFT)
 	$(CC) $(OBJ) -Llibft -lft -lm -Llibft/libxkit/.minilibx -lmlx -lXext -lX11 -o $(NAME)
@@ -66,21 +65,55 @@ $(NAME): $(OBJ) $(LIBFT)
 ### Compile .c files into .o files ###
 ######################################
 
-$(OBJ): %.o: %.c $(DEPS)
+##$(OBJ): %.o: %.c $(DEPS)
+##	$(CC) $(CFLAGS) -c $< -o $@
+
+%.o: %.c $(DEPS)
 	$(CC) $(CFLAGS) -c $< -o $@
+
+copy_header_mandatory:
+	@if [ ! -f ./libft/libxkit/libxkit.h ] || ! cmp -s ./inc/libxkit.h ./libft/libxkit/libxkit.h; then \
+		cp ./inc/libxkit.h ./libft/libxkit/libxkit.h; \
+		echo "Loaded: mandatory libxkit.h"; \
+		echo "mandatory" > .last_build; \
+	fi
+
+copy_header_bonus:
+	@if [ ! -f ./libft/libxkit/libxkit.h ] || ! cmp -s ./bonus/libxkit.h ./libft/libxkit/libxkit.h; then \
+		cp ./bonus/libxkit.h ./libft/libxkit/libxkit.h; \
+		echo "Loaded: bonus libxkit.h"; \
+		echo "bonus" > .last_build; \
+	fi
+
+######################################
+### Check for cleanup necessity ###
+######################################
+
+check_clean_mandatory:
+	@if [ -f .last_build ] && grep -q "bonus" .last_build; then \
+		echo "🔄 Switching from BONUS to MANDATORY. Running fclean..."; \
+		$(MAKE) fclean; \
+	fi
+
+check_clean_bonus:
+	@if [ -f .last_build ] && grep -q "mandatory" .last_build; then \
+		echo "🔄 Switching from MANDATORY to BONUS. Running fclean..."; \
+		$(MAKE) fclean; \
+	fi
 
 #########################
 ### Cleaning-up rules ###
 #########################
 
 clean:
-	cd libft && make clean
-	rm -f $(OBJ)
+	@echo "🧹 Sweeping away the dust... but leaving the mess behind!"
+	@cd libft && make clean
+	@rm -f $(OBJ)
 
 fclean: clean
-	cd libft && make fclean
-	rm -f $(NAME)
-#	rm -rf $(TEXTURES_DEST)
+	@echo "🔥 Full wipe! If it was alive, it's gone now."
+	@cd libft && make fclean
+	@rm -f $(NAME)
 
 re: fclean all
 

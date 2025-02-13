@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 13:16:14 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/12 10:21:42 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/13 20:40:44 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_border(char **arr, int line_len, int nb_lines, char b_chr)
 
 	last_i = nb_lines - 1;
 	last_j = line_len - 2;
-	ft_init_ints(0, 2, &i, &j);
+	ft_init_two_ints(0, &i, &j);
 	while (j++ < last_j)
 	{
 		if (arr[0][j] != b_chr || arr[last_i][j] != b_chr)
@@ -60,6 +60,7 @@ int	check_chars(char **arr, int nb_lines, char *set)
  * - 0 is considered positive (0 = not even one).
  * The counter array should be initialised to 0 beforehand.
  * [0]=empty | [1]=wall | [2]=C (coll) | [3]=E (exit) | [4]=P (start pos)
+ * The first index is ignored at the number of empty does not matter.
  */
 int	check_count(char **arr, int nb_lines, char *set, t_count_req *c)
 {
@@ -72,6 +73,7 @@ int	check_count(char **arr, int nb_lines, char *set, t_count_req *c)
 		count_chars(arr[i], set, c->count);
 		i++;
 	}
+	j++;
 	while (set[j] != '\n')
 	{
 		if ((c->req[j] >= 0 && c->count[j] != c->req[j])
