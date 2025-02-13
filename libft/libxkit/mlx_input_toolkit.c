@@ -65,7 +65,7 @@ void	kp_motion(int keysym, t_state *state)
 
 int	on_destroy(t_state *state)
 {
-	ft_printf("🧹 [on_destroy] Free all! \n");
+	ft_printf("[on_destroy] Free all! 🧹\n");
 	sl_memfree(state);
 	exit(0);
 	return (0);

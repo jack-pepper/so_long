@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 10:27:53 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/13 14:29:50 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/13 16:32:08 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ int	on_coll_tile(t_state *state, t_pos *pos)
 
 	score = &state->data->collected;
 	step = state->data->to_be_collected / 5;
-	ft_printf("🪙 Found collectible!\n");
 	(*score)++;
+	ft_printf("🪙 Found collectible! (%d/%d)\n",
+		*score, state->data->to_be_collected);
 	state->map->tilemap[pos->y][pos->x] = '0';
 	(state->map->tile_count[2])++;
 	(state->map->tile_count[0])--;
@@ -51,11 +52,14 @@ void	on_exit_tile(t_state *state)
 	{
 		display_victory_screen();
 		sl_memfree(state);
-		ft_printf("[on_exit_tile] Free all! \n");
+		ft_printf("[on_exit_tile] Free all! 🧹\n");
 		exit(0);
 	}
 	else
-		ft_printf("Keep searching!\n");
+	{
+		ft_printf("⛔ Keep on searching!\n");
+		return ;
+	}
 }
 
 void	on_enemy_tile(t_state *state)

@@ -38,7 +38,6 @@ void	display_start_screen(void)
 	ft_printf("❌ Quit: Press 'ESC'\n");
 	ft_printf("\n");
 	ft_printf("\033[1;32m👾 Developed by: mmalie 42\033[0m\n");
-	ft_printf("\nPress any key to start your adventure!\n");
 }
 
 void	display_victory_screen(void)

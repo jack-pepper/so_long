@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2025/02/11 17:30:36 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/13 16:37:46 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,8 +34,6 @@ DEPS = ./inc/so_long.h \
 
 LIBFT = ./libft/libft.a
 LIBXKIT = ./libft/libxkit/libxkit.a
-#TEXTURES_SRC = ./textures/
-#TEXTURES_DEST = ./libft/libxkit/textures/
 
 ####################
 ### Source files ###
@@ -44,9 +42,6 @@ LIBXKIT = ./libft/libxkit/libxkit.a
 SRC = ./src/so_long.c \
       ./src/sl_screens.c \
       ./src/sl_events.c \
-#      ./src/sl_ice_level.c \
-#      ./src/sl_sand_level.c \
-#      ./src/sl_pacman_level.c \
 
 ### Object files
 OBJ = $(SRC:.c=.o)
