@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 20:49:05 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/13 14:28:30 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/15 00:20:26 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ char	*join_path(char *level, char *file)
 	char	*fullpath;
 
 	fullpath = ft_strjoin(level, file);
-	ft_printf("🧙 joining path: %s\n", fullpath);
+//	ft_printf("🧙 joining path: %s\n", fullpath);
 	return (fullpath);
 }

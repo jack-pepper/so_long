@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 10:27:53 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/14 23:25:09 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/15 00:32:17 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	on_enemy_tile(t_state *state)
 {
 	display_defeat_screen();
 	sl_memfree(state);
-	ft_printf("[on_enemy_tile] Be more careful next time! ☠️ \n");
 	exit(0);
 }
 
