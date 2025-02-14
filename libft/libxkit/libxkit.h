@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/13 23:35:31 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/14 22:57:22 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define FRAME_RATE 60
 
 // Up to 5 enemies
-# define NB_ENEMIES 0
+# define NB_ENEMIES 5
 
 // Enemy collision radius
 # define DIFFICULTY 0
@@ -35,7 +35,6 @@
 
 /* MiniLibX libraries */
 # include "./.minilibx/mlx.h"
-//# include "./.minilibx/mlx_int.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 
@@ -143,17 +142,22 @@ void	flood_count_right(char **tab, t_pos size, t_pos begin, int reached[2]);
 
 	/* mlx_memfree_toolkit.c */
 void	sl_memfree(t_state *state);
-void	sl_free_enemies(t_state *state);
 void	sl_destroy_imgs(t_state *state);
 void	sl_free_map(t_state *state);
 void	sl_free_all(char **arr);
+void	free_paths(t_state *state);
+
+	/* mlx_memfree_enemies_toolkit.c */
+void	sl_destroy_imgs_enemy(t_state *state);
+void	sl_free_enemies(t_state *state);
+void	free_paths_enemy(t_state *state);
 
 	/* mlx_paths_to_assets_toolkit.c */
+void	init_assets_to_null(t_state *state);
 int		load_paths_tiles(t_state *state, char *level);
 int		load_paths_hero(t_state *state, char *level);
 int		load_paths_enemy(t_state *state, char *level);
 int		load_paths(t_state *state, char *level);
-void	free_paths(t_state *state);
 
 	/* mlx_pixel_toolkit.c */
 void	mlx_fast_pixel_put(t_img *img, int x, int y, int color);
@@ -168,6 +172,7 @@ int		set_canvas(t_env *env);
 	/* mlx_tileset_toolkit.c */
 int		set_map(t_state *state);
 int		upload_assets(t_state *state, char *level);
+int		upload_tiles(t_state *state);
 
 	/* mlx_ui_toolkit.c */
 void	display_steps_on_screen(t_state *state);

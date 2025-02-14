@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:03:33 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/11 17:27:13 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/14 23:11:43 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int	set_state(t_state *state)
 	ft_printf("🎥 [7] camera: ✅ POSITIONED!\n");
 	ft_printf("\n🚀 STATE SET, GAME READY! 🕹️\n");
 	return (0);
-	state->error_code = 5;
 }
 
 int	set_window(t_state *state)

@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:36:40 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/12 21:54:38 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/14 23:12:07 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,30 @@ int	set_map(t_state *state)
 
 int	upload_assets(t_state *state, char *level)
 {
+	if ((load_paths(state, level) != 0)
+		|| (upload_tiles(state) != 0)
+		|| (upload_hero(state) != 0))
+	{
+		free_paths(state);
+		return (1);
+	}
+	if (NB_ENEMIES > 0)
+	{
+		if (upload_enemy(state, NB_ENEMIES) != 0)
+		{
+			free_paths(state);
+			return (1);
+		}
+	}
+	free_paths(state);
+	return (0);
+}
+
+int	upload_tiles(t_state *state)
+{
 	int	width;
 	int	height;
 
-	if (load_paths(state, level) != 0)
-		return (1);
 	state->env->bkgd_img = mlx_xpm_file_to_image(state->env->mlx,
 			state->env->bkgd_path, &width, &height);
 	state->map->wall->img = mlx_xpm_file_to_image(state->env->mlx,
@@ -54,13 +73,5 @@ int	upload_assets(t_state *state, char *level)
 	if (!state->env->bkgd_img || !state->map->wall->img
 		|| !state->map->coll->img || !state->map->exit->img)
 		return (1);
-	if (upload_hero(state) != 0)
-		return (1);
-	if (NB_ENEMIES > 0)
-	{
-		if (upload_enemy(state, NB_ENEMIES) != 0)
-			return (1);
-	}
-	free_paths(state);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 10:27:53 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/13 16:32:08 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/14 23:25:09 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	on_exit_tile(t_state *state)
 	{
 		display_victory_screen();
 		sl_memfree(state);
-		ft_printf("[on_exit_tile] Free all! 🧹\n");
 		exit(0);
 	}
 	else

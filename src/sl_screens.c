@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 10:02:51 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/14 00:01:59 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/14 23:17:55 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	display_victory_screen(void)
 	ft_printf("        o       \\ \\/\\/ /   | |   |    |    \n");
 	ft_printf("       TS__[O]   \\_/\\_/   |___|  |_|\\_|    \n");
 	ft_printf("      {======|___|'''''|_|'''''|_|''''|=|     \n");
-	ft_printf("      ./o--000'   -0-0-   -0-0-   -0-0-'    \n");
+	ft_printf("      ./o--000' \"`-0-0-'\"`-0-0-\"`-0-0-'    \n");
 	ft_printf("\n");
 	display_rainbow_congratulations();
 	ft_printf("\n");

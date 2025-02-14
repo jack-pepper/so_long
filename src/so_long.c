@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:25:02 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/13 23:33:45 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/14 23:10:30 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 	if ((init_map(state, fpath, ".ber") != 0) || (map_parser(state) != 0)
 		|| (map_validator(state) != 0) || (set_state(state) != 0))
 	{
-		ft_printf("error code (%d)\n", state->error_code);
+		ft_printf("Error code: %d\n", state->error_code);
 		sl_memfree(state);
 		return (1);
 	}
@@ -132,7 +132,6 @@ int	render(t_state *state)
 	if (state->current_frame == FRAME_RATE)
 	{
 		pos = state->hero->pos;
-		mlx_clear_window(state->env->mlx, state->env->win);
 		update_render(state);
 		display_steps_on_screen(state);
 		if (state->map->tilemap[pos->y][pos->x] == 'C')

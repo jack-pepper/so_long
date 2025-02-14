@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/05 10:55:56 by mmalie            #+#    #+#              #
-#    Updated: 2025/02/13 14:19:10 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/14 14:33:54 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,7 @@ LIBXKIT = ./mlx_background_render_toolkit.c \
 	./mlx_map_validator_toolkit.c \
 	./mlx_map_validator_flood_count.c \
 	./mlx_memfree_toolkit.c \
+	./mlx_memfree_enemies_toolkit.c \
 	./mlx_paths_to_assets_toolkit.c \
 	./mlx_pixel_toolkit.c \
 	./mlx_state_init_toolkit.c \
