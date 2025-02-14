@@ -12,6 +12,13 @@ The game features multiple levels, each represented with unique assets. The play
 
 All **sprites** used in the game were drawn by myself (badly).
 
+![image](https://github.com/user-attachments/assets/3347c713-3f70-419f-91b2-361bd5ebe3f4)
+![image](https://github.com/user-attachments/assets/ad5fcaaa-b83d-438e-8514-3b48734a3079)
+![image](https://github.com/user-attachments/assets/1df50659-03d6-4b05-b380-aaf74fb71f69)
+![image](https://github.com/user-attachments/assets/15ab02ed-2721-499f-9d6c-9c2a9e453ea7)
+![image](https://github.com/user-attachments/assets/97afbe2b-3cc7-41dd-bdec-b851d78248a1)
+
+
 ## Technologies Used
 - **C**
 - **MinilibX (MLX)**
