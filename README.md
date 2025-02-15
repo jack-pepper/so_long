@@ -1,15 +1,5 @@
 # 🐬 so_long
 
-
- Technologies Used
- Table of Contents
- Installation
-🎮 Usage
- Libxkit
- Controls
- Contributing
- Acknowledgments
-
 ## 📝 Description
 **so_long** is a 2D game developed as part of the 42 curriculum, utilizing the **MinilibX** graphical library. The project expands on the standard implementation by incorporating **Libxkit**, a custom-built library that acts as a small game engine, providing additional tools and abstractions over MinilibX.
 
@@ -67,39 +57,58 @@ To set up and run the project locally, follow these steps:
 The goal of the game is simple: collect all the collectibles (`C`) on the map before reaching the exit (`E`).
 
 ## 🎮 Game Features
+
 🏞 **Multiple Themed Levels:** The game dynamically swaps textures and sprites to transform the environment.
+
 🖌️ **Custom Sprites:** All graphics were hand-drawn, making the game unique and visually distinct.
+
 🎥 **Camera System:** The player remains centered while moving through larger maps.
+
 👿 **(Very) Basic Enemy AI:** Simple enemy movement and collision detection.
+
 ⚡ **Performance Optimizations:** Implemented frame rate control to minimize flickering.
+
 🔍 **Error and Memory Handling:** I hope you can find some possible failure scenarios or leaks I may have missed! 😅
 
 ## 🖥️ Libxkit - A Custom Game Toolkit
 **Libxkit** is a set of utility functions built on top of MinilibX to **simplify** and **enhance** game development:By developing this library, this project goes beyond just using MinilibX — it builds a foundational **game framework** for future graphical projects.
 
-### 🚀 Features
+### 🔷 🎨 Rendering & Graphics
 
-#### 🔷 🎨 Rendering & Graphics
 🏞 **Background rendering** (render_background)
+
 🏛 **Tile-based map rendering** (render_map, rm_put_tiles)
+
 👾 **Character rendering** (render_hero, render_enemy)
+
 🎨 **Pixel manipulation** (mlx_fast_pixel_put)
+
 ✏️ **Basic drawing utilities** (draw_mlx_line, draw_mlx_circle, draw_mlx_rect)
 
-#### 🎮 🕹️ Game Mechanics & Interaction
+### 🎮 🕹️ Game Mechanics & Interaction
+
 🎥 **Camera movement & bounds checking** (set_cam, update_cam_pos, center_cam_on_hero)
+
 🚶‍♂️ **Character movement & animation** (on_motion_up, on_motion_down, move_to_left, move_to_right)
+
 🔍 **Collision detection** (check_collision_tile, check_collision_radius)
+
 🖥 **Game UI rendering** (display_steps_on_screen, display_steps_on_terminal)
 
-#### 🗺️ 🛠️ Map & Level Management
+### 🗺️ 🛠️ Map & Level Management
+
 📜 **Map parsing & validation** (map_validator, check_border, count_chars)
+
 🔄 **Dynamic level loading** (load_paths, upload_assets)
+
 🔍 **Flood-fill pathfinding for validation** (flood_count, flood_count_left, flood_count_right)
 
-#### 🏗️ 🛡️ Game State & Memory Management
+### 🏗️ 🛡️ Game State & Memory Management
+
 🎬 **Game state initialization** (init_state, set_state, set_window, set_hooks)
+
 🗑️ **Resource management & cleanup** (sl_memfree, sl_destroy_imgs, free_paths)
+
 🎭 **Dynamic asset loading** (load_paths_tiles, load_paths_hero, load_paths_enemy)
 
 ## 🎮 Controls
