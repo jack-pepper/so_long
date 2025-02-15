@@ -28,9 +28,9 @@ All **sprites** used in the game were drawn by myself (badly).
 ![image](https://github.com/user-attachments/assets/15ab02ed-2721-499f-9d6c-9c2a9e453ea7)
 ![image](https://github.com/user-attachments/assets/97afbe2b-3cc7-41dd-bdec-b851d78248a1)
 
-
 ## 🛠️ Technologies Used
 - **C**
+- **Vim**
 - **MinilibX (MLX)**
 - **LIBXKIT (Custom Game Toolkit built on MinilibX)**
 - **Valgrind** (a lot)

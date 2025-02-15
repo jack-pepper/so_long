@@ -1,22 +1,22 @@
-# Mylibft
+# 🏛 MYLIBFT
 ![Build Status](https://img.shields.io/badge/build-passing-green)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
-## Description
+## 📝 Description
 Libft is a project at 42 that involves creating a personal C library by implementing a collection of standard functions from the C standard library, as well as some additional utility functions. As my cursus progresses and new challenges arise, I have decided to expand this library to enhqnce its functionality and versatility by adding additional functions to meet specific project needs or explore some concepts in depth (bitwise operations with LIBBIN, sorting algorithms with LIBSORT...).
 
-**Technologies Used:**
-- C
+## 🛠️ Technologies Used:
+- **C**
+- **Vim**
 
-## Table of Contents
+## 📖 Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
 - [Features](#features)
 - [Contributing](#contributing)
 - [Acknowledgments](#acknowledgments)
 
-## Installation
-
+## 📥 Installation
 To use this project locally:
 
 1. Clone this repository:
@@ -34,14 +34,13 @@ To use this project locally:
    #include "libft.h"
    ```
 
-## Usage
-
+## 🕹️ Usage
 1. mylibft is designed to be modular, so you can easily add or remove functions and/or libraries depending on your needs.
 2. Functions that were part of the libft project at 42 are prefixed with [42].
 
-## Features
+## 🚀 Features
 
-### LIBCTYPE (From ctype.h)
+### 🔠 🔢 🔣 LIBCTYPE (From ctype.h)
 - [42] ft_isalpha - Checks if a character is an alphabetic letter (A-Z or a-z).
 - [42] ft_isdigit - Checks if a character is a digit (0-9).
 - [42] ft_isalnum - Checks if a character is either alphabetic or a digit.
@@ -54,7 +53,7 @@ To use this project locally:
 - [42] ft_toupper - Converts a lowercase letter to uppercase.
 - [42] ft_tolower - Converts an uppercase letter to lowercase.
 
-### LIBSTRING (From string.h)
+### 🔤 📜 🧵 LIBSTRING (From string.h)
 - [42] ft_strlen - Returns the length of a string (excluding the null terminator).
 - [42] ft_memset - Fills a block of memory with a specified value.
 - [42] ft_bzero - Sets a block of memory to zero.
@@ -74,13 +73,13 @@ To use this project locally:
 - ft_strpbrk - Locates the first occurrence in the string s of any of the bytes in the string accept.
 - ft_strnopbrk - Locates the first occurrence in the string s of any of the bytes NOT in the string accept.
 
-### LIBSTDLIB (From stdlib.h)
+### 🔢 💾 ♻️ LIBSTDLIB (From stdlib.h)
 - [42] ft_calloc - Allocates memory for an array and initializes it to zero.
 - [42] ft_memdel - (Non-standard) Frees allocated memory and sets the pointer to null. 
 - [42] ft_atoi - Converts a string to an integer, handling whitespace and signs.
 - ft_atol - Converts a string to a long, handling whitespace and signs.
 
-### LIBUTILS (Additional utility functions)
+### 💡 🛠️ 🚀 LIBUTILS (Additional utility functions)
 - [42] ft_itoa - Converts an integer to a string representation.
 - [42] ft_putchar_fd - Writes a single character to a file descriptor.
 - [42] ft_putstr_fd - Writes a string to a file descriptor.
@@ -99,7 +98,7 @@ To use this project locally:
 - ft_init_two_ints - Same as ft_init_ints for two ints (not variadic).
 - ft_init_three_ints - Same as ft_init_ints for three ints (not variadic).
 
-### LIBLIST (Linked lists handling Functions)
+### 📋 🔗 ➡️ LIBLIST (Linked lists handling Functions)
 - [42] ft_lstnew - Creates a new linked list node with a given content.
 - [42] ft_lstadd_front - Adds a new node at the front of a linked list.
 - [42] ft_lstsize - Returns the size (number of elements) of a linked list.
@@ -110,7 +109,7 @@ To use this project locally:
 - [42] ft_lstmap - Applies a function to each element in a linked list and returns a new list with the modified elements.
 - [42] ft_lstiter.c - Iterates over a linked list and applies a function to each element.
 
-### [42] LIBPRINTF
+### ✏️ 🖨️ ✨ [42] LIBPRINTF
 - ft_printf - Custom version of printf. Handles formatted output and conversion specifiers.
 - ft_spec_conv - Handles the conversion of specifiers d, i, u, p, x, X, s, c, % and the flags +, <space>, #).
 - conv_num - Handles numerical conversion specifiers (d, i, u).
@@ -125,7 +124,7 @@ To use this project locally:
 - ft_putnbr_fd_count - Outputs an integer as a string to a file descriptor and returns the numbers of characters written.
 - ft_put_ui_fd_count - Outputs an unsigned integer as a string to a file descriptor and returns the number of characters written.
 
-### [42] LIBGNL - Get Next Line
+### 📖 📝 💾 [42] LIBGNL - Get Next Line
 - ft_gnl - Reads from a file descriptor and returns one line at a time. 
 - read_and_stash - Handles the reading and buffering process until End Of File (EOF) is reached.
 - stash_manager - Manages the static buffer stash to preserve the data from previous reads over to the next read.
@@ -133,7 +132,7 @@ To use this project locally:
 - seize_eof - Handles EOF and returns data in stash if necessary.
 - clean_stash - Frees the stash and sets the pointer to null.
 
-### LIBBIN - For bits operations
+### 0️⃣ 1️⃣ 🔄 LIBBIN - For bits operations
 #### Display
 - ft_show_bin - Displays the int num in binary notation.
 - ft_get_bin - Gets the int num in binary notation and stores it in an array send in parameter.
@@ -174,7 +173,7 @@ To use this project locally:
 - ft_create_bitmask - Create a bitmask with n least significant bits set to 1.
 - ft_create_range_bitmask - Create a bitmask with bits set to 1 between start_bit and end_bit.
 
-### LIBSORT - Sorting algorithms, utilities and procedures.
+### 📊 🪆 🎯 LIBSORT - Sorting algorithms, utilities and procedures.
 - ft_bub_srt - Bubble sort algorithm.
 - ft_sel_srt - Select sort algorithm.
 - ft_ins_srt - Insert sort algorithm.
@@ -186,7 +185,13 @@ To use this project locally:
 - ft_rev_arr_int - Reverses an array of int in place.
 - ft_swap_ints - Swaps two ints.
 
-## Contributing
+### 🖥️ 🎨 👾 LIBXKIT - Graphical utilities and simple game engine based on MiniLibx
+
+A custom extension of the MiniLibX graphics library, designed to facilitate drawing pixels and game development in C. It provides a structured and reusable set of tools for rendering, collision detection, map management, input handling, and character movement.
+
+Please refer to my project "so_long" for more information and an example of usage.
+
+## 🤝 Contributing
 
 Contributions are welcome! If you notice any areas where the implementation can be improved or have suggestions for new features, feel free to contribute. I am always willing to learn.
 
@@ -196,6 +201,6 @@ Contributions are welcome! If you notice any areas where the implementation can 
 4. Push to the branch (`git push origin feature-branch`).
 5. Open a pull request.
 
-## Acknowledgments
+## 💙 Acknowledgments
 
 - Thanks to 42 and to Marvin for being such an inspiration.
