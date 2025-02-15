@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/14 22:58:00 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/15 10:24:27 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,7 @@ int		upload_tiles(t_state *state);
 
 	/* mlx_ui_toolkit.c */
 void	display_steps_on_screen(t_state *state);
+void	display_steps_on_terminal(t_state *state);
 
 	/* mlx_utils_toolkit.c */
 void	mlx_show(void *xvar, void *win, void *img, t_pos pos);

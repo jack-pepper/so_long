@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 09:35:38 by mmalie            #+#    #+#              #
-#    Updated: 2025/02/11 09:13:02 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/15 10:48:02 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,9 @@ SRC = ${LIBGNL}
 ### Object files ###
 ####################
 
-OBJ = $(SRC:.c=.o)
+OBJ_DIR = ./obj
+
+OBJ = $(patsubst %.c,$(OBJ_DIR)/%.o, $(SRC))
 
 ### Default rules (compile the executable)
 all: $(NAME)
@@ -64,17 +66,21 @@ all: $(NAME)
 	@echo "                          Ready to read lines efficiently! 📑                       "
 	@echo "===================================================================================="
 
-### Compile .c files into .o files
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@ 
-
 ###############################
 ### Create a static library ###
 ###############################
 
-$(NAME): $(OBJ)
+$(NAME): | $(OBJ_DIR) $(OBJ)
 	$(AR) $(ARFLAGS) $(NAME) $(OBJ)
 	ranlib $(NAME)
+
+### Compile .c files into .o files and store in ./obj
+$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@ 
+
+### Create ./obj folder if missing
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
 #########################
 ### Cleaning-up rules ###
@@ -82,6 +88,7 @@ $(NAME): $(OBJ)
 
 clean:
 	rm -f $(OBJ)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
 	rm -f $(NAME)
