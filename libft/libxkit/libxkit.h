@@ -6,7 +6,7 @@
 /*   By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:16:07 by mmalie            #+#    #+#             */
-/*   Updated: 2025/02/15 10:24:56 by mmalie           ###   ########.fr       */
+/*   Updated: 2025/02/15 10:24:27 by mmalie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define FRAME_RATE 60
 
 // Up to 5 enemies
-# define NB_ENEMIES 5
+# define NB_ENEMIES 0
 
 // Enemy collision radius
 # define DIFFICULTY 0
@@ -35,6 +35,7 @@
 
 /* MiniLibX libraries */
 # include "./.minilibx/mlx.h"
+//# include "./.minilibx/mlx_int.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 

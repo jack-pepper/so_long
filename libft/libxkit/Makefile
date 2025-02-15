@@ -6,7 +6,7 @@
 #    By: mmalie <mmalie@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/05 10:55:56 by mmalie            #+#    #+#              #
-#    Updated: 2025/02/14 14:33:54 by mmalie           ###   ########.fr        #
+#    Updated: 2025/02/15 19:59:04 by mmalie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,11 @@ SRC = $(LIBXKIT)
 ### Object files ###
 ####################
 
-OBJ = $(SRC:.c=.o)
+OBJ_DIR = ./obj
+
+##OBJ = $(SRC:.c=.o)
+
+OBJ = $(patsubst %.c,$(OBJ_DIR)/%.o, $(SRC))
 
 ### Default rules (compile the executable)
 all: $(NAME)
@@ -98,21 +102,25 @@ all: $(NAME)
 	@echo "                         Press [Start] to Play!  🕹️                                 "
 	@echo "===================================================================================="
 
-### Compile .c files into .o files
-%.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
-### Download and build MiniLibX if not already present
-$(MLX_LIB):
-	make -C $(MLX_DIR)
-
 ###############################
 ### Create a static library ###
 ###############################
 
-$(NAME): $(MLX_LIB) $(OBJ)
+$(NAME): | $(MLX_LIB) $(OBJ_DIR) $(OBJ)
 	$(AR) $(ARFLAGS) $(NAME) $(OBJ)
 	ranlib $(NAME)
+
+### Compile .c files into .o files and store in ./obj
+$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@ 
+
+### Create ./obj folder if missing
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
+### Build MiniLibx
+$(MLX_LIB):
+	make -C $(MLX_DIR)
 
 #########################
 ### Cleaning-up rules ###
@@ -120,6 +128,7 @@ $(NAME): $(MLX_LIB) $(OBJ)
 
 clean:
 	rm -f $(OBJ)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
 	rm -f $(NAME)
